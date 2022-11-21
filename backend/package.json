@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DreamerAmy/Shop4Pets/issues"
   },
-  "homepage": "https://github.com/DreamerAmy/Shop4Pets#readme"
+  "homepage": "https://github.com/DreamerAmy/Shop4Pets#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
