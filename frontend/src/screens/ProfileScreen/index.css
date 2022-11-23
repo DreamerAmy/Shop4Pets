@@ -1,0 +1,31 @@
+/* profile screen - Kailin*/
+.profile-icon {
+    width: 120px;
+    border-radius: 60px;
+    margin-left: 60px;
+}
+
+.highlight-text {
+    font-weight: bold
+}
+
+#editBtn {
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 5px;
+}
+
+#accountInfo {
+    margin: 0 auto;
+    background-image: url(/public/images/profile_bg2.jpg);
+    background-size: cover;
+
+}
+
+#infoSection {
+    margin-left: 60px;
+}
+
+/* profile screen - Fifi*/
