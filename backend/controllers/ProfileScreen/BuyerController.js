@@ -1,9 +1,9 @@
 import * as buyerDao from '../../controllers/ProfileScreen/BuyerDao.js'
-const BuyersController = (app) => {
+const BuyerController = (app) => {
     app.post('/api/buyer', createBuyer);
-    app.get('/api/buyer', findBuyers);
-    app.put('/api/buyer/:tid', updateBuyer);
-    app.delete('/api/buyer/:tid', deleteBuyer);
+    app.get('/api/buyer', findBuyer);
+    app.put('/api/buyer/:bid', updateBuyer);
+    app.delete('/api/buyer/:bid', deleteBuyer);
 }
 
 const createBuyer = async (req, res) => {
@@ -11,22 +11,22 @@ const createBuyer = async (req, res) => {
     const insertedBuyer = await buyerDao.createBuyer(newBuyer);
     res.json(insertedBuyer);
 }
-const findBuyers = async (req, res) => {
-    const buyer = await buyerDao.findBuyers();
+const findBuyer = async (req, res) => {
+    const buyer = await buyerDao.findBuyer();
     res.json(buyer)
 }
 const updateBuyer = async (req, res) => {
-    const buyerIdToUpdate = req.params.tid;
+    const buyerIdToUpdate = req.params.bid;
     const updates = req.body;
     const status = await buyerDao.updateBuyer(buyerIdToUpdate, updates);
     res.json(status);
 }
 
 const deleteBuyer = async (req, res) => {
-    const buyerIdToDelete = req.params.tid;
+    const buyerIdToDelete = req.params.bid;
     const status = await buyerDao.deleteBuyer(buyerIdToDelete);
     res.json(status);
 }
 
 
-export default BuyersController
+export default BuyerController

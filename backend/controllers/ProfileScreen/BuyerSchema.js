@@ -8,7 +8,6 @@ const schema = mongoose.Schema(
         memberSince: String,
         order: Number,
         favorites: Number,
-
     },
     { collection: 'buyer' }
 );
