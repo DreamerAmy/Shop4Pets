@@ -10,10 +10,15 @@ export const createBuyerThunk = createAsyncThunk(
 export const findBuyerThunk = createAsyncThunk(
     'buyer/findBuyer',
     async () => {
-        return (await service.findBuyers());
+        return (await service.findBuyer());
     }
 )
-
+export const findBuyerByIdThunk = createAsyncThunk(
+    'buyer/findBuyerById',
+    async (buyerId) => {
+        return (await service.findBuyerById(buyerId));
+    }
+)
 export const updateBuyerThunk =
     createAsyncThunk(
         'buyer/updateBuyer',

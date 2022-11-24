@@ -42,7 +42,6 @@
     display: grid;
     grid-template-columns: auto auto;
     border-radius: 20px;
-
 }
 
 #BuyerSummarySection div {
@@ -87,12 +86,21 @@
 }
 
 #saveBtn {
-    background-color: #FF9900;
+    background-color: #916b44;
     color: white;
     font-weight: bold;
     border-radius: 20px;
     margin-top: 5px;
     float: right;
+}
+
+#discardBtn {
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 5px;
+    float: left;
 }
 
 /* profile screen - Fifi*/

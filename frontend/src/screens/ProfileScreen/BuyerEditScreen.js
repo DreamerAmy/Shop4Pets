@@ -1,14 +1,20 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "./index.css";
-import { updateBuyer } from "../ProfileScreen/BuyerReducer"
 import ProfileBanner from "./ProfileBanner.js"
+import { findBuyerByIdThunk, updateBuyerThunk } from "../../services/BuyerThunks";
+
 
 const BuyerEditScreen = () => {
-    const buyer = useSelector(state => state.buyer);
+    const { pathname } = useLocation();
+    const paths = pathname.split('/')
+    const bid = paths[4];
+    const { buyer, loading } = useSelector((state) => state.buyer);
     let [info, setInfo] = useState(buyer);
     const dispatch = useDispatch();
+    useEffect(() => { dispatch(findBuyerByIdThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    const saveUrl = "/profile/buyer/" + bid;
     const buyerClickHandler = () => {
         const newBuyer = {
             ...buyer,
@@ -17,14 +23,14 @@ const BuyerEditScreen = () => {
             address: info.address,
             phone: info.phone
         }
-        dispatch(updateBuyer(newBuyer));
+        dispatch(updateBuyerThunk(newBuyer));
     }
     return (
         <div className="row mt-2">
-            <div className="col-3">
+            <div className="col-2">
                 left
             </div>
-            <div className="col-6" >
+            <div className="col-8" >
                 <ProfileBanner />
                 <div className="form-group" id="editSection">
                     <label for="inputName">Name</label>
@@ -59,7 +65,13 @@ const BuyerEditScreen = () => {
                         onChange={(event) => setInfo({ ...info, phone: event.target.value })} >
                     </input>
 
-                    <Link to="/profile/buyer" href="/" className="nav-link" >
+                    <Link to={saveUrl} href="/" className="nav-link" >
+                        <button className="btn btn-default" id="discardBtn" >
+                            Discard
+                        </button>
+                    </Link>
+
+                    <Link to={saveUrl} href="/" className="nav-link" >
                         <button className="btn btn-default" id="saveBtn" onClick={buyerClickHandler}>
                             Save
                         </button>
@@ -67,7 +79,7 @@ const BuyerEditScreen = () => {
                 </div >
             </div>
 
-            <div className="col-3">
+            <div className="col-2">
                 right
             </div>
         </div >

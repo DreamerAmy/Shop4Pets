@@ -28,10 +28,10 @@ function App() {
         <Routes>
           <Route path="/profile" element={<ProfileScreen />} />
           {/* TODO: For profile testing purpose only */}
-          <Route path="/profile/buyer" element={<BuyerProfileScreen />} />
+          <Route path="/profile/buyer/*" element={<BuyerProfileScreen />} />
           <Route path="/profile/seller" element={<SellerProfileScreen />} />
           <Route path="/profile/admin" element={<AdminProfileScreen />} />
-          <Route path="/profile/buyer/edit-profile" element={<BuyerEditScreen />} />
+          <Route path="/profile/buyer/edit-profile/*" element={<BuyerEditScreen />} />
 
 
         </Routes>
