@@ -1,22 +1,22 @@
 import React from "react";
-// import { Link } from "react-router-dom";
-const SellerProfileScreen = () => {
+
+const SellerMyCos = () => {
     return (
         <div className="row mt-2">
             <div className="col-3">
                 left
             </div>
             <div className="col-6" style={{ "position": "relative" }}>
-                seller
+                <h1>
+                    Seller My Customers
+                </h1>
             </div>
             <div className="col-3">
                 right
             </div>
         </div>
-
     )
 }
 
 
-export default SellerProfileScreen;
-
+export default SellerMyCos;

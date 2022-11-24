@@ -29,3 +29,15 @@
 }
 
 /* profile screen - Fifi*/
+.allBtn-color{
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+}
+
+.menuBtn{
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+    margin-top: 5px;
+}
