@@ -1,6 +1,9 @@
-import buyerModel from '../../models/BuyerModel.js';
+import buyerModel from '../models/buyerModel.js';
 export const findBuyer = () =>
     buyerModel.find();
+
+export const findBuyerById = (bid) =>
+    buyerModel.find({ _id: bid });
 
 export const createBuyer = (buyer) =>
     buyerModel.create(buyer);
