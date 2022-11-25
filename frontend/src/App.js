@@ -8,16 +8,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from "react-redux";
 
 import ProfileScreen from './screens/ProfileScreen';
-import BuyerProfileScreen from "./screens//ProfileScreen/BuyerProfileScreen.js"
 import SellerProfileScreen from "./screens//ProfileScreen/SellerProfileScreen.js"
 import AdminProfileScreen from "./screens//ProfileScreen/AdminProfileScreen.js"
-import BuyerReducer from "./screens/ProfileScreen/BuyerReducer";
-import BuyerEditScreen from "./screens/ProfileScreen/BuyerEditScreen";
-
+import UserReducer from "./screens/ProfileScreen/UserReducer";
+import ProfileEditScreen from "./screens/ProfileScreen/ProfileEditScreen";
 
 const store = configureStore({
   reducer: {
-    buyer: BuyerReducer
+    user: UserReducer
   }
 });
 
@@ -26,12 +24,13 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/profile" element={<ProfileScreen />} />
+          <Route path="/edit-profile/*" element={<ProfileEditScreen />} />
+          <Route path="/profile/*" element={<ProfileScreen />} />
           {/* TODO: For profile testing purpose only */}
-          <Route path="/profile/buyer/*" element={<BuyerProfileScreen />} />
+          {/* <Route path="/profile/*" element={<BuyerProfileScreen />} /> */}
           <Route path="/profile/seller" element={<SellerProfileScreen />} />
           <Route path="/profile/admin" element={<AdminProfileScreen />} />
-          <Route path="/profile/buyer/edit-profile/*" element={<BuyerEditScreen />} />
+
 
 
         </Routes>

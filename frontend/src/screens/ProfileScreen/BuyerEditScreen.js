@@ -1,20 +1,16 @@
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./index.css";
 import ProfileBanner from "./ProfileBanner.js"
-import { findBuyerByIdThunk, updateBuyerThunk } from "../../services/BuyerThunks";
+import { updateUserThunk } from "../../services/UserThunks";
 
-
-const BuyerEditScreen = () => {
-    const { pathname } = useLocation();
-    const paths = pathname.split('/')
-    const bid = paths[4];
-    const { buyer, loading } = useSelector((state) => state.buyer);
+const BuyerEditScreen = (user) => {
+    const buyer = user.data;
+    const bid = buyer._id;
     let [info, setInfo] = useState(buyer);
     const dispatch = useDispatch();
-    useEffect(() => { dispatch(findBuyerByIdThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
-    const saveUrl = "/profile/buyer/" + bid;
+    const saveUrl = "/profile/" + bid;
     const buyerClickHandler = () => {
         const newBuyer = {
             ...buyer,
@@ -23,8 +19,9 @@ const BuyerEditScreen = () => {
             address: info.address,
             phone: info.phone
         }
-        dispatch(updateBuyerThunk(newBuyer));
+        dispatch(updateUserThunk(newBuyer));
     }
+
     return (
         <div className="row mt-2">
             <div className="col-2">

@@ -1,19 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import ProfileBanner from "./ProfileBanner.js"
-import { findBuyerByIdThunk } from "../../services/BuyerThunks";
 import './index.css';
 
-const BuyerProfileScreen = () => {
+const BuyerProfileScreen = (user) => {
     const { pathname } = useLocation();
     const paths = pathname.split('/')
-    const bid = paths[3];
-    const { buyer, loading } = useSelector((state) => state.buyer)
-    const dispatch = useDispatch();
-    useEffect(() => { dispatch(findBuyerByIdThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
-    // TODO: if profile has no buyer id, display current loggedin user profile
-    const editUrl = "./edit-profile/" + bid;
+    const bid = paths[2];
+    const buyer = user.data;
+    const editUrl = "../edit-profile/" + bid;
     return (
         <div className="row mt-2">
             <div className="col-3">
@@ -47,7 +42,6 @@ const BuyerProfileScreen = () => {
                         </div>
                     </Link>
                 </div>
-
 
                 <div id="RecentOrderSection">
                     <h3 className="highlight-text">Recent Orders</h3>
