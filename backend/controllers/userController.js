@@ -1,4 +1,5 @@
-import * as userDao from './userDao.js'
+import * as userDao from '../dao/userDao.js'
+
 const UserController = (app) => {
     app.post('/api/user', createUser);
     app.get('/api/user/all', findUser);
