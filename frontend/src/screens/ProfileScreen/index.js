@@ -1,26 +1,39 @@
-// /profile -> index.js
-// index.js logged? or not? => display different Buyer/Seller/Admin page
-// shop/profile 
-// import { BrowserRouter, Link } from "react-router-dom";
-// import { Routes, Route } from "react-router";
-// import BuyerScreenScreen from "./BuyerProfileScreen.js"
-import React from "react";
+import BuyerProfileScreen from "./BuyerProfileScreen.js"
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { findUserByIdThunk } from "../../services/UserThunks";
+import './index.css';
+
+function renderProfile(user) {
+    if (user.accountType === "buyer") {
+        return (<BuyerProfileScreen data={user} />)
+    }
+    else if (user.accountType === "seller") {
+        return (<>seller</>);
+    }
+    else if (user.accountType === "admin") {
+        return (<>admin</>);
+    }
+    return (
+        <div>home page of current user...</div>
+    )
+}
+
 
 const ProfileScreen = () => {
-    return (
-        <div className="row mt-2">
-            <div className="col-3">
-                left
-            </div>
-            <div className="col-6" style={{ "position": "relative" }}>
-                {/* TODO: add if */}
-            </div>
-            <div className="col-3">
-                right
-            </div>
-        </div>
+    const { pathname } = useLocation();
+    const paths = pathname.split('/')
+    const uid = paths[2];
+    const { user } = useSelector((state) => state.user)
+    const dispatch = useDispatch();
+    useEffect(() => { dispatch(findUserByIdThunk(uid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
-    )
+    return (
+        <>
+            {renderProfile(user)}
+        </>
+    );
 }
 
 
