@@ -18,11 +18,12 @@ const SellerProfileScreen = () => {
                     <div id="infoSection">
                         <div className="float-end list-group pt-5">
                             <button className="btn list-group-item rounded-pill menuBtn" id="itemBtn">
-                                <Link to="/seller-my-items" href="#" className="nav-link" >My Items</Link>
+                                <Link to="/seller-my-items" href="#" className="nav-link" >My Products</Link>
                             </button>
 
                             <button className="btn list-group-item rounded-pill menuBtn" id="cusBtn">
-                                <Link to="/seller-my-customers" href="#" className="nav-link" >My Customers</Link>
+                                <Link to="/seller-my-customers" href="#" className="nav-link" >My Profitexit
+                                </Link>
                             </button>
 
                             <button className="btn list-group-item" id="editBtn">
@@ -61,7 +62,7 @@ const SellerProfileScreen = () => {
                         <div className="d-flex flex-row col">
                             <div className="p-2 col-3 fw-bold"> Order Date</div>
                             <div className="p-2 col-3 fw-bold"> Order Number</div>
-                            <div className="p-2 col-3 fw-bold"> Status</div>
+                            <div className="p-2 col-3 fw-bold"> Amount </div>
                             <div className="p-2 col-3 fw-bold"> Details</div>
                         </div>
                         <hr className="text-secondary"/>
@@ -69,7 +70,7 @@ const SellerProfileScreen = () => {
                         <div className="d-flex flex-row col">
                             <div className="p-2 col-3 ">September 5, 2022</div>
                             <div className="p-2 col-3 ">12345000</div>
-                            <div className="p-2 col-3 ">In Progress</div>
+                            <div className="p-2 col-3 ">$10.00</div>
                             <div className="p-2 col-3 ">
                                 <Link to="/seller-view-detail" className="nav-link" >
                                     <button className="btn rounded-pill allBtn-color pt-1 align-baseline">
