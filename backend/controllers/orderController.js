@@ -2,6 +2,7 @@ import * as orderDao from '../dao/orderDao.js'
 const OrderController = (app) => {
     app.post('/api/order', createOrder);
     app.get('/api/order/all', findOrder);
+    app.get('/api/order/buyer/:uid', findOrderByBuyerId);
     app.get('/api/order/:oid', findOrderById);
     app.put('/api/order/:oid', updateOrder);
     app.delete('/api/order/:oid', deleteOrder);
@@ -22,6 +23,13 @@ const findOrderById = async (req, res) => {
     const order = await orderDao.findOrderById(orderIdToFind);
     res.json(order)
 }
+
+const findOrderByBuyerId = async (req, res) => {
+    const buyerId = req.params.uid;
+    const order = await orderDao.findOrderByBuyerId(buyerId);
+    res.json(order)
+}
+
 
 const updateOrder = async (req, res) => {
     const orderIdToUpdate = req.params.oid;

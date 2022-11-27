@@ -5,6 +5,9 @@ export const findOrder = () =>
 export const findOrderById = (oid) =>
     orderModel.find({ _id: oid });
 
+export const findOrderByBuyerId = (uid) =>
+    orderModel.find({ buyerId: uid });
+
 export const createOrder = (order) =>
     orderModel.create(order);
 
