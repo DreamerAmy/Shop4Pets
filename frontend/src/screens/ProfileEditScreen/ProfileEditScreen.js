@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { findUserByIdThunk } from "../../services/UserThunks";
 import BuyerEditScreen from "./BuyerEditScreen.js"
-import './index.css';
+import "../ProfileScreen/index.css";
 
 function renderEditScreen(user) {
     if (user.accountType === "buyer") {
@@ -31,9 +31,15 @@ const ProfileEditScreen = () => {
     useEffect(() => { dispatch(findUserByIdThunk(uid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <>
-            {renderEditScreen(user)}
-        </>
+        <div className="row mt-2">
+            <div className="col-2">
+            </div>
+            <div className="col-8" >
+                {renderEditScreen(user)}
+            </div>
+            <div className="col-2">
+            </div>
+        </div >
     );
 }
 

@@ -58,7 +58,10 @@
 
 #OrderHistory {
     border-right: 1px solid #916b44;
+}
 
+#OrderHistory:hover {
+    border-right: 1px solid #8e5822;
 }
 
 #BuyerSummarySection i {
@@ -68,6 +71,16 @@
 
 #RecentOrderSection {
     margin-top: 20px;
+}
+
+/* recent order */
+.OrderHighlightText {
+    color: #916b44;
+    font-weight: bold;
+}
+
+#EachOrder :hover {
+    background-color: antiquewhite;
 }
 
 /* buyer-edit */

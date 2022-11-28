@@ -9,6 +9,7 @@ const schema = mongoose.Schema(
         creditCardNumber: String,
         creditCardExpiration: String,
         creditCardSecurityCode: String,
+        receiver: String,
         address: String
     },
     { collection: 'order' }

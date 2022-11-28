@@ -1,5 +1,5 @@
-import avatarIcon from "./avatarIcon.jpg"
-const ProfileBanner = () => {
+import avatarIcon from "../images/avatarIcon.jpg"
+const ProfileBannerComponent = () => {
     return (
         <>
             {/* TODO: DELETE */}
@@ -15,4 +15,4 @@ const ProfileBanner = () => {
     )
 }
 
-export default ProfileBanner
+export default ProfileBannerComponent
