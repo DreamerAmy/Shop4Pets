@@ -1,16 +1,37 @@
 import Button from 'react-bootstrap/Button';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import { Store } from '../Store';
 
 export default function ShippingAddressScreen() {
+  const navigate = useNavigate();
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const {
+    cart: { shippingAddres },
+  } = state;
+
   const [fullName, setFullName] = useState('');
   const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [postlCode, setPostalCode] = useState('');
-  const [country, setCountry] = useState('');
+
   const submitHandler = (e) => {
     e.preventDefault();
+    ctxDispatch({
+      type: 'SAVE_SHIPPING_ADDRESS',
+      payload: {
+        fullName,
+        address,
+      },
+    });
+    localStorage.setItem(
+      'shippingAddress',
+      JSON.stringify({
+        fullName,
+        address,
+      })
+    );
+    navigate('/payment');
   };
   return (
     <div className="mx-5">
@@ -29,37 +50,12 @@ export default function ShippingAddressScreen() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="address">
-          <Form.Label>Address</Form.Label>
+          <Form.Label>
+            Address(inluding City, Post Code, City, Country){' '}
+          </Form.Label>
           <Form.Control
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="city">
-          <Form.Label>City</Form.Label>
-          <Form.Control
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="postlCode">
-          <Form.Label>Postal Code</Form.Label>
-          <Form.Control
-            value={postlCode}
-            onChange={(e) => setPostalCode(e.target.value)}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="country">
-          <Form.Label>Country</Form.Label>
-          <Form.Control
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
             required
           />
         </Form.Group>

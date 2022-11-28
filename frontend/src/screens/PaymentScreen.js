@@ -3,29 +3,39 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import CheckoutSteps from '../components/CheckoutSteps';
 import { Store } from '../Store';
 
 export default function PaymentScreen() {
+  const [creditCardNumber, setCreditCardNumber] = useState('');
+  const [creditCardName, setCreditCardName] = useState('');
+  const [creditCardExpiration, setCreditCardExpiration] = useState('');
+  const [creditCardSecurityCode, setcreditCardSecurityCode] = useState('');
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { shippingAddress, paymentMethod },
   } = state;
 
-  const [paymentMethodName, setPaymentMethod] = useState(
-    paymentMethod || 'PayPal'
-  );
-
-  // useEffect(() => {
-  //   if (!shippingAddress.address) {
-  //     navigate('/shipping');
-  //   }
-  // }, [shippingAddress, navigate]);
   const submitHandler = (e) => {
     e.preventDefault();
-    ctxDispatch({ type: 'SAVE_PAYMENT_METHOD', payload: paymentMethodName });
-    localStorage.setItem('paymentMethod', paymentMethodName);
+    ctxDispatch({
+      type: 'SAVE_PAYMENT_METHOD',
+      payload: {
+        creditCardNumber,
+        creditCardName,
+        creditCardExpiration,
+        creditCardSecurityCode,
+      },
+    });
+    localStorage.setItem(
+      'paymentMethod',
+      JSON.stringify({
+        creditCardNumber,
+        creditCardName,
+        creditCardExpiration,
+        creditCardSecurityCode,
+      })
+    );
     navigate('/placeorder');
   };
   return (
@@ -35,27 +45,49 @@ export default function PaymentScreen() {
           <title>Payment Method</title>
         </Helmet>
         <h1 className="my-3">Payment Method</h1>
+
         <Form onSubmit={submitHandler}>
           <div className="mb-3">
-            <Form.Check
-              type="radio"
-              id="PayPal"
-              label="PayPal"
-              value="PayPal"
-              checked={paymentMethodName === 'PayPal'}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
+            <Form.Group className="mb-3" controlId="creditCardNumber">
+              <Form.Label>Credit Card Number</Form.Label>
+              <Form.Control
+                value={creditCardNumber}
+                onChange={(e) => setCreditCardNumber(e.target.value)}
+                required
+              />
+            </Form.Group>
           </div>
           <div className="mb-3">
-            <Form.Check
-              type="radio"
-              id="Stripe"
-              label="Stripe"
-              value="Stripe"
-              checked={paymentMethodName === 'Stripe'}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
+            <Form.Group className="mb-3" controlId="creditCardName">
+              <Form.Label>Name on Card</Form.Label>
+              <Form.Control
+                value={creditCardName}
+                onChange={(e) => setCreditCardName(e.target.value)}
+                required
+              />
+            </Form.Group>
           </div>
+          <div className="mb-3">
+            <Form.Group className="mb-3" controlId="creditCardExpiration">
+              <Form.Label>Expiration Date (e.g. 01/24) </Form.Label>
+              <Form.Control
+                value={creditCardExpiration}
+                onChange={(e) => setCreditCardExpiration(e.target.value)}
+                required
+              />
+            </Form.Group>
+          </div>
+          <div className="mb-3">
+            <Form.Group className="mb-3" controlId="creditCardSecurityCode">
+              <Form.Label>Security Code </Form.Label>
+              <Form.Control
+                value={creditCardSecurityCode}
+                onChange={(e) => setcreditCardSecurityCode(e.target.value)}
+                required
+              />
+            </Form.Group>
+          </div>
+
           <div className="mb-3">
             <Button type="submit">Continue</Button>
           </div>
