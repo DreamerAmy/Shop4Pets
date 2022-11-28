@@ -17,6 +17,5 @@ const SellerProfileScreen = () => {
     )
 }
 
-
 export default SellerProfileScreen;
 
