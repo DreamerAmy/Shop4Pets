@@ -10,7 +10,7 @@ export const createProduct = async (product) => {
 }
 
 export const findProduct = async () => {
-    const response = await fetch(PRODUCT_API)
+    const response = await fetch(`${PRODUCT_API}/all`)
     const product = await response.json()
     return product;
 }
@@ -22,12 +22,11 @@ export const findProductById = async (pid) => {
 }
 
 export const deleteProduct = async (pid) => {
-    const response = await axios.delete(`${PRODUCT_API}/${pid}`)
+    const response = await axios.delete(`${PRODUCT_API} / ${pid}`)
     return response.data
 }
 
 export const updateProduct = async (product) => {
-    await axios.put(`${PRODUCT_API}/${product._id}`, product);
+    await axios.put(`${PRODUCT_API} / ${product._id}`, product);
     return product;
 }
-

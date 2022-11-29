@@ -19,7 +19,6 @@ const OrderHistoryScreen = () => {
 
     const { order } = useSelector((state) => state.order)
     useEffect(() => { dispatch(findOrderByBuyerIdThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
-    // const orderNum = order.length;
 
     return (
         <div className="row mt-2">
@@ -31,7 +30,7 @@ const OrderHistoryScreen = () => {
                     <button className="btn btn-default" id="editBtn">
                         <Link to={backUrl} href="/" className="nav-link" >Back to Profile</Link>
                     </button>
-                    <h2 class="highlight-text">{user.name}'s Order History<br /></h2>
+                    <h2 className="highlight-text">{user.name}'s Order History<br /></h2>
                     <OrderHistoryList bid={bid} />
                 </div>
             </div>

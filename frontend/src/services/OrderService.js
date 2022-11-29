@@ -24,7 +24,6 @@ export const findOrderById = async (oid) => {
 // find a list of orders by buyer id
 export const findOrderByBuyerId = async (uid) => {
     const order = await axios.get(`${ORDER_API}/buyer/${uid}`)
-    console.log(order.data);
     return order.data;
 }
 
