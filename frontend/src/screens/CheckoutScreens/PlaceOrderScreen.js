@@ -51,8 +51,10 @@ export default function PlaceOrderScreen() {
       const { data } = await Axios.post(`${API_BASE}/order`, {
         totalAmount: cart.totalPrice,
         date: new Date().toISOString().slice(0, 10),
+        receiver: cart.shippingAddress.receiver,
         address: cart.shippingAddress.address,
-        productBought: cart.cartItems,
+        productBought: cart.cartItems.map((item) => item._id),
+        productQuantity: cart.cartItems.map((item) => item.quantity),
         creditCardName: cart.paymentMethod.creditCardName,
         creditCardNumber: cart.paymentMethod.creditCardNumber,
         creditCardExpiration: cart.paymentMethod.creditCardExpiration,
@@ -79,7 +81,7 @@ export default function PlaceOrderScreen() {
         <Card.Body>
           <Card.Title className="PreviewOrder_font">Shipping</Card.Title>
           <Card.Text>
-            <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
+            <strong>Name:</strong> {cart.shippingAddress.receiver} <br />
             <strong>Address: </strong> {cart.shippingAddress.address},
           </Card.Text>
           <Link to="/shipping" className="edit_colr">

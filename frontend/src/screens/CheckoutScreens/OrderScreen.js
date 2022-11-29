@@ -13,6 +13,7 @@ import MessageBox from '../../components/MessageBox';
 import { Store } from '../../Store';
 import { getError } from '../../utils';
 import { toast } from 'react-toastify';
+import ProductList from '../../components/ProductComponent/ProductList';
 const API_BASE = process.env.REACT_APP_API_BASE;
 
 function reducer(state, action) {
@@ -23,56 +24,20 @@ function reducer(state, action) {
       return { ...state, loading: false, order: action.payload, error: '' };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
-    case 'PAY_REQUEST':
-      return { ...state, loadingPay: true };
-    case 'PAY_SUCCESS':
-      return { ...state, loadingPay: false, successPay: true };
-    case 'PAY_FAIL':
-      return { ...state, loadingPay: false };
-    case 'PAY_RESET':
-      return { ...state, loadingPay: false, successPay: false };
-
-    case 'DELIVER_REQUEST':
-      return { ...state, loadingDeliver: true };
-    case 'DELIVER_SUCCESS':
-      return { ...state, loadingDeliver: false, successDeliver: true };
-    case 'DELIVER_FAIL':
-      return { ...state, loadingDeliver: false };
-    case 'DELIVER_RESET':
-      return {
-        ...state,
-        loadingDeliver: false,
-        successDeliver: false,
-      };
     default:
       return state;
   }
 }
-export default function OrderScreen() {
-  const { state } = useContext(Store);
-  const { userInfo } = state;
 
+export default function OrderScreen() {
   const params = useParams();
   const { id: orderId } = params;
   const navigate = useNavigate();
 
-  const [
-    {
-      loading,
-      error,
-      order,
-      successPay,
-      loadingPay,
-      loadingDeliver,
-      successDeliver,
-    },
-    dispatch,
-  ] = useReducer(reducer, {
+  const [{ loading, error, order }, dispatch] = useReducer(reducer, {
     loading: true,
     order: {},
     error: '',
-    successPay: false,
-    loadingPay: false,
   });
 
   useEffect(() => {
@@ -89,8 +54,12 @@ export default function OrderScreen() {
       fetchOrder();
     }
   }, [order, orderId, navigate]);
-
-  return (
+  console.log(order);
+  return loading ? (
+    <LoadingBox></LoadingBox>
+  ) : error ? (
+    <MessageBox variant="danger">{error}</MessageBox>
+  ) : (
     <div>
       <Helmet>
         <title>Order {orderId}</title>
@@ -102,7 +71,7 @@ export default function OrderScreen() {
             <Card.Body>
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
-                <strong>Name:</strong> {order.creditCardName} <br />
+                <strong>Name:</strong> {order.receiver} <br />
                 <strong>Address: </strong> {order.address},
               </Card.Text>
             </Card.Body>
@@ -124,6 +93,9 @@ export default function OrderScreen() {
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Items</Card.Title>
+              <Card.Text>
+                <ProductList order={order} />
+              </Card.Text>
             </Card.Body>
           </Card>
         </Col>
