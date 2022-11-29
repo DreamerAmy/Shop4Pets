@@ -17,6 +17,7 @@ import OrderDetailScreen from "./screens/OrderDetailScreen"
 import UserReducer from "./reducers/UserReducer";
 import OrderReducer from "./reducers/OrderReducer";
 import ProductReducer from "./reducers/ProductReducer";
+import Navigation from "./components/Navigation";
 
 const store = configureStore({
   reducer: {
@@ -30,6 +31,7 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <Navigation/>
         <Routes>
           <Route path="/profile/*" element={<ProfileScreen />} />
           <Route path="/edit-profile/*" element={<ProfileEditScreen />} />
