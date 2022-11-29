@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import ProfileBanner from "../../ProfileBanner";
 
-const SellerMyItems = () => {
+const SellerAddItems = () => {
     return (
         <div className="row mt-2">
             <div className="col-1">
@@ -14,10 +14,10 @@ const SellerMyItems = () => {
                 {/*TODO:get from DB and map return here*/}
                 <div className="border-top pt-3">
                     <h1 className="highlight-text">
-                        My Products
+                        My Products - Add
                         <Link to="/add-more-items">
                             <button className="float-end btn rounded-pill mt-3"
-                                    id="allBtn-color">Add</button>
+                                    id="allBtn-color">Save</button>
                         </Link>
                     </h1>
 
@@ -32,7 +32,8 @@ const SellerMyItems = () => {
                     </div>
                     <hr className="text-secondary"/>
 
-                    <div className="d-flex flex-row col">
+                    {/*TODO: edit*/}
+                    <div className="d-flex flex-row col form-group" id="editSection">
                         <div className="p-2 col-2"> 12345000 </div>
                         <div className="p-2 col-2"> Toy </div>
                         <div className="p-2 col-2"> Dog's toy </div>
@@ -56,4 +57,4 @@ const SellerMyItems = () => {
 }
 
 
-export default SellerMyItems;
+export default SellerAddItems;

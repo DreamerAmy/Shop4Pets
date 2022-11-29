@@ -13,7 +13,8 @@ import {Provider} from "react-redux";
 import SellerEditScreen from "./screens/ProfileScreen/seller/SellerEditScreen";
 import SellerViewDetail from "./screens/ProfileScreen/seller/seller-view-detail";
 import SellerMyItems from "./screens/ProfileScreen/seller/seller-items";
-import SellerMyCos from "./screens/ProfileScreen/seller/seller-customers";
+import SellerMyPro from "./screens/ProfileScreen/seller/seller-profit";
+import SellerAddItems from "./screens/ProfileScreen/seller/seller-add-more";
 
 const store = configureStore({
     reducer: {
@@ -33,7 +34,8 @@ function App() {
                   <Route path="seller-edit-profile" element={<SellerEditScreen />} />
                   <Route path="seller-view-detail" element={<SellerViewDetail />} />
                   <Route path="seller-my-items" element={<SellerMyItems />} />
-                  <Route path="seller-my-customers" element={<SellerMyCos />} />
+                  <Route path="seller-my-profit" element={<SellerMyPro />} />
+                  <Route path="add-more-items" element={<SellerAddItems/>}/>
 
                   <Route path="/profile/admin" element={<AdminProfileScreen />} />
 

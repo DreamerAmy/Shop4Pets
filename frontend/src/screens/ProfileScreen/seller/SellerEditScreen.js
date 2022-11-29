@@ -53,7 +53,7 @@ const SellerEditScreen = () => {
                     </input>
 
                     <Link to="/profile/seller" href="/" className="nav-link">
-                        <button className="btn rounded-pill menuBtn float-end" onClick={() => editClickHandler(currSeller)}>
+                        <button className="btn rounded-pill float-end" id="menuBtn" onClick={() => editClickHandler(currSeller)}>
                             Save
                         </button>
                     </Link>

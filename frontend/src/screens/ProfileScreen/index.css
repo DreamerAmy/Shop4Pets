@@ -104,13 +104,13 @@
 }
 
 /* profile screen - Fifi*/
-.allBtn-color{
+#allBtn-color{
     background-color: #FF9900;
     color: white;
     font-weight: bold;
 }
 
-.menuBtn{
+#menuBtn{
     background-color: #FF9900;
     color: white;
     font-weight: bold;

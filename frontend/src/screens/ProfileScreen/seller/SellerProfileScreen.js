@@ -17,12 +17,12 @@ const SellerProfileScreen = () => {
                     <ProfileBanner/>
                     <div id="infoSection">
                         <div className="float-end list-group pt-5">
-                            <button className="btn list-group-item rounded-pill menuBtn" id="itemBtn">
+                            <button className="btn list-group-item rounded-pill" id="menuBtn">
                                 <Link to="/seller-my-items" href="#" className="nav-link" >My Products</Link>
                             </button>
 
-                            <button className="btn list-group-item rounded-pill menuBtn" id="cusBtn">
-                                <Link to="/seller-my-customers" href="#" className="nav-link" >My Profitexit
+                            <button className="btn list-group-item rounded-pill" id="menuBtn">
+                                <Link to="/seller-my-profit" href="#" className="nav-link" >My Profit
                                 </Link>
                             </button>
 
@@ -73,7 +73,7 @@ const SellerProfileScreen = () => {
                             <div className="p-2 col-3 ">$10.00</div>
                             <div className="p-2 col-3 ">
                                 <Link to="/seller-view-detail" className="nav-link" >
-                                    <button className="btn rounded-pill allBtn-color pt-1 align-baseline">
+                                    <button className="btn rounded-pill pt-1 align-baseline" id="allBtn-color">
                                         View Details
                                     </button>
                                 </Link>
