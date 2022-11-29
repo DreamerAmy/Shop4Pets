@@ -31,7 +31,7 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Navigation/>
+        <Navigation />
         <Routes>
           <Route path="/profile/*" element={<ProfileScreen />} />
           <Route path="/edit-profile/*" element={<ProfileEditScreen />} />
@@ -41,9 +41,6 @@ function App() {
           {/* <Route path="/profile/*" element={<BuyerProfileScreen />} /> */}
           <Route path="/profile/seller" element={<SellerProfileScreen />} />
           <Route path="/profile/admin" element={<AdminProfileScreen />} />
-
-
-
         </Routes>
       </BrowserRouter>
     </Provider>
