@@ -1,0 +1,32 @@
+({
+    "buyerId": "001",
+    "date": "11/26/2022",
+    "totalAmount": 10,
+    "productBought": [{ "productName":"Pedigree Complete Nutrition Roasted Chicken, Rice & Vegetable Flavor Dog Kibble Adult Dry Dog Food",
+    "description": "Roast Chiken",
+    "price": $27.78,
+    "sellerId": Pedigree,
+    "unitSold": 1,
+    "unitInStock": 2}],
+    "creditCardNumber": "123456789",
+    "creditCardExpiration": "01/24",
+    "creditCardSecurityCode": "123",
+    "address": "final project st., CA 91234"
+}
+
+{
+    "buyerId": "002",
+    "date": "11/27/2022",
+    "totalAmount": 11,
+    "productBought": [{ "productName":"Frisco Padded Nylon No Pull Dog Harness",
+    "description": "Frisco",
+    "price": $9.85,
+    "sellerId": Frisco,
+    "unitSold": 2,
+    "unitInStock": 3}],
+    "creditCardNumber": "234567890",
+    "creditCardExpiration": "02/24",
+    "creditCardSecurityCode": "124",
+    "address": "e-com project st., CA 91234"
+}
+)

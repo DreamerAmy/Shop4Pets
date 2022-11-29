@@ -1,8 +1,10 @@
 import BuyerProfileScreen from "./BuyerProfileScreen.js"
+import OrderDetailScreen from "../OrderDetailScreen.js"
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { findUserByIdThunk } from "../../services/UserThunks";
+import { findOrderByBuyerIdThunk } from "../../services/OrderThunks";
 import './index.css';
 
 function renderProfile(user) {
@@ -25,17 +27,23 @@ const ProfileScreen = () => {
     const { pathname } = useLocation();
     const paths = pathname.split('/')
     const uid = paths[2];
-    const { user } = useSelector((state) => state.user)
+    const { user } = useSelector((state) => state.user);
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findUserByIdThunk(uid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    // useEffect(() => { dispatch(findOrderByBuyerIdThunk(user._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <>
-            {renderProfile(user)}
-        </>
+        <div className="row mt-2">
+            <div className="col-2">
+            </div>
+            <div className="col-8" >
+                {renderProfile(user)}
+            </div>
+            <div className="col-2">
+            </div>
+        </div >
     );
 }
 
 
 export default ProfileScreen;
-

@@ -5,9 +5,12 @@ const schema = mongoose.Schema(
         date: String,
         totalAmount: Number,
         productBought: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }],
+        productQuantity: [],
+        creditCardName: String,
         creditCardNumber: String,
         creditCardExpiration: String,
         creditCardSecurityCode: String,
+        receiver: String,
         address: String
     },
     { collection: 'order' }

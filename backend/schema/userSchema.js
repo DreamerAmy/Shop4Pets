@@ -8,8 +8,7 @@ const schema = mongoose.Schema(
         phone: String,
         address: String,
         memberSince: String,
-        order: Number,
-        favorites: Number,
+        favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }],
     },
     { collection: 'user' }
 );

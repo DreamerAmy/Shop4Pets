@@ -3,7 +3,6 @@ const USER_API = 'http://localhost:4000/api/user';
 // const USER_API = 'https://userer-node-server-app-kjin.herokuapp.com/api/user';
 // const API_BASE = process.env.REACT_APP_API_BASE;
 // const USER_API = `${API_BASE}/user`;
-console.log(USER_API);
 
 export const createUser = async (user) => {
     const response = await axios.post(USER_API, user)
@@ -17,7 +16,6 @@ export const findUser = async () => {
 }
 
 export const findUserById = async (uid) => {
-    // const response = await fetch(USER_API)
     const user = await axios.get(`${USER_API}/${uid}`)
     return user.data[0];
 }
