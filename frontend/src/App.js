@@ -8,13 +8,14 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import BuyerProfileScreen from './screens//ProfileScreen/BuyerProfileScreen.js';
 import SellerProfileScreen from './screens//ProfileScreen/SellerProfileScreen.js';
 import AdminProfileScreen from './screens//ProfileScreen/AdminProfileScreen.js';
-import ShippingAddressScreen from './screens/ShippingAddressScreen';
-import PaymentScreen from './screens/PaymentScreen';
-import PlaceOrderScreen from './screens/PlaceOrderScreen';
+
+import ShippingAddressScreen from './screens/CheckoutScreens/ShippingAddressScreen';
+import PaymentScreen from './screens/CheckoutScreens/PaymentScreen';
+import PlaceOrderScreen from './screens/CheckoutScreens/PlaceOrderScreen';
 import Badge from 'react-bootstrap/Badge';
 import Nav from 'react-bootstrap/Nav';
-import CartScreen from './screens/CartScreen';
-import OrderScreen from './screens/OrderScreen';
+import CartScreen from './screens/CheckoutScreens/CartScreen';
+import OrderScreen from './screens/CheckoutScreens/OrderScreen';
 import HomeScreen from './screens/HomeScreen';
 
 function App() {

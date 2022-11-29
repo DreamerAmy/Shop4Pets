@@ -1,0 +1,38 @@
+/* css- Jingjing*/
+body {
+  background-color: #ffcc00;
+  color: black;
+}
+.ShoppingCart_font {
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+  margin-left: 12px;
+}
+
+.Button_style {
+  background-color: #ff9900;
+  border-color: white;
+}
+
+.ShiipingButton_style {
+  background-color: #ff9900;
+  border-color: #ffcc00;
+}
+
+.Button_font {
+  color: #ff9900;
+}
+.Button_font2 {
+  font-weight: bold;
+}
+
+.PreviewOrder_font {
+  font-weight: bold;
+  color: #ff9900;
+}
+
+.edit_colr {
+  color: #ff9900;
+  font-weight: bold;
+}

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Store } from '../Store';
+import { Store } from '../../Store';
 
 export default function PaymentScreen() {
   const [creditCardNumber, setCreditCardNumber] = useState('');
@@ -44,7 +44,7 @@ export default function PaymentScreen() {
         <Helmet>
           <title>Payment Method</title>
         </Helmet>
-        <h1 className="my-3">Payment Method</h1>
+        <h1 className="my-3 ShoppingCart_font">Payment Method</h1>
 
         <Form onSubmit={submitHandler}>
           <div className="mb-3">
@@ -89,7 +89,9 @@ export default function PaymentScreen() {
           </div>
 
           <div className="mb-3">
-            <Button type="submit">Continue</Button>
+            <Button className="ShiipingButton_style" type="submit">
+              <span className="Button_font2">Continue</span>
+            </Button>
           </div>
         </Form>
       </div>

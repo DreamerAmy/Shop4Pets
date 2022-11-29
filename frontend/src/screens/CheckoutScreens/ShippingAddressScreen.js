@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import { Store } from '../Store';
+import { Store } from '../../Store';
 
 export default function ShippingAddressScreen() {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export default function ShippingAddressScreen() {
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
-      <h1 className="my-3">Shipping Address</h1>
+      <h1 className="ShoppingCart_font">Shipping Address</h1>
       <form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="fullName">
           <Form.Label>Full Name</Form.Label>
@@ -61,8 +61,12 @@ export default function ShippingAddressScreen() {
         </Form.Group>
 
         <div className="mb-3">
-          <Button variant="primary" type="submit">
-            Continue
+          <Button
+            className="ShiipingButton_style"
+            variant="primary"
+            type="submit"
+          >
+            <span className="Button_font2">Continue</span>
           </Button>
         </div>
       </form>
