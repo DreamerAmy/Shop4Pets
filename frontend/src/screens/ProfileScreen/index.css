@@ -1,8 +1,17 @@
 /* profile screen - Kailin*/
-.profile-icon {
-  width: 120px;
-  border-radius: 60px;
-  margin-left: 60px;
+#banner {
+    margin: 0 auto;
+    border-bottom: 1px solid lightgrey;
+    background-image: url(/public/images/profile_bg2.jpg);
+    background-size: cover;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#banner img {
+    width: 120px;
+    border-radius: 60px;
+    margin-left: 60px;
 }
 
 .highlight-text {
@@ -10,21 +19,101 @@
 }
 
 #editBtn {
-  background-color: #ff9900;
-  color: white;
-  font-weight: bold;
-  border-radius: 20px;
-  margin-top: 5px;
-}
-
-#accountInfo {
-  margin: 0 auto;
-  background-image: url(/public/images/profile_bg2.jpg);
-  background-size: cover;
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-right: 10px;
+    float: right;
 }
 
 #infoSection {
-  margin-left: 60px;
+    margin-left: 60px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#infoSection i {
+    padding-right: 20px;
+}
+
+#BuyerSummarySection {
+    display: grid;
+    grid-template-columns: auto auto;
+    border-radius: 20px;
+}
+
+#BuyerSummarySection div {
+    margin-top: 10px;
+    color: #916b44;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 60px;
+    background-color: antiquewhite;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #916b44;
+}
+
+#OrderHistory {
+    border-right: 1px solid #916b44;
+}
+
+#OrderHistory:hover {
+    border-right: 1px solid #8e5822;
+}
+
+#BuyerSummarySection i {
+    padding-right: 20px;
+}
+
+
+#RecentOrderSection {
+    margin-top: 20px;
+}
+
+/* recent order */
+.OrderHighlightText {
+    color: #916b44;
+    font-weight: bold;
+}
+
+#EachOrder :hover {
+    background-color: antiquewhite;
+}
+
+/* buyer-edit */
+#editSection {
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 10px;
+}
+
+#editSection input {
+    margin-bottom: 20px;
+}
+
+#editSection label {
+    font-weight: bold;
+}
+
+#saveBtn {
+    background-color: #916b44;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 5px;
+    float: right;
+}
+
+#discardBtn {
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 5px;
+    float: left;
 }
 
 /* profile screen - Fifi*/
