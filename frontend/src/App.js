@@ -16,11 +16,13 @@ import OrderDetailScreen from "./screens/OrderDetailScreen"
 
 import UserReducer from "./reducers/UserReducer";
 import OrderReducer from "./reducers/OrderReducer";
+import ProductReducer from "./reducers/ProductReducer";
 
 const store = configureStore({
   reducer: {
     user: UserReducer,
-    order: OrderReducer
+    order: OrderReducer,
+    product: ProductReducer
   }
 });
 
