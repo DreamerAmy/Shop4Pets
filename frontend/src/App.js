@@ -15,9 +15,15 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Button from "react-bootstrap/Button";
 import './index.css'
 import Navigation from "./components/Navigation";
+<<<<<<< Updated upstream
 import SigninScreen from "./screens/SigninScreen";
 import Login from "./screens/Login";
 import * as PropTypes from "prop-types";
+=======
+import Login from "./screens/Login";
+import Register from "./screens/Register";
+import CurrentUser from "./screens/currentUser";
+>>>>>>> Stashed changes
 
 function Provider(props) {
     return null;
@@ -27,6 +33,7 @@ Provider.propTypes = {children: PropTypes.node};
 
 function App() {
   return (
+<<<<<<< Updated upstream
 
 
       <BrowserRouter>
@@ -46,6 +53,30 @@ function App() {
           </BrowserRouter>
 
 
+=======
+    <Provider store={store}>
+      <CurrentUser>
+      <BrowserRouter>
+        <Navigation/>
+        <Routes>
+          <Route path="/profile/*" element={<ProfileScreen />} />
+          <Route path="/edit-profile/*" element={<ProfileEditScreen />} />
+          <Route path="/order-history/*" element={<OrderHistoryScreen />} />
+          <Route path="/order-detail/*" element={<OrderDetailScreen />} />
+          {/* TODO: For profile testing purpose only */}
+          {/* <Route path="/profile/*" element={<BuyerProfileScreen />} /> */}
+          <Route path="/profile/seller" element={<SellerProfileScreen />} />
+          <Route path="/profile/admin" element={<AdminProfileScreen />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+
+
+        </Routes>
+      </BrowserRouter>
+      </CurrentUser>
+    </Provider>
+>>>>>>> Stashed changes
   );
 }
 
