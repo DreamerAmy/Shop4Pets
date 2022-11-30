@@ -17,7 +17,7 @@ export default function Navigation (){
                 <Navbar.Collapse id="basic-navbar-nav">
                     <SearchBox/>
                     <Nav className="me-auto w-130 justify-content-end">
-                        <Link to="/Login" className="nav-link">
+                        <Link to="/login" className="nav-link">
                             Sign In
                         </Link>
                         <Link to="/cart" className="nav-link">

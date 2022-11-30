@@ -1,5 +1,6 @@
 import axios from 'axios';
 const USER_API = 'http://localhost:4000/api/user';
+const BASE_URL = 'http://localhost:4000';
 // const USER_API = 'https://userer-node-server-app-kjin.herokuapp.com/api/user';
 // const API_BASE = process.env.REACT_APP_API_BASE;
 // const USER_API = `${API_BASE}/user`;
@@ -31,3 +32,27 @@ export const updateUser = async (user) => {
 }
 
 
+export const findAllUsers = async () => {
+    const response = await axios.get(`${BASE_URL}/users`)
+    return response.data
+}
+
+export const register = async (user) => {
+    const response = await axios.post(`${BASE_URL}/register`, user)
+    return response.data
+}
+
+export const login = async (user) => {
+    const response = await axios.post(`${BASE_URL}/login`, user)
+    return response.data
+}
+
+export const profile = async () => {
+    const response = await axios.post(`${BASE_URL}/profile`)
+    return response.data
+}
+
+export const logout = async () => {
+    const response = await axios.post(`${BASE_URL}/logout`)
+    return response.data
+}
