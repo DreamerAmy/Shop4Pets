@@ -12,13 +12,14 @@ import SellerProfileScreen from './screens//ProfileScreen/SellerProfileScreen.js
 import AdminProfileScreen from './screens//ProfileScreen/AdminProfileScreen.js';
 import ProfileEditScreen from './screens/ProfileEditScreen/ProfileEditScreen';
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
-import OrderDetailScreen from './screens/OrderDetailScreen';
+import OrderDetailScreen from './screens/FavoritesScreen';
 import ShippingAddressScreen from './screens/CheckoutScreens/ShippingAddressScreen';
 import PaymentScreen from './screens/CheckoutScreens/PaymentScreen';
 import PlaceOrderScreen from './screens/CheckoutScreens/PlaceOrderScreen';
 import CartScreen from './screens/CheckoutScreens/CartScreen';
 import OrderScreen from './screens/CheckoutScreens/OrderScreen';
-import HomeScreen from './screens/HomeScreen';
+import FavoritesScreen from './screens/FavoritesScreen';
+// import HomeScreen from './screens/HomeScreen/HomeScreen.js';
 
 import UserReducer from './reducers/UserReducer';
 import OrderReducer from './reducers/OrderReducer';
@@ -43,6 +44,7 @@ function App() {
           <Route path="/edit-profile/*" element={<ProfileEditScreen />} />
           <Route path="/order-history/*" element={<OrderHistoryScreen />} />
           <Route path="/order-detail/*" element={<OrderDetailScreen />} />
+          <Route path="/favorites/*" element={<FavoritesScreen />} />
           {/* TODO: For profile testing purpose only */}
           {/* <Route path="/profile/*" element={<BuyerProfileScreen />} /> */}
           <Route path="/profile/seller" element={<SellerProfileScreen />} />

@@ -13,10 +13,12 @@ const BuyerProfileScreen = (user) => {
     const buyer = user.data;
     const editUrl = "../edit-profile/" + bid;
     const orderHistoryUrl = "../order-history/" + bid;
+    const favUrl = "../favorites/" + bid;
     const { order } = useSelector((state) => state.order)
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findOrderByBuyerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     const orderNum = order.length;
+    const favNum = buyer.favorites.length;
 
     return (
         <>
@@ -33,7 +35,6 @@ const BuyerProfileScreen = (user) => {
             </div>
 
             <div className="grid-container" id="BuyerSummarySection">
-                {/* todo: add order history & favorites page */}
                 <Link to={orderHistoryUrl} href="/" className="nav-link" >
                     <div className="grid-item" id="OrderHistory">
                         <i className="bi bi-bag-heart-fill"></i>
@@ -41,15 +42,15 @@ const BuyerProfileScreen = (user) => {
                     </div>
                 </Link>
 
-                <Link to="/profile/buyer/" href="/" className="nav-link" >
+                <Link to={favUrl} href="/" className="nav-link" >
                     <div className="grid-item">
                         <i className="bi bi-star-fill"></i>
-                        {buyer.favorites} Favorites
+                        {favNum} Favorites
                     </div>
                 </Link>
             </div>
 
-            <div id="RecentOrderSection">
+            <div className="pb-5" id="RecentOrderSection">
                 <h3 className="highlight-text">Recent Orders</h3>
                 <RecentOrderList bid={bid} />
             </div>

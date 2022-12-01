@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductItem from './ProductItem';
 import '../../screens/ProfileScreen/index.css';
 import { findProductThunk } from '../../services/ProductThunks';
 
 function AddQuantityToProducts(product, pidList, quantityList) {
-  // TODO: to be improved... once i have time
   let newProductArray = [];
   for (var i = 0; i < product.length; i++) {
     for (var j = 0; j < pidList.length; j++)
@@ -25,9 +23,7 @@ const ProductList = ({ order }) => {
   let quantityList = order.productQuantity;
   const { product } = useSelector((state) => state.product);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(findProductThunk());
-  }, []);
+  useEffect(() => { dispatch(findProductThunk()); }, []);
   let newProductArray = AddQuantityToProducts(product, pidList, quantityList);
 
   return (

@@ -5,7 +5,8 @@ import UserController from "./controllers/userController.js";
 import ProductController from "./controllers/productController.js";
 import OrderController from "./controllers/orderController.js";
 
-const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://localhost:27017/Barkery'
+// const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://localhost:27017/Barkery'
+const CONNECTION_STRING = "mongodb+srv://webdev:5610@cluster0.1nuhui4.mongodb.net/Shop4Pets?retryWrites=true&w=majority"
 mongoose.connect(CONNECTION_STRING);
 const app = express();
 
@@ -19,3 +20,4 @@ const port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log('serve at https://locahost:${port}');
 });
+

@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import "../../screens/ProfileScreen/index.css";
 import ProductList from "../ProductComponent/ProductList";
-// import ProductList from "../ProductComponent/ProductList";
-import { findProductByIdThunk } from "../../services/ProductThunks";
-// create a json with purchased product id and quantity
 
 
 const OrderDetailItem = ({ order }) => {
