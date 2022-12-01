@@ -17,18 +17,13 @@ import PaymentScreen from './screens/CheckoutScreens/PaymentScreen';
 import PlaceOrderScreen from './screens/CheckoutScreens/PlaceOrderScreen';
 import CartScreen from './screens/CheckoutScreens/CartScreen';
 import OrderScreen from './screens/CheckoutScreens/OrderScreen';
-
 import FavoritesScreen from './screens/FavoritesScreen';
-// import HomeScreen from './screens/HomeScreen/HomeScreen.js';
-
 import UserReducer from './reducers/UserReducer';
 import OrderReducer from './reducers/OrderReducer';
 import ProductReducer from './reducers/ProductReducer';
 import Navigation from './components/Navigation';
 import Register from "./screens/Register";
 import Login from "./screens/Login";
-
-
 import Home from "./screens/HomeScreen/HomeScreen";
 import CurrentUser from "./screens/currentUser";
 

@@ -19,8 +19,15 @@ const Login = () => {
 
     const handleLoginBtn = () => {
         setError(null)
+
         const loginUser = {email, password}
+
         dispatch(loginThunk(loginUser))
+        console.log(loginUser)
+        // if (!loginUser) {
+        //     setError("something went wrong")
+        // }
+
     }
     return(
         <>
