@@ -1,5 +1,5 @@
 import BuyerProfileScreen from "./BuyerProfileScreen.js"
-import OrderDetailScreen from "../OrderDetailScreen.js"
+import OrderDetailScreen from "../FavoritesScreen.js"
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
