@@ -1,6 +1,6 @@
 import axios from 'axios';
 const ORDER_API = 'http://localhost:4000/api/order';
-// const ORDER_API = 'https://orderer-node-server-app-kjin.herokuapp.com/api/order';
+// const ORDER_API = 'https://barkery-shop4pets.onrender.com/api/order/all';
 // const API_BASE = process.env.REACT_APP_API_BASE;
 // const ORDER_API = `${API_BASE}/order`;
 
