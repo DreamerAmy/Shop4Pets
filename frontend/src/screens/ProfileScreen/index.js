@@ -7,29 +7,58 @@ import { findUserByIdThunk } from "../../services/UserThunks";
 import { findOrderByBuyerIdThunk } from "../../services/OrderThunks";
 import './index.css';
 
-function renderProfile(user) {
-    if (user.accountType === "buyer") {
-        return (<BuyerProfileScreen data={user} />)
+function renderProfile(currentUser, user, loading, userLoading) {
+    console.log("loading", loading);
+    console.log("userLoading", userLoading);
+    if (!loading) {
+        console.log(!loading && !userLoading);
+        loading = true;
+        userLoading = true;
+        if (user.accountType === "buyer") {
+            return (<BuyerProfileScreen data={user} />)
+        }
+        else if (user.accountType === "seller") {
+            return (<>seller</>);
+        }
+        else if (user.accountType === "admin") {
+            return (<>admin</>);
+        }
+        return (
+            <div>Please Login to display your profile</div>
+        )
     }
-    else if (user.accountType === "seller") {
-        return (<>seller</>);
-    }
-    else if (user.accountType === "admin") {
-        return (<>admin</>);
-    }
-    return (
-        <div>home page of current user...</div>
-    )
 }
 
 
 const ProfileScreen = () => {
     const { pathname } = useLocation();
     const paths = pathname.split('/')
-    const uid = paths[2];
-    const { user } = useSelector((state) => state.user);
+    let uid = paths[2];
+
+    // const { currentUser } = useSelector((state) => state.user)
+    // console.log("profile screen ", currentUser)
+
+
+
+    const { currentUser, loading } = useSelector((state) => state.user);
+    const { user, userLoading } = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    useEffect(() => { dispatch(findUserByIdThunk(uid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+
+        if (!uid && !currentUser) {
+            return;
+        }
+        if (loading && !uid) {
+            console.log("uid replaced by loggedin user");
+            uid = currentUser._id;
+        }
+
+        dispatch(findUserByIdThunk(uid))
+
+    }, []) //eslint-disable-line react-hooks/exhaustive-deps
+
+    console.log("currentUser", currentUser, loading);
+    console.log("user", user, userLoading);
     // useEffect(() => { dispatch(findOrderByBuyerIdThunk(user._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
     return (
@@ -37,7 +66,7 @@ const ProfileScreen = () => {
             <div className="col-2">
             </div>
             <div className="col-8" >
-                {renderProfile(user)}
+                {renderProfile(currentUser, user, loading, userLoading)}
             </div>
             <div className="col-2">
             </div>

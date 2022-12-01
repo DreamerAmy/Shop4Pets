@@ -8,15 +8,15 @@ import {
 } from "../services/UserThunks.js";
 
 const currentUser =
-    {
-        "name": "currentUser",
-        "email": "Null",
-        "phone": "Null",
-        "address": "Null",
-        "memberSince": "Null",
-        "order": "Null",
-        "favorites": "Null"
-    }
+{
+    "name": "currentUser",
+    "email": "Null",
+    "phone": "Null",
+    "address": "Null",
+    "memberSince": "Null",
+    "order": "Null",
+    "favorites": "Null"
+}
 
 const initialState = {
     user: currentUser,
@@ -34,21 +34,25 @@ const userSlice = createSlice({
         [createUserThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
+                state.userLoading = false
                 state.user.push(payload)
             },
         [findUserByIdThunk.pending]:
             (state) => {
                 state.loading = true
+                state.userLoading = true
                 state.user = []
             },
         [findUserByIdThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
+                state.userLoading = false
                 state.user = payload
             },
         [findUserByIdThunk.rejected]:
             (state) => {
                 state.loading = false
+                state.userLoading = false
                 state.user = nullUser
             },
         [updateUserThunk.fulfilled]:
