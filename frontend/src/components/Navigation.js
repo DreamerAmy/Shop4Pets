@@ -3,10 +3,14 @@ import {LinkContainer} from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
 import {Link} from "react-router-dom";
 import './index.css'
-
+import {logoutThunk} from "../services/UserThunks";
+import {useDispatch} from "react-redux";
 
 export default function Navigation (){
-
+    const dispatch = useDispatch()
+    const handleLogout = () => {
+        dispatch(logoutThunk())
+    }
     return(
         <Navbar className="nav-bg" expand="lg">
             <Container>
@@ -23,6 +27,9 @@ export default function Navigation (){
                         <Link to="/cart" className="nav-link">
                             Cart
                         </Link>
+                        <button className="btn" onClick={handleLogout}>
+                            Logout
+                        </button>
                     </Nav>
                 </Navbar.Collapse>
 
