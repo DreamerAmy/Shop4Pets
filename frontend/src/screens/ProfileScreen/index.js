@@ -7,20 +7,17 @@ import { findUserByIdThunk } from "../../services/UserThunks";
 import { findOrderByBuyerIdThunk } from "../../services/OrderThunks";
 import './index.css';
 
-function renderProfile(currentUser, user, loading, userLoading) {
-    console.log("loading", loading);
-    console.log("userLoading", userLoading);
+function renderProfile(uid, currentUser, user, loading, userLoading) {
     if (!loading) {
-        console.log(!loading && !userLoading);
         loading = true;
         userLoading = true;
-        if (user.accountType === "buyer") {
+        if (user && user.accountType === "buyer") {
             return (<BuyerProfileScreen data={user} />)
         }
-        else if (user.accountType === "seller") {
+        else if (user && user.accountType === "seller") {
             return (<>seller</>);
         }
-        else if (user.accountType === "admin") {
+        else if (user && user.accountType === "admin") {
             return (<>admin</>);
         }
         return (
@@ -29,26 +26,44 @@ function renderProfile(currentUser, user, loading, userLoading) {
     }
 }
 
+function renderLoggedInProfile(currentUser, loading) {
+    if (!loading) {
+        if (currentUser && currentUser.accountType === "buyer") {
+            return (<BuyerProfileScreen data={currentUser} />)
+        }
+        else if (currentUser && currentUser.accountType === "seller") {
+            return (<>seller</>);
+        }
+        else if (currentUser && currentUser.accountType === "admin") {
+            return (<>admin</>);
+        }
+    }
+    return (
+        <div>Loading...</div>
+    )
+}
+
 
 const ProfileScreen = () => {
     const { pathname } = useLocation();
     const paths = pathname.split('/')
     let uid = paths[2];
 
+
     // const { currentUser } = useSelector((state) => state.user)
     // console.log("profile screen ", currentUser)
-
-
 
     const { currentUser, loading } = useSelector((state) => state.user);
     const { user, userLoading } = useSelector((state) => state.user);
     const dispatch = useDispatch();
     useEffect(() => {
-
+        // no userid in path, not logged in=> do not 
         if (!uid && !currentUser) {
             return;
         }
-        if (loading && !uid) {
+
+
+        if (!loading && !uid) {
             console.log("uid replaced by loggedin user");
             uid = currentUser._id;
         }
@@ -57,16 +72,29 @@ const ProfileScreen = () => {
 
     }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
-    console.log("currentUser", currentUser, loading);
-    console.log("user", user, userLoading);
-    // useEffect(() => { dispatch(findOrderByBuyerIdThunk(user._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    // console.log("currentUser", currentUser, loading);
+    // console.log("user", user, userLoading);
+
+    if (!uid) {
+        return (<>
+            <div className="row mt-2">
+                <div className="col-2">
+                </div>
+                <div className="col-8" >
+                    {renderLoggedInProfile(currentUser, loading)}
+                </div>
+                <div className="col-2">
+                </div>
+            </div >
+        </>)
+    }
 
     return (
         <div className="row mt-2">
             <div className="col-2">
             </div>
             <div className="col-8" >
-                {renderProfile(currentUser, user, loading, userLoading)}
+                {renderProfile(uid, currentUser, user, loading, userLoading)}
             </div>
             <div className="col-2">
             </div>

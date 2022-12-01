@@ -6,23 +6,16 @@ import RecentOrderList from "../../components/RecentOrderComponent/RecentOrderLi
 import { findOrderByBuyerIdThunk } from "../../services/OrderThunks";
 import './index.css';
 
-const BuyerProfileScreen = (user) => {
-    const { pathname } = useLocation();
-    const paths = pathname.split('/')
-    const bid = paths[2];
-    const buyer = user.data;
-    const editUrl = "../edit-profile/" + bid;
+const PrivateSection = (buyer, order, currentUser, isMyProfile) => {
+    const bid = buyer._id;
     const orderHistoryUrl = "../order-history/" + bid;
     const favUrl = "../favorites/" + bid;
-    const { order } = useSelector((state) => state.order)
-    const dispatch = useDispatch();
-    useEffect(() => { dispatch(findOrderByBuyerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    const editUrl = "../edit-profile/" + bid;
+    const myProfileUrl = "../profile/" + currentUser._id;
     const orderNum = order.length;
     const favNum = buyer.favorites.length;
-
-    return (
-        <>
-            <ProfileBanner />
+    if (isMyProfile) {
+        return (<>
             <div id="infoSection">
                 <button className="btn btn-default" id="editBtn">
                     <Link to={editUrl} href="/" className="nav-link" >Edit</Link>
@@ -33,7 +26,6 @@ const BuyerProfileScreen = (user) => {
                 <i className="bi bi-house-door"></i>{buyer.address}<br />
                 <i className="bi bi-balloon"></i>Member Since {buyer.memberSince}<br />
             </div>
-
             <div className="grid-container" id="BuyerSummarySection">
                 <Link to={orderHistoryUrl} href="/" className="nav-link" >
                     <div className="grid-item" id="OrderHistory">
@@ -41,7 +33,6 @@ const BuyerProfileScreen = (user) => {
                         {orderNum} Order History
                     </div>
                 </Link>
-
                 <Link to={favUrl} href="/" className="nav-link" >
                     <div className="grid-item">
                         <i className="bi bi-star-fill"></i>
@@ -54,6 +45,44 @@ const BuyerProfileScreen = (user) => {
                 <h3 className="highlight-text">Recent Orders</h3>
                 <RecentOrderList bid={bid} />
             </div>
+        </>
+        )
+    }
+    return (
+        <>
+            <div id="infoSection">
+                <h2 className="highlight-text">{buyer.name}</h2>
+                <i className="bi bi-envelope"></i>*hidden*<br />
+                <i className="bi bi-phone"></i>*hidden*<br />
+                <i className="bi bi-house-door"></i>*hidden*<br />
+                <i className="bi bi-balloon"></i>Member Since {buyer.memberSince}<br />
+                <i className="bi bi-bag-heart"></i>{orderNum} Order History<br />
+                <i className="bi bi-star"></i>{favNum} Favorites<br />
+            </div>
+            <h6>Some private sections have been hidden.</h6>
+            <button className="btn btn-default border" id="">
+                <Link to={myProfileUrl} href="/" className="nav-link" >Back to my profile</Link>
+            </button>
+        </>)
+}
+
+const BuyerProfileScreen = (user) => {
+    const buyer = user.data;
+    const bid = buyer._id;
+
+    const { order } = useSelector((state) => state.order)
+    const dispatch = useDispatch();
+    useEffect(() => { dispatch(findOrderByBuyerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    const { currentUser } = useSelector((state) => state.user);
+    let isMyProfile = false;
+    if (currentUser && currentUser._id == buyer._id) {
+        isMyProfile = true;
+    }
+
+    return (
+        <>
+            <ProfileBanner />
+            {PrivateSection(buyer, order, currentUser, isMyProfile)}
         </>
     )
 }

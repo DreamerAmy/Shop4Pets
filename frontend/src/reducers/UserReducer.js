@@ -75,9 +75,11 @@ const userSlice = createSlice({
         },
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            state.loggedIn = true
         },
         [loginThunk.rejected]: (state, action) => {
             state.error = action.payload
+            state.loggedIn = false
             state.currentUser = null
         },
         [registerThunk.fulfilled]: (state, action) => {
@@ -89,6 +91,7 @@ const userSlice = createSlice({
         },
         [logoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null
+            state.loggedIn = false
         },
         [profileThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
