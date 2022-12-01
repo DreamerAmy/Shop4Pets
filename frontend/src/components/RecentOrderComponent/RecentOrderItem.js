@@ -1,19 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import "../../screens/ProfileScreen/index.css";
-import OrderDetailScreen from "../../screens/OrderDetailScreen"
-
-
 
 const OrderItem = ({ order }) => {
-    let navigate = useNavigate();
-
     let orderId = order._id.substring(order._id.length - 8, order._id.length);
-    const orderUrl = "../order-detail/" + order._id;
-    console.log(orderUrl);
-
     return (
         <>
             <li className="list-group-item" >

@@ -25,7 +25,6 @@ const productSlice = createSlice({
             (state, { payload }) => {
                 state.loading = false
                 state.product = payload
-                console.log("payload", payload)
             },
         [findProductThunk.rejected]:
             (state) => {

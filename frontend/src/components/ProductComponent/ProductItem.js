@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector, useStore } from "react-redux";
+import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import "../../screens/ProfileScreen/index.css";
-import { findProductByIdThunk } from "../../services/ProductThunks";
-
 
 const ProductItem = ({ product }) => {
     const subtotal = Math.round(product.price * product.quantitySold * 100) / 100;

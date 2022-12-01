@@ -2,7 +2,7 @@ import avatarIcon from "../images/avatarIcon.jpg"
 const ProfileBannerComponent = () => {
     return (
         <>
-            <div className="border" id="banner">
+            <div id="banner">
                 <img src={avatarIcon} alt="" />
             </div>
         </>

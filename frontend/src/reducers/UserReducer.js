@@ -1,16 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUserThunk, deleteUserThunk, findUserByIdThunk, updateUserThunk } from "../services/UserThunks.js";
+import {
+    createUserThunk,
+    deleteUserThunk,
+    findAllUsersThunk,
+    findUserByIdThunk, loginThunk, logoutThunk, profileThunk, registerThunk,
+    updateUserThunk
+} from "../services/UserThunks.js";
 
 const currentUser =
-{
-    "name": "currentUser",
-    "email": "Null",
-    "phone": "Null",
-    "address": "Null",
-    "memberSince": "Null",
-    "order": "Null",
-    "favorites": "Null"
-}
+    {
+        "name": "currentUser",
+        "email": "Null",
+        "phone": "Null",
+        "address": "Null",
+        "memberSince": "Null",
+        "order": "Null",
+        "favorites": "Null"
+    }
 
 const initialState = {
     user: currentUser,
@@ -60,6 +66,33 @@ const userSlice = createSlice({
                 state.loading = false
                 state.user = state.user.filter(u => u._id !== payload)
             },
+        [findAllUsersThunk.fulfilled]: (state, action) => {
+            state.users = action.payload
+        },
+        [loginThunk.fulfilled]: (state, action) => {
+            state.currentUser = action.payload
+        },
+        [loginThunk.rejected]: (state, action) => {
+            state.error = action.payload
+            state.currentUser = null
+        },
+        [registerThunk.fulfilled]: (state, action) => {
+            state.currentUser = action.payload
+        },
+        [registerThunk.rejected]: (state, action) => {
+            state.error = action.payload
+            state.currentUser = null
+        },
+        [logoutThunk.fulfilled]: (state, action) => {
+            state.currentUser = null
+        },
+        [profileThunk.fulfilled]: (state, action) => {
+            state.currentUser = action.payload
+        },
+        [profileThunk.rejected]: (state, action) => {
+            state.error = action.payload
+            state.currentUser = null
+        },
     }
 });
 
