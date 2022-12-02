@@ -12,10 +12,12 @@ export const createUser = async (user) => {
 }
 
 export const findUser = async () => {
-    const response = await fetch(USER_API)
-    const user = await response.json()
-    return user;
+    const user = await axios.get(`${USER_API}/all`)
+    return user.data;
 }
+
+
+console.log("findUser()", `${USER_API}/all`, findUser());
 
 export const findUserById = async (uid) => {
     const user = await axios.get(`${USER_API}/${uid}`)

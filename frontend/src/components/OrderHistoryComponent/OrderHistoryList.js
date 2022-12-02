@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import OrderItem from "./OrderHistoryItem";
+import OrderDetailItem from "./OrderHistoryItem";
 import { findOrderByBuyerIdThunk } from "../../services/OrderThunks";
 import "../../screens/ProfileScreen/index.css";
 
@@ -19,7 +19,7 @@ const OrderHistoryList = () => {
                 {
                     loading && <li className="list-group-item">loading...</li>
                 }
-                {orderClone.reverse().map(order => <OrderItem key={order._id} order={order} />)}
+                {orderClone.reverse().map(order => <OrderDetailItem key={order._id} order={order} />)}
             </ul>
         </>
     );

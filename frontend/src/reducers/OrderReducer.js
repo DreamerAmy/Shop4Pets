@@ -19,15 +19,17 @@ const orderSlice = createSlice({
         [findOrderByIdThunk.pending]:
             (state) => {
                 state.loading = true
-                state.order = []
+                state.orderItem = null
             },
         [findOrderByIdThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
-                state.order = payload
+                console.log("payload", payload)
+                state.orderItem = payload
             },
         [findOrderByIdThunk.rejected]:
             (state) => {
+                console.log("rejected")
                 state.loading = false
             },
         [findOrderByBuyerIdThunk.pending]:

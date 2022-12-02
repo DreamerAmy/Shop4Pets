@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
     createUserThunk,
+    findUserThunk,
     deleteUserThunk,
     findAllUsersThunk,
     findUserByIdThunk, loginThunk, logoutThunk, profileThunk, registerThunk,
@@ -36,6 +37,25 @@ const userSlice = createSlice({
                 state.loading = false
                 state.userLoading = false
                 state.user.push(payload)
+            },
+        [findUserThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.userLoading = true
+                state.user = []
+            },
+        [findUserThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.userLoading = false
+                console.log(payload)
+                state.user = payload
+            },
+        [findUserThunk.rejected]:
+            (state) => {
+                state.loading = false
+                state.userLoading = false
+                state.user = nullUser
             },
         [findUserByIdThunk.pending]:
             (state) => {
