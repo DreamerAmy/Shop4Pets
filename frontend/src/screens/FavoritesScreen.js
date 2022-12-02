@@ -35,7 +35,7 @@ const FavoritesScreen = () => {
     if (!Array.isArray(user) && !loading && !userLoading) {
         favList = BuildFavList(product, user.favorites);
     }
-
+    console.log("favList from fav page", favList);
     return (
         <div className="row mt-2">
             <div className="col-2">

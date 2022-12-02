@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "../ProfileScreen/index.css";
 import ProfileBannerComponent from "../../components/ProfileBannerComponent.js"
@@ -11,8 +11,9 @@ const BuyerEditScreen = (user) => {
     let [info, setInfo] = useState(buyer);
     const dispatch = useDispatch();
     const saveUrl = "/profile/" + bid;
+
     const buyerClickHandler = () => {
-        const newBuyer = {
+        let newBuyer = {
             ...buyer,
             name: info.name,
             email: info.email,
@@ -20,6 +21,7 @@ const BuyerEditScreen = (user) => {
             phone: info.phone
         }
         dispatch(updateUserThunk(newBuyer));
+        window.alert('Yay! User info has been updated!')
     }
 
     return (
@@ -60,7 +62,7 @@ const BuyerEditScreen = (user) => {
 
                 <Link to={saveUrl} href="/" className="nav-link" >
                     <button className="btn btn-default" id="discardBtn" >
-                        Discard
+                        Back to Profile
                     </button>
                 </Link>
 
@@ -69,6 +71,7 @@ const BuyerEditScreen = (user) => {
                         Save
                     </button>
                 </Link>
+
             </div >
         </>
 
