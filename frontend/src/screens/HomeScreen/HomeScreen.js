@@ -17,7 +17,6 @@ const profileBtn = (currentUser) => {
 
 const Home = () => {
     const { currentUser } = useSelector((state) => state.user)
-
     console.log("home currentUser", currentUser);
 
 
