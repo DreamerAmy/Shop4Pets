@@ -5,13 +5,14 @@ import "../ProfileScreen/index.css";
 import ProfileBannerComponent from "../../components/ProfileBannerComponent.js"
 import { updateUserThunk } from "../../services/UserThunks";
 
+
 const BuyerEditScreen = (user) => {
     const buyer = user.data;
     const bid = buyer._id;
     let [info, setInfo] = useState(buyer);
     const dispatch = useDispatch();
     const saveUrl = "/profile/" + bid;
-    const buyerClickHandler = () => {
+    const buyerClickHandler = async () => {
         const newBuyer = {
             ...buyer,
             name: info.name,
@@ -20,7 +21,9 @@ const BuyerEditScreen = (user) => {
             phone: info.phone
         }
         dispatch(updateUserThunk(newBuyer));
+        window.alert('You have successfully updated your info!')
     }
+
 
     return (
         <>

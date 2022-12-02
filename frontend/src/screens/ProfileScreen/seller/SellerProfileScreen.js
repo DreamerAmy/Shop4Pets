@@ -4,17 +4,12 @@ import { useSelector } from "react-redux";
 import Navigation from "../../../components/Navigation";
 
 
-const SellerProfileScreen = () => {
-    const seller = useSelector(state => state.seller);
+const SellerProfileScreen = (user) => {
+    const seller = user.data;
+    const sid = seller._id;
+    const editUrl = "../edit-profile/" + sid;
 
     return (
-        <div className="row mt-2">
-            <Navigation/>
-            <div className="col-2">
-
-            </div>
-
-            <div className="col-8" style={{ "position": "relative" }}>
                 <div className="font-setting" id="profileScreen">
 
                     <div id="infoSection">
@@ -29,7 +24,7 @@ const SellerProfileScreen = () => {
                             </button>
 
                             <button className="btn list-group-item" id="editBtn">
-                                <Link to="/seller-edit-profile" href="#" className="nav-link" >Edit</Link>
+                                <Link to={editUrl} href="#" className="nav-link" >Edit</Link>
                             </button>
                         </div>
 
@@ -48,12 +43,12 @@ const SellerProfileScreen = () => {
 
                             <div className="list-group-item border-0">
                                 <i className="bi bi-house-door pt-2"/>
-                                <span className= "ps-2"/>{seller.location}
+                                <span className= "ps-2"/>{seller.address}
                             </div>
 
                             <div className="list-group-item border-0">
                                 <i className="bi bi-balloon pt-2"/>
-                                <span className= "ps-2"/>{seller.since}
+                                <span className= "ps-2"/>{seller.memberSince}
                             </div>
                         </div>
                     </div>
@@ -81,17 +76,8 @@ const SellerProfileScreen = () => {
                                 </Link>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-            </div>
-
-            <div className="col-2">
-
-            </div>
-        </div>
-
     )
 }
 

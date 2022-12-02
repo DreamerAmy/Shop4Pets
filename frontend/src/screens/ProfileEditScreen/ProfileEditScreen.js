@@ -12,7 +12,7 @@ function renderEditScreen(user) {
         )
     }
     else if (user.accountType === "seller") {
-        return (<>seller edit screen</>);
+        return (<BuyerEditScreen data={user}/>);
     }
     else if (user.accountType === "admin") {
         return (<>admin edit screen</>);

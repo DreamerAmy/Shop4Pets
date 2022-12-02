@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { findUserByIdThunk } from "../../services/UserThunks";
 import './index.css';
+import SellerProfileScreen from "./seller/SellerProfileScreen";
 
 function renderProfile(user) {
     if (user.accountType === "buyer") {
         return (<BuyerProfileScreen data={user} />)
     }
     else if (user.accountType === "seller") {
-        return (<>seller</>);
+        return (<SellerProfileScreen data={user}/>);
     }
     else if (user.accountType === "admin") {
         return (<>admin</>);
