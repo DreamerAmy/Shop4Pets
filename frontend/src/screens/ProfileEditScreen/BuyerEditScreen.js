@@ -16,7 +16,6 @@ const BuyerEditScreen = (user) => {
         const newBuyer = {
             ...buyer,
             name: info.name,
-            email: info.email,
             address: info.address,
             phone: info.phone
         }
@@ -35,14 +34,6 @@ const BuyerEditScreen = (user) => {
                     placeholder="Name"
                     className="form-control"
                     onChange={(event) => setInfo({ ...info, name: event.target.value })} >
-                </input>
-
-                <label for="inputEmail">Email</label>
-                <input value={info.email}
-                    id="inputEmail"
-                    placeholder="Email"
-                    className="form-control"
-                    onChange={(event) => setInfo({ ...info, email: event.target.value })} >
                 </input>
 
                 <label for="inputAddress">Address</label>

@@ -19,8 +19,9 @@ function renderProfile(user) {
         return (<>admin</>);
     }
     return (
-        <>
-        </>
+        <div>
+            Contact us to add Account Type!
+        </div>
     )
 }
 

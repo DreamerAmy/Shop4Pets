@@ -38,7 +38,7 @@ const BuyerProfileScreen = (user) => {
 
     // Case that you are reviewing profile of yourselves
     // Full information will be displayed
-    if (currentUser && currentUser._id == buyer._id) {
+    if (currentUser && currentUser._id === buyer._id) {
         return (
             <>
                 <h5>You have signed in! Welcome back!</h5>
@@ -93,15 +93,15 @@ const BuyerProfileScreen = (user) => {
             <h6>Some private sections have been hidden.</h6>
             {
                 currentUser &&
-                <Button color="warning" className="px-4"
-                    onClick={routeToMyProfile}>
+                <Button className="px-4 btn btn-danger rounded-pill fw-bold"
+                        onClick={routeToMyProfile}>
                     Back to your profile
                 </Button>
             }
             {
                 !currentUser &&
-                <Button color="warning" className="px-4"
-                    onClick={routeToSignIn}>
+                <Button className="px-4 btn btn-danger rounded-pill fw-bold"
+                        onClick={routeToSignIn}>
                     Sign In
                 </Button>
             }
