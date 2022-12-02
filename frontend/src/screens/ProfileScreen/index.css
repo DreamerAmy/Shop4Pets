@@ -2,7 +2,7 @@
 #banner {
     margin: 0 auto;
     border-bottom: 1px solid lightgrey;
-    background-image: url(/public/images/profile_bg2.jpg);
+    background-image: url(../../../public/images/profile_bg2.jpg);
     background-size: cover;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -126,6 +126,7 @@
     padding-top: 20px;
     font-weight: bold;
     color: #916b44;
+}
 
 /* profile screen - Fifi*/
 #allBtn-color{

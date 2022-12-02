@@ -1,20 +1,22 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import { useSelector } from "react-redux";
-import ProfileBanner from "../ProfileBanner";
+import Navigation from "../../../components/Navigation";
+
 
 const SellerProfileScreen = () => {
     const seller = useSelector(state => state.seller);
 
     return (
         <div className="row mt-2">
+            <Navigation/>
             <div className="col-2">
-                left
+
             </div>
 
             <div className="col-8" style={{ "position": "relative" }}>
                 <div className="font-setting" id="profileScreen">
-                    <ProfileBanner/>
+
                     <div id="infoSection">
                         <div className="float-end list-group pt-5">
                             <button className="btn list-group-item rounded-pill" id="menuBtn">
@@ -86,7 +88,7 @@ const SellerProfileScreen = () => {
             </div>
 
             <div className="col-2">
-                right
+
             </div>
         </div>
 
