@@ -1,6 +1,8 @@
 import axios from 'axios';
+
 // const PRODUCT_API = 'http://localhost:4000/api/product';
 const PRODUCT_API = 'https://barkery-shop4pets.onrender.com/api/product';
+
 // const API_BASE = process.env.REACT_APP_API_BASE;
 // const PRODUCT_API = `${API_BASE}/product`;
 

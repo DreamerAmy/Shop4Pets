@@ -15,7 +15,7 @@
 }
 
 .highlight-text {
-    font-weight: bold;
+    font-weight: bold
 }
 
 #editBtn {
@@ -58,10 +58,7 @@
 
 #OrderHistory {
     border-right: 1px solid #916b44;
-}
 
-#OrderHistory:hover {
-    border-right: 1px solid #8e5822;
 }
 
 #BuyerSummarySection i {
@@ -71,16 +68,6 @@
 
 #RecentOrderSection {
     margin-top: 20px;
-}
-
-/* recent order */
-.OrderHighlightText {
-    color: #916b44;
-    font-weight: bold;
-}
-
-#EachOrder :hover {
-    background-color: antiquewhite;
 }
 
 /* buyer-edit */
@@ -116,6 +103,7 @@
     float: left;
 }
 
+
 /* product screen */
 .productImg {
     height: 100%;
@@ -138,4 +126,17 @@
     padding-top: 20px;
     font-weight: bold;
     color: #916b44;
+
+/* profile screen - Fifi*/
+#allBtn-color{
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+}
+
+#menuBtn{
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+    margin-top: 5px;
 }
