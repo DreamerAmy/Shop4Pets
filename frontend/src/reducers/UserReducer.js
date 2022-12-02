@@ -24,10 +24,6 @@ const initialState = {
     loading: false
 }
 
-const nullUser = {
-    "name": "not found"
-}
-
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -55,7 +51,6 @@ const userSlice = createSlice({
             (state) => {
                 state.loading = false
                 state.userLoading = false
-                state.user = nullUser
             },
         [findUserByIdThunk.pending]:
             (state) => {
@@ -73,7 +68,6 @@ const userSlice = createSlice({
             (state) => {
                 state.loading = false
                 state.userLoading = false
-                state.user = nullUser
             },
         [updateUserThunk.fulfilled]:
             (state, { payload }) => {

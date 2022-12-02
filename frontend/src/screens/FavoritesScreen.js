@@ -32,7 +32,7 @@ const FavoritesScreen = () => {
     const { product, loading } = useSelector((state) => state.product)
     useEffect(() => { dispatch(findProductThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     let favList = [];
-    if (!loading && !userLoading) {
+    if (!Array.isArray(user) && !loading && !userLoading) {
         favList = BuildFavList(product, user.favorites);
     }
 
@@ -46,7 +46,7 @@ const FavoritesScreen = () => {
                     <button className="btn btn-default" id="editBtn">
                         <Link to={backUrl} href="/" className="nav-link" >Back to Profile</Link>
                     </button>
-                    <h2 className="highlight-text">{user.name}'s Favorite Items<br /></h2>
+                    {/* <h2 className="highlight-text">{user.name}'s Favorite Items<br /></h2> */}
                     <FavProductList productList={favList} />
                 </div>
             </div>

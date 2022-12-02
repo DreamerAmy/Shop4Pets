@@ -24,12 +24,10 @@ const orderSlice = createSlice({
         [findOrderByIdThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
-                console.log("payload", payload)
                 state.orderItem = payload
             },
         [findOrderByIdThunk.rejected]:
             (state) => {
-                console.log("rejected")
                 state.loading = false
             },
         [findOrderByBuyerIdThunk.pending]:

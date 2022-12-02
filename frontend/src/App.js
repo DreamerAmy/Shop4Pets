@@ -26,6 +26,7 @@ import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Home from "./screens/HomeScreen/HomeScreen";
 import CurrentUser from "./screens/currentUser";
+import ProductScreen from "./screens/ProductScreen";
 // import UserListScreen from "./screens/UserListScreen";
 
 const store = configureStore({
@@ -34,6 +35,7 @@ const store = configureStore({
     order: OrderReducer,
     orderItem: OrderReducer,
     product: ProductReducer,
+    productItem: ProductReducer
   },
 });
 
@@ -50,6 +52,7 @@ function App() {
             <Route path="/order-history/*" element={<OrderHistoryScreen />} />
             <Route path="/order-detail/*" element={<OrderDetailScreen />} />
             <Route path="/favorites/*" element={<FavoritesScreen />} />
+            <Route path="/product/*" element={<ProductScreen />} />
             {/* <Route path="/user-list/*" element={<UserListScreen />} /> */}
             <Route path="/profile/seller" element={<SellerProfileScreen />} />
             <Route path="/profile/admin" element={<AdminProfileScreen />} />
