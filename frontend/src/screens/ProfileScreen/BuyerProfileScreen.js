@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import ProfileBanner from "../../components/ProfileBannerComponent.js"
 import RecentOrderList from "../../components/RecentOrderComponent/RecentOrderList"
 import { findOrderByBuyerIdThunk } from "../../services/OrderThunks";
-import UserList from "../../components/UserListComponent/UserList"
 import './index.css';
 
 const BuyerProfileScreen = (user) => {

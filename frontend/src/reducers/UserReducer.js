@@ -44,7 +44,6 @@ const userSlice = createSlice({
             (state, { payload }) => {
                 state.loading = false
                 state.userLoading = false
-                console.log(payload)
                 state.user = payload
             },
         [findUserThunk.rejected]:
@@ -81,11 +80,11 @@ const userSlice = createSlice({
                     ...state.user[userNdx],
                     ...payload
                 }
-                const userNdx2 = state.currentUser.findIndex((u) => u._id === payload._id)
-                state.currentUser[userNdx2] = {
-                    ...state.currentUser[userNdx2],
-                    ...payload
-                }
+                // const userNdx2 = state.currentUser.findIndex((u) => u._id === payload._id)
+                // state.currentUser[userNdx2] = {
+                //     ...state.currentUser[userNdx2],
+                //     ...payload
+                // }
             },
         [deleteUserThunk.fulfilled]:
             (state, { payload }) => {
