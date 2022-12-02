@@ -15,7 +15,7 @@
 }
 
 .highlight-text {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 #editBtn {
@@ -116,4 +116,26 @@
     float: left;
 }
 
-/* profile screen - Fifi*/
+/* product screen */
+.productImg {
+    height: 100%;
+    width: 100%;
+}
+
+
+.productDescription {
+    font-size: 20px;
+}
+
+.productPrice {
+    padding-top: 10px;
+    color: #bc2848;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.hint-text {
+    padding-top: 20px;
+    font-weight: bold;
+    color: #916b44;
+}
