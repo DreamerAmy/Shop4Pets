@@ -5,10 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import ProfileScreen from './screens/ProfileScreen';
-import SellerProfileScreen from './screens//ProfileScreen/SellerProfileScreen.js';
-import AdminProfileScreen from './screens//ProfileScreen/AdminProfileScreen.js';
+
 import ProfileEditScreen from './screens/ProfileEditScreen/ProfileEditScreen';
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import OrderDetailScreen from './screens/OrderDetailScreen';
@@ -27,6 +26,8 @@ import Login from "./screens/Login";
 import Home from "./screens/HomeScreen/HomeScreen";
 import CurrentUser from "./screens/currentUser";
 import ProductScreen from "./screens/ProductScreen";
+import SellerProfileScreen from "./screens/ProfileScreen/seller/SellerProfileScreen";
+import AdminProfileScreen from "./screens/ProfileScreen/AdminProfileScreen";
 // import UserListScreen from "./screens/UserListScreen";
 
 const store = configureStore({
