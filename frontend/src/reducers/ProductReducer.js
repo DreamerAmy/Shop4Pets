@@ -20,11 +20,13 @@ const productSlice = createSlice({
             (state) => {
                 state.loading = true
                 state.product = []
+
             },
         [findProductThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
                 state.product = payload
+
             },
         [findProductThunk.rejected]:
             (state) => {
@@ -33,16 +35,17 @@ const productSlice = createSlice({
         [findProductByIdThunk.pending]:
             (state) => {
                 state.loading = true
-                state.product = []
+                state.productItem = []
             },
         [findProductByIdThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
-                state.product = payload
+                state.productItem = payload
             },
         [findProductByIdThunk.rejected]:
             (state) => {
                 state.loading = false
+                state.productItem = []
             },
         [updateProductThunk.fulfilled]:
             (state, { payload }) => {

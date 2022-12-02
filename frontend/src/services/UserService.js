@@ -2,7 +2,9 @@ import axios from 'axios';
 // const USER_API = 'http://localhost:4000/api/user';
 // const BASE_URL = 'http://localhost:4000';
 const BASE_URL = 'https://barkery-shop4pets.onrender.com';
-const USER_API = 'https://barkery-shop4pets.onrender.com/api/user/all';
+
+const USER_API = 'https://barkery-shop4pets.onrender.com/api/user';
+
 // const API_BASE = process.env.REACT_APP_API_BASE;
 // const USER_API = `${API_BASE}/user`;
 
@@ -12,10 +14,12 @@ export const createUser = async (user) => {
 }
 
 export const findUser = async () => {
-    const response = await fetch(USER_API)
-    const user = await response.json()
-    return user;
+    const user = await axios.get(`${USER_API}/all`)
+    return user.data;
 }
+
+
+console.log("findUser()", `${USER_API}/all`, findUser());
 
 export const findUserById = async (uid) => {
     const user = await axios.get(`${USER_API}/${uid}`)

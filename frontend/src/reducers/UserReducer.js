@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
     createUserThunk,
+    findUserThunk,
     deleteUserThunk,
     findAllUsersThunk,
     findUserByIdThunk, loginThunk, logoutThunk, profileThunk, registerThunk,
@@ -8,23 +9,19 @@ import {
 } from "../services/UserThunks.js";
 
 const currentUser =
-    {
-        "name": "currentUser",
-        "email": "Null",
-        "phone": "Null",
-        "address": "Null",
-        "memberSince": "Null",
-        "order": "Null",
-        "favorites": "Null"
-    }
+{
+    "name": "currentUser",
+    "email": "Null",
+    "phone": "Null",
+    "address": "Null",
+    "memberSince": "Null",
+    "order": "Null",
+    "favorites": "Null"
+}
 
 const initialState = {
     user: currentUser,
     loading: false
-}
-
-const nullUser = {
-    "name": "not found"
 }
 
 const userSlice = createSlice({
@@ -34,22 +31,43 @@ const userSlice = createSlice({
         [createUserThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
+                state.userLoading = false
                 state.user.push(payload)
+            },
+        [findUserThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.userLoading = true
+                state.user = []
+            },
+        [findUserThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.userLoading = false
+                console.log(payload)
+                state.user = payload
+            },
+        [findUserThunk.rejected]:
+            (state) => {
+                state.loading = false
+                state.userLoading = false
             },
         [findUserByIdThunk.pending]:
             (state) => {
                 state.loading = true
+                state.userLoading = true
                 state.user = []
             },
         [findUserByIdThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
+                state.userLoading = false
                 state.user = payload
             },
         [findUserByIdThunk.rejected]:
             (state) => {
                 state.loading = false
-                state.user = nullUser
+                state.userLoading = false
             },
         [updateUserThunk.fulfilled]:
             (state, { payload }) => {
@@ -71,9 +89,11 @@ const userSlice = createSlice({
         },
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            state.loggedIn = true
         },
         [loginThunk.rejected]: (state, action) => {
             state.error = action.payload
+            state.loggedIn = false
             state.currentUser = null
         },
         [registerThunk.fulfilled]: (state, action) => {
@@ -85,6 +105,7 @@ const userSlice = createSlice({
         },
         [logoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null
+            state.loggedIn = false
         },
         [profileThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload

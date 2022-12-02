@@ -25,13 +25,16 @@ const FavoritesScreen = () => {
     const { pathname } = useLocation();
     const paths = pathname.split('/')
     const bid = paths[2];
-    const { user } = useSelector((state) => state.user)
+    const { user, userLoading } = useSelector((state) => state.user)
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findUserByIdThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     const backUrl = "/profile/" + bid;
-    const { product } = useSelector((state) => state.product)
+    const { product, loading } = useSelector((state) => state.product)
     useEffect(() => { dispatch(findProductThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
-    let favList = BuildFavList(product, user.favorites);
+    let favList = [];
+    if (!Array.isArray(user) && !loading && !userLoading) {
+        favList = BuildFavList(product, user.favorites);
+    }
 
     return (
         <div className="row mt-2">
@@ -43,7 +46,7 @@ const FavoritesScreen = () => {
                     <button className="btn btn-default" id="editBtn">
                         <Link to={backUrl} href="/" className="nav-link" >Back to Profile</Link>
                     </button>
-                    <h2 className="highlight-text">{user.name}'s Favorite Items<br /></h2>
+                    {/* <h2 className="highlight-text">{user.name}'s Favorite Items<br /></h2> */}
                     <FavProductList productList={favList} />
                 </div>
             </div>
