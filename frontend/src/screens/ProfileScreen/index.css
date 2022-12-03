@@ -2,7 +2,7 @@
 #banner {
     margin: 0 auto;
     border-bottom: 1px solid lightgrey;
-    background-image: url(/public/images/profile_bg2.jpg);
+    background-image: url(../../../public/images/profile_bg2.jpg);
     background-size: cover;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -15,7 +15,7 @@
 }
 
 .highlight-text {
-    font-weight: bold;
+    font-weight: bold
 }
 
 #editBtn {
@@ -58,10 +58,7 @@
 
 #OrderHistory {
     border-right: 1px solid #916b44;
-}
 
-#OrderHistory:hover {
-    border-right: 1px solid #8e5822;
 }
 
 #BuyerSummarySection i {
@@ -71,16 +68,6 @@
 
 #RecentOrderSection {
     margin-top: 20px;
-}
-
-/* recent order */
-.OrderHighlightText {
-    color: #916b44;
-    font-weight: bold;
-}
-
-#EachOrder :hover {
-    background-color: antiquewhite;
 }
 
 /* buyer-edit */
@@ -115,6 +102,7 @@
     margin-top: 5px;
     float: left;
 }
+
 
 /* product screen */
 .productImg {
@@ -170,4 +158,18 @@
     border-radius: 20px;
     margin-top: 5px;
     border: 1px solid;
+    }
+
+/* profile screen - Fifi*/
+#allBtn-color{
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+}
+
+#menuBtn{
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+    margin-top: 5px;
 }
