@@ -128,6 +128,38 @@
     color: #916b44;
 }
 
+.favBtn {
+    background-color: #ef6c00;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 5px;
+    border: 1px solid;
+
+}
+
+.dropdown {
+    width: 10%;
+    height: 40px;
+    border-radius: 20px;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.dropdownHint {
+    font-weight: bold;
+    color: #bc2848;
+}
+
+.cartBtn {
+    background-color: #916b44;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 5px;
+    border: 1px solid;
+    }
+
 /* profile screen - Fifi*/
 #allBtn-color{
     background-color: #FF9900;

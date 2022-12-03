@@ -20,7 +20,6 @@ function BuildFavList(product, pidList) {
     return favList;
 }
 
-
 const FavoritesScreen = () => {
     const { pathname } = useLocation();
     const paths = pathname.split('/')
@@ -32,10 +31,10 @@ const FavoritesScreen = () => {
     const { product, loading } = useSelector((state) => state.product)
     useEffect(() => { dispatch(findProductThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     let favList = [];
-    if (!Array.isArray(user) && !loading && !userLoading) {
+    if (user && !Array.isArray(user) && !loading && !userLoading) {
         favList = BuildFavList(product, user.favorites);
     }
-
+    console.log("favList from fav page", favList);
     return (
         <div className="row mt-2">
             <div className="col-2">

@@ -9,7 +9,6 @@ import './index.css';
 
 const BuyerProfileScreen = (user) => {
     let navigate = useNavigate();
-
     const buyer = user.data;
     const bid = buyer._id;
 

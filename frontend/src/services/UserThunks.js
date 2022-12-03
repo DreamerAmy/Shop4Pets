@@ -11,7 +11,6 @@ export const createUserThunk = createAsyncThunk(
 export const findUserThunk = createAsyncThunk(
     'user/findUser',
     async () => {
-        console.log("thunks")
         return (await service.findUser());
     }
 )
