@@ -1,66 +1,77 @@
 
 import { Link, useLocation } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { findProductByIdThunk } from "../services/ProductThunks";
-
 import "../screens/ProfileScreen/index.css";
 import foodImage from "../images/food2.jpg"
-// Display profile btn only user is logged in
-const favoriteButton = (currentUser) => {
-    let profileUrl = "../profile/";
-    if (currentUser) {
-        // profileUrl += currentUser._id;
-        return (
-            <button className="btn btn-default border" >
-                <Link to={profileUrl} href="/" className="nav-link" >Add to favorite</Link>
-            </button>
-        )
-    }
-    return
-}
+import UpdateFavComponent from "../components/UpdateFavComponent";
 
 const ProductScreen = () => {
     const { pathname } = useLocation();
     const paths = pathname.split('/')
     const pid = paths[2];
     let { productItem } = useSelector((state) => state.productItem)
-    const dispatch = useDispatch();
+    let { currentUser } = useSelector((state) => state.user);
+
+    const dispatch = useDispatch()
     useEffect(() => { dispatch(findProductByIdThunk(pid)) }, [])
-    const { currentUser } = useSelector((state) => state.user);
-    console.log(currentUser);
-    let favList = [];
-    if (currentUser) {
-        favList = currentUser.favorites
-        console.log(favList);
+
+    // Drop down part
+    const getInitialState = () => {
+        const value = 1;
+        return value;
+    };
+    const [quantity, setQuantity] = useState(getInitialState);
+    const handleChange = (e) => {
+        setQuantity(e.target.value);
+    };
+
+
+    // Add to cart button
+    function passToCart() {
+        // pass quantity variable to cart
+        console.log("quantity", quantity);
     }
-    if (productItem && !Array.isArray(productItem)) {
-        return (
-            <>
-                <div className="row mt-4">
-                    <div className="col-2"></div>
-                    <div className="col-3" >
-                        <h2 className="">Product Detail</h2>
-                        <img className="productImg" src={foodImage} alt="" />
-                    </div>
-                    <div className="col-5" >
-                        <h3 className="mt-5">
-                            {productItem.productName}
-                        </h3>
 
-                        <div className="productDescription">{productItem.description}</div>
+    return (
+        <>
+            <div className="row mt-4">
+                <div className="col-2"></div>
+                <div className="col-3" >
+                    <h2 className="">Product Detail</h2>
+                    <img className="productImg" src={foodImage} alt="" />
+                </div>
+                <div className="col-5" >
+                    {productItem &&
+                        <>
+                            <h3 className="mt-5"> {productItem.productName}</h3>
+                            <div className="productDescription"> {productItem.description}</div>
+                            <div className="productPrice"> ${productItem.price}</div>
+                            {!currentUser && <>Please sign in to favorite the item.</>}
+                            {currentUser && <UpdateFavComponent uid={currentUser._id} pid={productItem._id} />}
+                            <div className="pt-3">
+                                <select value={quantity} onChange={handleChange} className="dropdown">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                                <div className="dropdownHint">{`Hurry up! Add ${quantity} to your cart!`}</div>
+                            </div>
 
-                        <div className="productPrice">${productItem.price}</div>
-
-                        {currentUser && favoriteButton(currentUser)}
-
-                        {!currentUser && <div className="hint-text">Please SignIn to place an order or add to favorite list</div>}
-                    </div>
-                    <div className="col-2"></div>
+                            <button className="btn btn-default cartBtn" onClick={passToCart} >
+                                Add to Cart
+                            </button >
+                        </>
+                    }
                 </div >
-            </>
-        )
-    }
+                <div className="col-2"></div>
+            </div >
+        </>
+    )
+
+
+
 }
 
 export default ProductScreen;

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import {Container} from "react-bootstrap";
 
 // Display profile btn only user is logged in
 const profileBtn = (currentUser) => {
@@ -17,12 +18,12 @@ const profileBtn = (currentUser) => {
 
 const Home = () => {
     const { currentUser } = useSelector((state) => state.user)
-
     console.log("home currentUser", currentUser);
 
 
     return (
         <>
+            <Container>
             {
                 currentUser &&
                 <h2>Welcome {currentUser.name}</h2>
@@ -32,7 +33,7 @@ const Home = () => {
 
             <h1>Product you may like......</h1>
             {profileBtn(currentUser)}
-
+            </Container>
         </>
     )
 }
