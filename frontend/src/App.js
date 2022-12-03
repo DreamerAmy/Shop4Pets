@@ -46,7 +46,6 @@ function App() {
       <CurrentUser>
         <BrowserRouter>
           <Navigation />
-
           <Routes>
             <Route path="/profile/*" element={<ProfileScreen />} />
             <Route path="/edit-profile/*" element={<ProfileEditScreen />} />
