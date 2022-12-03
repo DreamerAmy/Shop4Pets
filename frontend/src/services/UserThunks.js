@@ -11,14 +11,12 @@ export const createUserThunk = createAsyncThunk(
 export const findUserThunk = createAsyncThunk(
     'user/findUser',
     async () => {
-        console.log("thunks")
         return (await service.findUser());
     }
 )
 export const findUserByIdThunk = createAsyncThunk(
     'user/findUserById',
     async (userId) => {
-        console.log("thunks, findubyid")
         return (await service.findUserById(userId));
     }
 )

@@ -1,10 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { findUserByIdThunk, updateUserThunk } from "../services/UserThunks";
 import { findProductByIdThunk } from "../services/ProductThunks";
-
-
+import '../screens/ProfileScreen/index.css';
 
 const UpdateFavComponent = ({ uid, pid }) => {
     let { user } = useSelector((state) => state.user);
@@ -12,8 +10,6 @@ const UpdateFavComponent = ({ uid, pid }) => {
     const dispatch = useDispatch()
     useEffect(() => { dispatch(findUserByIdThunk(uid)) }, [])
     useEffect(() => { dispatch(findProductByIdThunk(pid)) }, [])
-    console.log("user", user);
-    console.log("productItem", productItem);
 
     function removeFav() {
         let index = user.favorites.indexOf(productItem._id);
@@ -23,8 +19,7 @@ const UpdateFavComponent = ({ uid, pid }) => {
             ...user,
             favorites: removedArray,
         }));
-        window.alert('removed fav!')
-        console.log("remove fav function")
+        window.alert(`[${productItem.productName}] has been removed from [${user.name}]'s favorite!`)
         window.location.reload(false)
     }
 
@@ -34,26 +29,28 @@ const UpdateFavComponent = ({ uid, pid }) => {
             ...user,
             favorites: [...user.favorites, productItem._id],
         }));
-        console.log("add fav function")
-        window.alert('add to fav!')
+        window.alert(`[${productItem.productName}] has been added to [${user.name}]'s favorite!`)
         window.location.reload(false)
 
     }
 
     if (user && !Array.isArray(user) && productItem && !Array.isArray(productItem)) {
         let favBoolean = user.favorites.includes(productItem._id);
-        console.log("favBoolean", favBoolean);
         if (favBoolean) {
-            return (
-                <button className="btn btn-default" id="editBtn" onClick={removeFav} >
-                    remove Fav Button
-                </button>
+            return (<>
+                <h6>Hey {user.name}...</h6>
+                < button className="btn btn-default favBtn" onClick={removeFav} >
+                    Remove From Favorite
+                </button >
+            </>
             )
         } else {
-            return (
-                <button className="btn btn-default" id="editBtn" onClick={addFav} >
-                    add Fav Button
-                </button>)
+            return (<>
+                <h6>Hey {user.name}...</h6>
+                <button className="btn btn-default favBtn" onClick={addFav} >
+                    Add To Favorite
+                </button>
+            </>)
         }
     }
 }

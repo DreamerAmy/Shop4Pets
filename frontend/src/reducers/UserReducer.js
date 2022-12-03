@@ -53,38 +53,29 @@ const userSlice = createSlice({
             },
         [findUserByIdThunk.pending]:
             (state) => {
-                console.log("pending")
                 state.loading = true
                 state.userLoading = true
                 state.user = []
             },
         [findUserByIdThunk.fulfilled]:
             (state, { payload }) => {
-                console.log("fulfilled")
                 state.loading = false
                 state.user = payload
                 state.userLoading = false
             },
         [findUserByIdThunk.rejected]:
             (state) => {
-                console.log("rejected")
                 state.loading = false
                 state.userLoading = false
             },
         [updateUserThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
-                // console.log(payload)
                 const userNdx = state.user.findIndex((u) => u._id === payload._id)
                 state.user[userNdx] = {
                     ...state.user[userNdx],
                     ...payload
                 }
-                // const userNdx2 = state.currentUser.findIndex((u) => u._id === payload._id)
-                // state.currentUser[userNdx2] = {
-                //     ...state.currentUser[userNdx2],
-                //     ...payload
-                // }
             },
         [deleteUserThunk.fulfilled]:
             (state, { payload }) => {
