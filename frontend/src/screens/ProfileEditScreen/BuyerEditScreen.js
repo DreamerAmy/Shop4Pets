@@ -5,6 +5,7 @@ import "../ProfileScreen/index.css";
 import ProfileBannerComponent from "../../components/ProfileBannerComponent.js"
 import { updateUserThunk } from "../../services/UserThunks";
 
+
 const BuyerEditScreen = (user) => {
     const buyer = user.data;
     const bid = buyer._id;
@@ -12,17 +13,17 @@ const BuyerEditScreen = (user) => {
     const dispatch = useDispatch();
     const saveUrl = "/profile/" + bid;
 
-    const buyerClickHandler = () => {
-        let newBuyer = {
+    const buyerClickHandler = async () => {
+        const newBuyer = {
             ...buyer,
             name: info.name,
-            email: info.email,
             address: info.address,
             phone: info.phone
         }
         dispatch(updateUserThunk(newBuyer));
-        window.alert('Yay! User info has been updated!')
+        window.alert('You have successfully updated your info!')
     }
+
 
     return (
         <>
@@ -34,14 +35,6 @@ const BuyerEditScreen = (user) => {
                     placeholder="Name"
                     className="form-control"
                     onChange={(event) => setInfo({ ...info, name: event.target.value })} >
-                </input>
-
-                <label for="inputEmail">Email</label>
-                <input value={info.email}
-                    id="inputEmail"
-                    placeholder="Email"
-                    className="form-control"
-                    onChange={(event) => setInfo({ ...info, email: event.target.value })} >
                 </input>
 
                 <label for="inputAddress">Address</label>
