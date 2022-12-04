@@ -18,6 +18,7 @@ import CartScreen from './screens/CheckoutScreens/CartScreen';
 import OrderScreen from './screens/CheckoutScreens/OrderScreen';
 import FavoritesScreen from './screens/FavoritesScreen';
 import UserReducer from './reducers/UserReducer';
+import SellerReducer from "./reducers/SellerReducer";
 import OrderReducer from './reducers/OrderReducer';
 import ProductReducer from './reducers/ProductReducer';
 import Navigation from './components/Navigation';
@@ -33,6 +34,7 @@ import AdminProfileScreen from "./screens/ProfileScreen/AdminProfileScreen";
 const store = configureStore({
   reducer: {
     user: UserReducer,
+    seller: SellerReducer,
     order: OrderReducer,
     orderItem: OrderReducer,
     product: ProductReducer,
