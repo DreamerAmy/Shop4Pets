@@ -13,7 +13,9 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
     // const [accountType, setAccountType] = useState('')
+
     const {currentUser} = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
@@ -63,6 +65,7 @@ const Login = () => {
                         />
                     </Form.Group>
 
+
                     {/*<Form.Group className="mb-3" controlId="accountType">*/}
                     {/*    <Form.Label>Account Type</Form.Label>*/}
                     {/*    <Form.Select*/}
@@ -74,6 +77,7 @@ const Login = () => {
                     {/*    <option value="seller">seller</option>*/}
                     {/*    </Form.Select>*/}
                     {/*</Form.Group>*/}
+
 
                     <div className="mb-3">
                         <Button onClick={handleLoginBtn} className="btn btn-warning ">Login</Button>

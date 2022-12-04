@@ -16,53 +16,36 @@ const Register = () => {
     const [validatePassword, setValidatePassword] = useState('')
     const [accountType, setAccountType] = useState('')
     const [error, setError] = useState(null)
-    // const {currentUser} = useSelector((state) => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate();
-    // const [validated, setValidated] = useState(false);
-    // const handleSubmit = (event) => {
-    //     const form = event.currentTarget;
-    //     if (form.checkValidity() === false) {
-    //         event.preventDefault();
-    //         event.stopPropagation();
-    //     }
-    //     setValidated(true);
-    // };
 
-    // const redirectInUrl = new URLSearchParams(search).get('redirect');
-    // const redirect = redirectInUrl ? redirectInUrl : '/login';
-    const handleRegisterBtn = () => {
-        if (password !== validatePassword) {
-            setError('Passwords does not match')
-            return;
+
+    const handleRegisterBtn = async() => {
+        try {
+            if(name === "" || password === "" || validatePassword === "" || accountType === "") {
+                setError('All fields are required')
+                return;
+            }
+            else if (password !== validatePassword) {
+                setError('Passwords does not match')
+                return;
+            }
+            setError(null)
+            const newUser = {name, email, password, accountType}
+            await dispatch(registerThunk(newUser))
+            navigate('/');
+        }catch(error) {
+            setError("something went wrong for registration");
         }
-        setError(null)
-        const newUser = {name, email, password, accountType}
-        dispatch(registerThunk(newUser))
-        navigate('/');
-
-        // try {
-        //     const newUser = {name, email, password}
-        //     dispatch(registerThunk(newUser))
-        //     navigate(redirect || '/login');
-        // }catch (error) {
-        //     setError("something went wrong for registration");
-        // }
     }
 
     return(
         <>
-            {
-                error &&
-                <div className="alert alert-danger">
-                    {error}
-                </div>
-            }
             <Container className="small-container">
                 <Helmet>
                     <title>Register</title>
                 </Helmet>
-                <h1 className="my-3">Sign Up</h1>
+                <h1 className="my-4">Sign Up</h1>
                 <Form>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Name</Form.Label>
@@ -102,12 +85,14 @@ const Register = () => {
 
                     <Form.Group className="mb-3" controlId="accountType">
                         <Form.Label>Account Type</Form.Label>
-                        <Form.Control
+                        <Form.Select required
                             type="accountType"
-                            placeholder="Please enter buyer or seller"
-                            required
-                            onChange={(e) => setValidatePassword(e.target.value)}
-                        />
+                            onChange={(e) => setAccountType(e.target.value)}
+                        >
+                        <option value="">Please select</option>
+                        <option value="buyer">buyer</option>
+                        <option value="seller">seller</option>
+                        </Form.Select>
                     </Form.Group>
 
                     <div className="mb-3">
@@ -119,6 +104,15 @@ const Register = () => {
                         <Link to={`/login?redirect=${redirect}`}>Sign-In</Link>
                     </div>
                 </Form>
+
+                <div>
+                    {
+                        error &&
+                        <div className="alert alert-danger">
+                            {error}
+                        </div>
+                    }
+                </div>
             </Container>
         </>
     )
