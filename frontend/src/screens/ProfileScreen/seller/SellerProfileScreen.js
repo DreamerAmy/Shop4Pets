@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import Navigation from "../../../components/Navigation";
 import {findOrderByBuyerIdThunk} from "../../../services/OrderThunks";
 import ProfileBanner from "../../../components/ProfileBannerComponent";
 import {Button} from "react-bootstrap";
+import {findOrderBySellerIdThunk} from "../../../services/SellerThunks";
+import RecentSoldList from "./recent-sold";
 
 
 const SellerProfileScreen = (user) => {
@@ -15,7 +16,7 @@ const SellerProfileScreen = (user) => {
     const editUrl = "../edit-profile/" + sid;
 
     const dispatch = useDispatch();
-    useEffect(() => { dispatch(findOrderByBuyerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => { dispatch(findOrderBySellerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     const { currentUser } = useSelector((state) => state.user);
     const viewOrderDetailsUrl = "../view-orderDetails/" + sid;
     const viewMyProductsUrl = "../view-myProducts/" + sid;
@@ -88,16 +89,17 @@ const SellerProfileScreen = (user) => {
                     <hr className="text-secondary"/>
 
                     <div className="d-flex flex-row col">
-                        <div className="p-2 col-3 ">September 5, 2022</div>
-                        <div className="p-2 col-3 ">12345000</div>
-                        <div className="p-2 col-3 ">$10.00</div>
-                        <div className="p-2 col-3 ">
-                            <Link to="/seller-view-detail" className="nav-link" >
-                                <button className="btn rounded-pill pt-1 align-baseline" id="allBtn-color">
-                                    View Details
-                                </button>
-                            </Link>
-                        </div>
+                        <RecentSoldList sid={sid}/>
+                        {/*<div className="p-2 col-3 ">September 5, 2022</div>*/}
+                        {/*<div className="p-2 col-3 ">12345000</div>*/}
+                        {/*<div className="p-2 col-3 ">$10.00</div>*/}
+                        {/*<div className="p-2 col-3 ">*/}
+                        {/*    <Link to="/seller-view-detail" className="nav-link" >*/}
+                        {/*        <button className="btn rounded-pill pt-1 align-baseline" id="allBtn-color">*/}
+                        {/*            View Details*/}
+                        {/*        </button>*/}
+                        {/*    </Link>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>

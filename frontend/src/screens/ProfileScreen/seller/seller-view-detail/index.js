@@ -1,15 +1,14 @@
 import React from "react";
-import ProfileBanner from "../../ProfileBanner";
 import {Link} from "react-router-dom";
+import ProfileBannerComponent from "../../../../components/ProfileBannerComponent";
 
 const SellerViewDetail = () => {
     return (
         <div className="row mt-2">
             <div className="col-2">
-                left
             </div>
             <div className="col-8" style={{ "position": "relative" }}>
-                <ProfileBanner/>
+                <ProfileBannerComponent/>
 
 {/*TODO:get from DB and map return here*/}
                 <div className="border-top pt-3">
@@ -37,7 +36,6 @@ const SellerViewDetail = () => {
                 </Link>
             </div>
             <div className="col-2">
-                right
             </div>
         </div>
     )
