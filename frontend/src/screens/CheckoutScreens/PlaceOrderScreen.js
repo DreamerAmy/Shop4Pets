@@ -50,7 +50,7 @@ export default function PlaceOrderScreen() {
       dispatch({ type: 'CREATE_REQUEST' });
 
       const { data } = await Axios.post(`${API_BASE}/order`, {
-        buyerId: currentUser._id,
+        buyerId: currentUser ? currentUser._id : '0',
         totalAmount: cart.totalPrice,
         date: new Date().toISOString().slice(0, 10),
         receiver: cart.shippingAddress.receiver,
@@ -170,7 +170,7 @@ export default function PlaceOrderScreen() {
             <ListGroup.Item>
               <div className="d-grid">
                 <Button
-                  className="Button_style Button_size"
+                  className="Button_style"
                   type="button"
                   onClick={placeOrderHandler}
                   disabled={cart.cartItems.length === 0}
