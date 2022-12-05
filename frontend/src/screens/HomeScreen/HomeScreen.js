@@ -1,6 +1,10 @@
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import {Container} from "react-bootstrap";
+import foodImage from "../../images/food2.jpg";
+import React from "react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 // Display profile btn only user is logged in
 const profileBtn = (currentUser) => {
@@ -8,9 +12,9 @@ const profileBtn = (currentUser) => {
     if (currentUser) {
         // profileUrl += currentUser._id;
         return (
-            <button className="btn btn-default border" >
-                <Link to={profileUrl} href="/" className="nav-link" >MyProfile</Link>
-            </button>
+            <Link className="nav-link" >
+                <Link to={profileUrl} href="/" >View My Profile</Link>
+            </Link>
         )
     }
     return;
@@ -24,15 +28,48 @@ const Home = () => {
     return (
         <>
             <Container>
-            {
-                currentUser &&
-                <h2>Welcome {currentUser.name}</h2>
-            }
-            <h1>This is the Home screen
-            </h1>
+                <div>
+                    {profileBtn(currentUser)}
+                    {
+                        currentUser &&
+                        <h5>Welcome {currentUser.name}!</h5>
+                    }
+                </div>
 
-            <h1>Product you may like......</h1>
-            {profileBtn(currentUser)}
+                <div>
+                    <img className="img-fluid mt-1 mb-4" src={require("../../images/HomeBanner.png")}  alt="Home banner" />
+                </div>
+
+                <div>
+                    <h4>Shop By Pet</h4>
+                    <Row class="d-flex justify-content-evenly">
+                        <Col><img src={require("../../images/catCategory.jpeg" )} alt="Cat Category" height={130}/></Col>
+                        <Col><img src={require("../../images/dogCategory.jpeg" )} alt="Dog Category" height={130} /></Col>
+                        <Col><img src={require("../../images/smallPetCategory.jpeg" )} alt="Small Pet Category" height={130}/></Col>
+                        <Col><img src={require("../../images/fishCategory.jpeg" )} alt="Fish Category" height={130} /></Col>
+                    </Row>
+                    <Row>
+                        <Col className="ms-5">
+                            <Link>Cat</Link>
+                        </Col>
+                        <Col className="ms-4">
+                            <Link>Dog</Link>
+                        </Col>
+                        <Col className="ms-4">
+                            <Link>Small Pet</Link>
+                        </Col>
+                        <Col className="ms-5">
+                            <Link>Fish</Link>
+                        </Col>
+
+                    </Row>
+                </div>
+
+                <div>
+                    <h4 className="mt-4">Discover Pet Favorites</h4>
+                </div>
+
+
             </Container>
         </>
     )
