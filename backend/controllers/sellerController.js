@@ -6,8 +6,8 @@ const SellerController = (app) => {
     app.get('/api/seller/:uid', findSellerById);
     app.get('/api/order/seller/:sid', findOrderBySellerId);
     app.get('/api/buyer/seller/:sid', findBuyerBySellerId);
-    app.put('/api/seller/:oid', updateSeller);
-    app.delete('/api/seller/:oid', deleteSeller);
+    app.put('/api/seller/:sid', updateSeller);
+    app.delete('/api/seller/:sid', deleteSeller);
 }
 
 const createSeller = async (req, res) => {
