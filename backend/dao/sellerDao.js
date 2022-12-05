@@ -1,4 +1,4 @@
-import sellerModel from '../models/sellerModel.js';
+import sellerModel from "../models/sellerModel.js";
 
 export const findSeller = () =>
     sellerModel.find();
