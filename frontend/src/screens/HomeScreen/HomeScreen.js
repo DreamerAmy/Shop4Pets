@@ -48,21 +48,6 @@ const Home = () => {
                         <Col><img src={require("../../images/smallPetCategory.jpeg" )} alt="Small Pet Category" height={130}/></Col>
                         <Col><img src={require("../../images/fishCategory.jpeg" )} alt="Fish Category" height={130} /></Col>
                     </Row>
-                    <Row>
-                        <Col className="ms-5">
-                            <Link>Cat</Link>
-                        </Col>
-                        <Col className="ms-4">
-                            <Link>Dog</Link>
-                        </Col>
-                        <Col className="ms-4">
-                            <Link>Small Pet</Link>
-                        </Col>
-                        <Col className="ms-5">
-                            <Link>Fish</Link>
-                        </Col>
-
-                    </Row>
                 </div>
 
                 <div>
