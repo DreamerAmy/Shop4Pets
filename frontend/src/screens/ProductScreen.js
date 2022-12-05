@@ -7,15 +7,24 @@ import "../screens/ProfileScreen/index.css";
 import foodImage from "../images/food2.jpg"
 import UpdateFavComponent from "../components/UpdateFavComponent";
 
+
 const ProductScreen = () => {
     const { pathname } = useLocation();
     const paths = pathname.split('/')
-    const pid = paths[2];
+    let pid = paths[2];
+    if (pid) { return <ShowProductScreen pid={pid} /> }
+}
+
+
+const ShowProductScreen = ({ pid }) => {
     let { productItem } = useSelector((state) => state.productItem)
     let { currentUser } = useSelector((state) => state.user);
 
     const dispatch = useDispatch()
-    useEffect(() => { dispatch(findProductByIdThunk(pid)) }, [])
+    useEffect(() => {
+        if (!pid) { return; }
+        dispatch(findProductByIdThunk(pid))
+    }, [])
 
     // Drop down part
     const getInitialState = () => {
@@ -49,7 +58,7 @@ const ProductScreen = () => {
                             <div className="productDescription"> {productItem.description}</div>
                             <div className="productPrice"> ${productItem.price}</div>
                             {!currentUser && <>Please sign in to favorite the item.</>}
-                            {currentUser && <UpdateFavComponent uid={currentUser._id} pid={productItem._id} />}
+                            {currentUser && pid && <UpdateFavComponent uid={currentUser._id} pid={pid} />}
                             <div className="pt-3">
                                 <select value={quantity} onChange={handleChange} className="dropdown">
                                     <option value="1">1</option>

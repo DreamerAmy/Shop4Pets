@@ -29,6 +29,7 @@ import CurrentUser from "./screens/currentUser";
 import ProductScreen from "./screens/ProductScreen";
 import SellerProfileScreen from "./screens/ProfileScreen/seller/SellerProfileScreen";
 import AdminProfileScreen from "./screens/ProfileScreen/AdminProfileScreen";
+import ProductBlankScreen from "./screens/ProductBlankScreen";
 // import UserListScreen from "./screens/UserListScreen";
 
 const store = configureStore({
@@ -54,6 +55,7 @@ function App() {
             <Route path="/order-history/*" element={<OrderHistoryScreen />} />
             <Route path="/order-detail/*" element={<OrderDetailScreen />} />
             <Route path="/favorites/*" element={<FavoritesScreen />} />
+            <Route path="/product/" element={<ProductBlankScreen />} />
             <Route path="/product/*" element={<ProductScreen />} />
             {/* <Route path="/user-list/*" element={<UserListScreen />} /> */}
             <Route path="/profile/seller" element={<SellerProfileScreen />} />
