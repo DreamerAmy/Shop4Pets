@@ -13,6 +13,8 @@ const Register = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [address, setAddress] = useState('')
+    const [phone, setPhone] = useState('')
     const [validatePassword, setValidatePassword] = useState('')
     const [accountType, setAccountType] = useState('')
     const [error, setError] = useState(null)
@@ -22,7 +24,8 @@ const Register = () => {
 
     const handleRegisterBtn = async() => {
         try {
-            if(name === "" || password === "" || validatePassword === "" || accountType === "") {
+            if(name === "" || password === "" || validatePassword === ""
+                || accountType === "" || address === "" || phone === "") {
                 setError('All fields are required')
                 return;
             }
@@ -31,7 +34,7 @@ const Register = () => {
                 return;
             }
             setError(null)
-            const newUser = {name, email, password, accountType}
+            const newUser = {name, email, password, accountType, phone, address}
             await dispatch(registerThunk(newUser))
             navigate('/');
         }catch(error) {
@@ -81,7 +84,7 @@ const Register = () => {
                                 required
                                 onChange={(e) => setValidatePassword(e.target.value)}
                             />
-                        </Form.Group>
+                    </Form.Group>
 
                     <Form.Group className="mb-3" controlId="accountType">
                         <Form.Label>Account Type</Form.Label>
@@ -93,6 +96,24 @@ const Register = () => {
                         <option value="buyer">buyer</option>
                         <option value="seller">seller</option>
                         </Form.Select>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="phone">
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control
+                            type="phone"
+                            required
+                            onChange={(e) => setPhone(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="address">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control
+                            type="address"
+                            required
+                            onChange={(e) => setAddress(e.target.value)}
+                        />
                     </Form.Group>
 
                     <div className="mb-3">
