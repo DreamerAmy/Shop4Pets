@@ -27,9 +27,9 @@ export default function Navigation (){
                         <Link to="/cart" className="nav-link">
                             Cart
                         </Link>
-                        <button className="btn" onClick={handleLogout}>
+                        <Link className="nav-link" onClick={handleLogout}>
                             Logout
-                        </button>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
 

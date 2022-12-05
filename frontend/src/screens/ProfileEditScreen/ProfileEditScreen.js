@@ -5,22 +5,16 @@ import { findUserByIdThunk } from "../../services/UserThunks";
 import BuyerEditScreen from "./BuyerEditScreen.js"
 import "../ProfileScreen/index.css";
 
-function renderEditScreen(user) {
-    if (user.accountType === "buyer") {
-        return (
-            <BuyerEditScreen data={user} />
-        )
-    }
-    else if (user.accountType === "seller") {
-        return (<>seller edit screen</>);
-    }
-    else if (user.accountType === "admin") {
-        return (<>admin edit screen</>);
-    }
-    return (
-        <div>edit page of current user...</div>
-    )
-}
+// function renderEditScreen(user) {
+//     if (user.accountType === "buyer" || user.accountType === "seller" || user.accountType === "admin") {
+//         return (
+//             <BuyerEditScreen data={user} />
+//         )
+//     }
+//     return (
+//         <div>edit page of current user...</div>
+//     )
+// }
 
 const ProfileEditScreen = () => {
     const { pathname } = useLocation();
@@ -35,7 +29,8 @@ const ProfileEditScreen = () => {
             <div className="col-2">
             </div>
             <div className="col-8" >
-                {renderEditScreen(user)}
+                <BuyerEditScreen data={user} />
+                {/*{renderEditScreen(user)}*/}
             </div>
             <div className="col-2">
             </div>
