@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findOrderByBuyerIdThunk} from "../../../services/OrderThunks";
 import ProfileBanner from "../../../components/ProfileBannerComponent";
 import {Button} from "react-bootstrap";
-import {findOrderBySellerIdThunk} from "../../../services/SellerThunks";
+import { findSellerHistBySellerIdThunk } from "../../../services/SellerThunks";
 import RecentSoldList from "./recent-sold";
 
 
@@ -16,7 +16,7 @@ const SellerProfileScreen = (user) => {
     const editUrl = "../edit-profile/" + sid;
 
     const dispatch = useDispatch();
-    useEffect(() => { dispatch(findOrderBySellerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => { dispatch(findSellerHistBySellerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     const { currentUser } = useSelector((state) => state.user);
     const viewOrderDetailsUrl = "../view-orderDetails/" + sid;
     const viewMyProductsUrl = "../view-myProducts/" + sid;

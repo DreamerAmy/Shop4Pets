@@ -20,7 +20,8 @@ function renderProfile(user) {
     }
     return (
         <div>
-            Contact us to add Account Type!
+            <i className="bi bi-wifi-off pe-3"></i>
+            Please Sign in to display your home profile
         </div>
     )
 }

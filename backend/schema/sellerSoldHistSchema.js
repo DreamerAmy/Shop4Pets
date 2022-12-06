@@ -1,18 +1,16 @@
 import mongoose from 'mongoose';
 const schema = mongoose.Schema(
     {
+            //sellerSoldHistId: selling hist
+        sellerId: String, //sellerID:(userId) checkout pass in
         buyerId: String,
-        orderId: String,
         date: String,
-        totalAmount: Number,
         productBought: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }],
         productQuantity: [],
-        creditCardName: String,
-        creditCardNumber: String,
         receiver: String,
         address: String
     },
-    { collection: 'seller' }
+    { collection: 'sellerSoldHist' }
 );
 
 export default schema;

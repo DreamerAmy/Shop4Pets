@@ -1,5 +1,6 @@
 import Axios from 'axios';
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
+import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -28,7 +29,7 @@ const reducer = (state, action) => {
 
 export default function PlaceOrderScreen() {
   const navigate = useNavigate();
-
+  let { currentUser } = useSelector((state) => state.user);
   const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
   });
@@ -49,6 +50,7 @@ export default function PlaceOrderScreen() {
       dispatch({ type: 'CREATE_REQUEST' });
 
       const { data } = await Axios.post(`${API_BASE}/order`, {
+        buyerId: currentUser ? currentUser._id : '0',
         totalAmount: cart.totalPrice,
         date: new Date().toISOString().slice(0, 10),
         receiver: cart.shippingAddress.receiver,
@@ -60,6 +62,18 @@ export default function PlaceOrderScreen() {
         creditCardExpiration: cart.paymentMethod.creditCardExpiration,
         creditCardSecurityCode: cart.paymentMethod.creditCardSecurityCode,
       });
+
+      const { info } = await Axios.post(`${API_BASE}/sellerhist`, {
+            buyerId: currentUser ? currentUser._id : '0',
+            sellerId: cart.cartItems.sellerId,
+            date: new Date().toISOString().slice(0, 10),
+            receiver: cart.shippingAddress.receiver,
+            address: cart.shippingAddress.address,
+            productBought: cart.cartItems.map((item) => item._id),
+            productQuantity: cart.cartItems.map((item) => item.quantity)
+          }
+
+      );
       ctxDispatch({ type: 'CART_CLEAR' });
       dispatch({ type: 'CREATE_SUCCESS' });
       localStorage.removeItem('cartItems');
@@ -82,7 +96,7 @@ export default function PlaceOrderScreen() {
           <Card.Title className="PreviewOrder_font">Shipping</Card.Title>
           <Card.Text>
             <strong>Name:</strong> {cart.shippingAddress.receiver} <br />
-            <strong>Address: </strong> {cart.shippingAddress.address},
+            <strong>Address: </strong> {cart.shippingAddress.address}
           </Card.Text>
           <Link to="/shipping" className="edit_colr">
             Edit

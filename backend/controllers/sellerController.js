@@ -1,41 +1,41 @@
 import * as sellerDao from "../dao/sellerDao.js";
 
 const SellerController = (app) => {
-    app.post('/api/seller', createSeller);
-    app.get('/api/seller/all', findSeller);
-    app.get('/api/seller/:uid', findSellerById);
-    app.get('/api/order/seller/:sid', findOrderBySellerId);
-    app.get('/api/buyer/seller/:sid', findBuyerBySellerId);
-    app.put('/api/seller/:sid', updateSeller);
-    app.delete('/api/seller/:sid', deleteSeller);
+    app.post('/api/sellerhist', createSellerSoldHist);
+    app.get('/api/sellerhist/all', findSellerHist);
+    app.get('/api/sellerhist/:shid', findSellerHistById);
+    app.get('/api/sellerhist/seller/:uid', findSellerHistBySellerId);
+    app.get('/api/sellerhist/buyer/:uid', findSellerHistByBuyerId);
+    app.put('/api/sellerhist/:shid', updateSeller);
+    app.delete('/api/sellerhist/:shid', deleteSeller);
 }
 
-const createSeller = async (req, res) => {
-    let newSeller = req.body;
-    const insertedSeller = await sellerDao.createSeller(newSeller);
+const createSellerSoldHist = async (req, res) => {
+    let newSellerHist = req.body;
+    const insertedSeller = await sellerDao.createSellerSoldHist(newSellerHist);
     res.json(insertedSeller);
 }
-const findSeller = async (req, res) => {
-    const seller = await sellerDao.findSeller();
-    res.json(seller)
+const findSellerHist = async (req, res) => {
+    const sellerHist = await sellerDao.findSellerHist();
+    res.json(sellerHist)
 }
 
-const findSellerById = async (req, res) => {
-    const sellerIdToFind = req.params.oid;
-    const seller = await sellerDao.findSellerById(sellerIdToFind);
-    res.json(seller)
+const findSellerHistById = async (req, res) => {
+    const sellerHistIdToFind = req.params.shid;
+    const sellerHist = await sellerDao.findSellerHistById(sellerHistIdToFind);
+    res.json(sellerHist)
 }
 
-const findOrderBySellerId = async (req, res) => {
+const findSellerHistBySellerId = async (req, res) => {
     const sellerId = req.params.uid;
-    const order = await sellerDao.findOrderBySellerId(sellerId);
-    res.json(order)
+    const sellerHist = await sellerDao.findSellerHistBySellerId(sellerId);
+    res.json(sellerHist)
 }
 
-const findBuyerBySellerId = async (req, res) => {
-    const sellerId = req.params.uid;
-    const buyer = await sellerDao.findBuyerBySellerId(sellerId);
-    res.json(buyer)
+const findSellerHistByBuyerId = async (req, res) => {
+    const buyerId = req.params.uid;
+    const sellerHist = await sellerDao.findSellerHistByBuyerId(buyerId);
+    res.json(sellerHist)
 }
 
 const updateSeller = async (req, res) => {
