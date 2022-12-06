@@ -72,7 +72,7 @@ export default function OrderScreen() {
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
                 <strong>Name:</strong> {order.receiver} <br />
-                <strong>Address: </strong> {order.address},
+                <strong>Address: </strong> {order.address}
               </Card.Text>
             </Card.Body>
           </Card>

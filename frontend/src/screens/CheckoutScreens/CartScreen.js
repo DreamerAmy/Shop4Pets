@@ -38,7 +38,6 @@ export default function CartScreen() {
   const checkoutHandler = () => {
     navigate('/shipping');
   };
-
   return (
     <div>
       <Helmet>
@@ -56,7 +55,7 @@ export default function CartScreen() {
             <ListGroup.Item key={item._id}>
               <Row className="align-items-center">
                 <Col md={4}>
-                  <Link>{item.productName}</Link>
+                  <Link to={`/product/${item._id}`}>{item.productName}</Link>
                 </Col>
                 <Col md={3}>
                   <Button
@@ -72,7 +71,7 @@ export default function CartScreen() {
                     className="Button_font"
                     variant="light"
                     onClick={() => updateCartHandler(item, item.quantity + 1)}
-                    disabled={item.quantity === item.countInStock}
+                    disabled={item.quantity === item.unitInStock}
                   >
                     <i className="fas fa-plus-circle"></i>
                   </Button>
@@ -98,7 +97,10 @@ export default function CartScreen() {
             <ListGroup.Item>
               <h3>
                 Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)} items)
-                : ${cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                : $
+                {cartItems
+                  .reduce((a, c) => a + c.price * c.quantity, 0)
+                  .toFixed(2)}
               </h3>
             </ListGroup.Item>
             <ListGroup.Item>
