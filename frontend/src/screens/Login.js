@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../services/UserThunks";
 import './index.css';
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
 import {Container, Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
@@ -13,33 +13,22 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    // const [accountType, setAccountType] = useState('')
-
     const {currentUser} = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
-
     const handleLoginBtn = async () => {
+        try {
+            const loginUser = {email, password}
+            await dispatch(loginThunk(loginUser))
+        } catch (e) {
+            window.alert("Something went wrong with login")
+        }
 
-        const loginUser = {email, password}
-        await dispatch(loginThunk(loginUser))
-
-        // try {
-        //     setError(null)
-        //     const loginUser = {email, password}
-        //     await dispatch(loginThunk(loginUser))
-        //
-        // } catch(err) {
-        //     if (!err?.response) {
-        //         setError("Incorrect Password or Email. Please try again!")
-        //     } else if (err.response?.status === 403) {
-        //         setError("user not found")
-        //     } else {
-        //         setError("Login failed")
-        //     }
-        // }
     }
+    if (currentUser) {
+        return (<Navigate to={'/'}/>)
+    }
+
     return(
         <>
             <Container className="small-container">
@@ -64,20 +53,6 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </Form.Group>
-
-
-                    {/*<Form.Group className="mb-3" controlId="accountType">*/}
-                    {/*    <Form.Label>Account Type</Form.Label>*/}
-                    {/*    <Form.Select*/}
-                    {/*        type="accountType"*/}
-                    {/*        required*/}
-                    {/*        onChange={(e) => setAccountType(e.target.value)}*/}
-                    {/*    >*/}
-                    {/*    <option value="buyer">buyer</option>*/}
-                    {/*    <option value="seller">seller</option>*/}
-                    {/*    </Form.Select>*/}
-                    {/*</Form.Group>*/}
-
 
                     <div className="mb-3">
                         <Button onClick={handleLoginBtn} className="btn btn-warning ">Login</Button>
