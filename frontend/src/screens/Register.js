@@ -19,7 +19,7 @@ const Register = () => {
   const [accountType, setAccountType] = useState('');
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleRegisterBtn = async () => {
     try {
