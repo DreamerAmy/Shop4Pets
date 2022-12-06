@@ -1,22 +1,22 @@
-import sellerModel from "../models/sellerModel.js";
+import sellerHistModel from "../models/sellerHistModel.js";
 
-export const findSeller = () =>
-    sellerModel.find();
+export const findSellerHist = () =>
+    sellerHistModel.find();
 
-export const findSellerById = (sid) =>
-    sellerModel.find({ _id: sid });
+export const findSellerHistById = (shid) =>
+    sellerHistModel.find({ _id: shid });
 
-export const findOrderBySellerId = (sid) =>
-    sellerModel.find({ orderId: sid });
+export const findSellerHistBySellerId = (uid) =>
+    sellerHistModel.find({ sellerId: uid });
 
-export const findBuyerBySellerId = (sid) =>
-    sellerModel.find({ buyerId: sid });
+export const findSellerHistByBuyerId = (uid) =>
+    sellerHistModel.find({ buyerId: uid });
 
-export const createSeller = (seller) =>
-    sellerModel.create(seller);
+export const createSellerSoldHist = (sellerHist) =>
+    sellerHistModel.create(sellerHist);
 
-export const deleteSeller = (sid) =>
-    sellerModel.deleteOne({ _id: sid });
+export const deleteSeller = (shid) =>
+    sellerHistModel.deleteOne({ _id: shid });
 
-export const updateSeller = (sid, seller) =>
-    sellerModel.updateOne({ _id: sid }, { $set: seller })
+export const updateSeller = (shid, sellerHist) =>
+    sellerHistModel.updateOne({ _id: shid }, { $set: sellerHist })

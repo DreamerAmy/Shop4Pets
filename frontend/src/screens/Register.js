@@ -3,13 +3,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../services/UserThunks";
 import 'react-toastify/dist/ReactToastify.css';
 import {Container, Form} from "react-bootstrap";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Link, Navigate, useLocation, useNavigate} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import {redirect} from "react-router";
 import {Helmet} from "react-helmet-async";
 
 
 const Register = () => {
+    const {currentUser} = useSelector((state) => state.users)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -36,10 +37,13 @@ const Register = () => {
             setError(null)
             const newUser = {name, email, password, accountType, phone, address}
             await dispatch(registerThunk(newUser))
-            navigate('/');
         }catch(error) {
             setError("something went wrong for registration");
         }
+    }
+
+    if(currentUser) {
+        return (<Navigate to={'/'}/>)
     }
 
     return(
