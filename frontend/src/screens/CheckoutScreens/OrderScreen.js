@@ -14,7 +14,7 @@ import { Store } from '../../Store';
 import { getError } from '../../utils';
 import { toast } from 'react-toastify';
 import ProductList from '../../components/ProductComponent/ProductList';
-const API_BASE = process.env.REACT_APP_API_BASE;
+const API_BASE = 'http://localhost:4000/api';
 
 function reducer(state, action) {
   switch (action.type) {

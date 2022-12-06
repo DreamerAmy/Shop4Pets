@@ -42,7 +42,7 @@ const Home = () => {
 
                 <div>
                     <h4>Shop By Pet</h4>
-                    <Row class="d-flex justify-content-evenly">
+                    <Row class="d-flex justify-content-evenly img-fluid">
                         <Col><img src={require("../../images/catCategory.jpeg" )} alt="Cat Category" height={130}/></Col>
                         <Col><img src={require("../../images/dogCategory.jpeg" )} alt="Dog Category" height={130} /></Col>
                         <Col><img src={require("../../images/smallPetCategory.jpeg" )} alt="Small Pet Category" height={130}/></Col>
