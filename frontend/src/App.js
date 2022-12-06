@@ -18,17 +18,18 @@ import CartScreen from './screens/CheckoutScreens/CartScreen';
 import OrderScreen from './screens/CheckoutScreens/OrderScreen';
 import FavoritesScreen from './screens/FavoritesScreen';
 import UserReducer from './reducers/UserReducer';
-import SellerReducer from "./reducers/SellerReducer";
+import SellerReducer from './reducers/SellerReducer';
 import OrderReducer from './reducers/OrderReducer';
 import ProductReducer from './reducers/ProductReducer';
 import Navigation from './components/Navigation';
-import Register from "./screens/Register";
-import Login from "./screens/Login";
-import Home from "./screens/HomeScreen/HomeScreen";
-import CurrentUser from "./screens/currentUser";
-import ProductScreen from "./screens/ProductScreen";
-import SellerProfileScreen from "./screens/ProfileScreen/seller/SellerProfileScreen";
-import AdminProfileScreen from "./screens/ProfileScreen/AdminProfileScreen";
+import Register from './screens/Register';
+import Login from './screens/Login';
+import Home from './screens/HomeScreen/HomeScreen';
+import CurrentUser from './screens/currentUser';
+import ProductScreen from './screens/ProductScreen';
+import SellerProfileScreen from './screens/ProfileScreen/seller/SellerProfileScreen';
+import AdminProfileScreen from './screens/ProfileScreen/AdminProfileScreen';
+import SearchScreen from './screens/SearchScreen';
 // import UserListScreen from "./screens/UserListScreen";
 
 const store = configureStore({
@@ -38,7 +39,7 @@ const store = configureStore({
     order: OrderReducer,
     orderItem: OrderReducer,
     product: ProductReducer,
-    productItem: ProductReducer
+    productItem: ProductReducer,
   },
 });
 
@@ -63,6 +64,7 @@ function App() {
             <Route path="/placeorder" element={<PlaceOrderScreen />} />
             <Route path="/cart" element={<CartScreen />} />
             <Route path="/order/:id" element={<OrderScreen />} />
+            <Route path="/search" element={<SearchScreen />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<Home />} />

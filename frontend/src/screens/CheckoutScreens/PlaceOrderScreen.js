@@ -62,6 +62,7 @@ export default function PlaceOrderScreen() {
         creditCardExpiration: cart.paymentMethod.creditCardExpiration,
         creditCardSecurityCode: cart.paymentMethod.creditCardSecurityCode,
       });
+
       ctxDispatch({ type: 'CART_CLEAR' });
       dispatch({ type: 'CREATE_SUCCESS' });
       localStorage.removeItem('cartItems');
@@ -119,7 +120,7 @@ export default function PlaceOrderScreen() {
               <ListGroup.Item key={item._id}>
                 <Row className="align-items-center">
                   <Col md={6}>
-                    <Link>{item.productName}</Link>
+                    <Link to={`/product/${item._id}`}>{item.productName}</Link>
                   </Col>
                   <Col md={3}>
                     <span>Quantity: {item.quantity}</span>
