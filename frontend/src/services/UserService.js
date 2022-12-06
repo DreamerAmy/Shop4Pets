@@ -1,7 +1,14 @@
 import axios from 'axios';
 const USER_API = 'http://localhost:4000/api/user';
 const BASE_URL = 'http://localhost:4000';
+<<<<<<< Updated upstream
 // const USER_API = 'https://userer-node-server-app-kjin.herokuapp.com/api/user';
+=======
+
+// const BASE_URL = 'https://barkery-shop4pets.onrender.com';
+// const USER_API = 'https://barkery-shop4pets.onrender.com/api/user';
+
+>>>>>>> Stashed changes
 // const API_BASE = process.env.REACT_APP_API_BASE;
 // const USER_API = `${API_BASE}/user`;
 
