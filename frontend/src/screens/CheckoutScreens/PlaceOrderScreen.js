@@ -64,17 +64,17 @@ export default function PlaceOrderScreen() {
         creditCardSecurityCode: cart.paymentMethod.creditCardSecurityCode,
       });
 
-      const { info } = await Axios.post(`${API_BASE}/sellerhist`, {
-            buyerId: currentUser ? currentUser._id : '0',
-            sellerId: cart.cartItems.map((item) => item.sellerId),
-            date: new Date().toISOString().slice(0, 10),
-            receiver: cart.shippingAddress.receiver,
-            address: cart.shippingAddress.address,
-            productBought: cart.cartItems.map((item) => item._id),
-            productQuantity: cart.cartItems.map((item) => item.quantity)
-          }
-
-      );
+      // const { info } = await Axios.post(`${API_BASE}/sellerhist`, {
+      //       buyerId: currentUser ? currentUser._id : '0',
+      //       sellerId: cart.cartItems.map((item) => item.sellerId),
+      //       date: new Date().toISOString().slice(0, 10),
+      //       receiver: cart.shippingAddress.receiver,
+      //       address: cart.shippingAddress.address,
+      //       productBought: cart.cartItems.map((item) => item._id),
+      //       productQuantity: cart.cartItems.map((item) => item.quantity)
+      //     }
+      //
+      // );
       ctxDispatch({ type: 'CART_CLEAR' });
       dispatch({ type: 'CREATE_SUCCESS' });
       localStorage.removeItem('cartItems');
