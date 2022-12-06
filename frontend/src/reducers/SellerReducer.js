@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    createSellerThunk, deleteSellerThunk, findBuyerBySellerIdThunk,
-    findOrderBySellerIdThunk,
-    findSellerByIdThunk,
-    findSellerThunk, updateSellerThunk
+    createSellerSoldHistThunk,
+    deleteSellerThunk,
+    findSellerHistByBuyerIdThunk,
+    findSellerHistByIdThunk,
+    findSellerHistBySellerIdThunk,
+    updateSellerHistThunk
 } from "../services/SellerThunks";
+
 
 const initialState = {
     seller: [],
@@ -15,55 +18,61 @@ const sellerSlice = createSlice({
     name: 'seller',
     initialState,
     extraReducers: {
-        [createSellerThunk.fulfilled]:
+        [createSellerSoldHistThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
                 state.seller.push(payload)
             },
-        [findSellerThunk.pending]:
+
+
+        [findSellerHistByIdThunk.pending]:
             (state) => {
                 state.loading = true
                 state.sellerItem = null
             },
-        [findSellerByIdThunk.fulfilled]:
+        [findSellerHistByIdThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
                 state.sellerItem = payload
             },
-        [findSellerByIdThunk.rejected]:
-            (state) => {
-                state.loading = false
-            },
-        [findOrderBySellerIdThunk.pending]:
-            (state) => {
-                state.loading = true
-                state.seller = []
-            },
-        [findOrderBySellerIdThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-                state.seller = payload
-            },
-        [findOrderBySellerIdThunk.rejected]:
+        [findSellerHistByIdThunk.rejected]:
             (state) => {
                 state.loading = false
             },
 
-        [findBuyerBySellerIdThunk.pending]:
+
+        [findSellerHistBySellerIdThunk.pending]:
             (state) => {
                 state.loading = true
                 state.seller = []
             },
-        [findBuyerBySellerIdThunk.fulfilled]:
+        [findSellerHistBySellerIdThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
                 state.seller = payload
             },
-        [findBuyerBySellerIdThunk.rejected]:
+        [findSellerHistBySellerIdThunk.rejected]:
             (state) => {
                 state.loading = false
             },
-        [updateSellerThunk.fulfilled]:
+
+
+
+        [findSellerHistByBuyerIdThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.seller = []
+            },
+        [findSellerHistByBuyerIdThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.seller = payload
+            },
+        [findSellerHistByBuyerIdThunk.rejected]:
+            (state) => {
+                state.loading = false
+            },
+        [updateSellerHistThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
                 const sellerNdx = state.seller

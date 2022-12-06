@@ -1,52 +1,53 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import * as service from "./SellerService"
-import {deleteSeller, findBuyerBySellerId, findOrderBySellerId, updateSeller} from "./SellerService";
 
-export const createSellerThunk = createAsyncThunk(
-    'seller/createSeller',
+export const createSellerSoldHistThunk = createAsyncThunk(
+    'sellerhist/createSellerHist',
     async (seller) => {
-        return (await service.createSeller(seller))
+        return (await service.createSellerSoldHist(seller))
     }
 )
-export const findSellerThunk = createAsyncThunk(
-    'seller/findSeller',
+
+//find all sellerHist
+export const findSellerHistThunk = createAsyncThunk(
+    'sellerhist/findSellerHist',
     async () => {
-        return (await service.findSeller());
+        return (await service.findSellerHist());
     }
 )
 
-// Find seller by seller id
-export const findSellerByIdThunk = createAsyncThunk(
-    'seller/findSellerById',
+// find sellerHist by sellerHist id
+export const findSellerHistByIdThunk = createAsyncThunk(
+    'sellerhist/findSellerHistById',
+    async (sellerHistId) => {
+        return (await service.findSellerHistById(sellerHistId));
+    }
+)
+
+// find sellerHist by sellerId
+export const findSellerHistBySellerIdThunk = createAsyncThunk(
+    'sellerhist/findSellerHistBySellerId',
     async (sellerId) => {
-        return (await service.findSellerById(sellerId));
+        return (await service.findSellerHistBySellerId(sellerId));
     }
 )
 
-// find a list of orders by seller id
-export const findOrderBySellerIdThunk = createAsyncThunk(
-    'seller/findOrderBySellerIdThunk',
-    async (sellerId) => {
-        return (await service.findOrderBySellerId(sellerId));
+// find sellerHist by buyerId
+export const findSellerHistByBuyerIdThunk = createAsyncThunk(
+    'sellerhist/findSellerHistByBuyerId',
+    async (buyerId) => {
+        return (await service.findSellerHistByBuyerId(buyerId));
     }
 )
 
-// Find buyer by seller id
-export const findBuyerBySellerIdThunk = createAsyncThunk(
-    'seller/findBuyerBySellerId',
-    async (sellerId) => {
-        return (await service.findBuyerBySellerId(sellerId));
-    }
-)
-
-export const updateSellerThunk =
+export const updateSellerHistThunk =
     createAsyncThunk(
-        'seller/updateSeller',
-        async (seller) => await service.updateSeller(seller)
+        'sellerhist/updateSellerHist',
+        async (sellerHist) => await service.updateSellerHist(sellerHist)
     )
 
 export const deleteSellerThunk = createAsyncThunk(
-    'seller/deleteSeller',
+    'sellerhist/deleteSeller',
     async (sellerId) => {
         await service.deleteSeller(sellerId)
         return sellerId
