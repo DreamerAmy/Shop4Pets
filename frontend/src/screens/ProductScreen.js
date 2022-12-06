@@ -7,21 +7,30 @@ import foodImage from '../images/food2.jpg';
 import UpdateFavComponent from '../components/UpdateFavComponent';
 import { Store } from '../Store';
 
+
 const ProductScreen = () => {
-  const { pathname } = useLocation();
-  const paths = pathname.split('/');
-  const pid = paths[2];
-  let { productItem } = useSelector((state) => state.productItem);
-  let { currentUser } = useSelector((state) => state.user);
+    const { pathname } = useLocation();
+    const paths = pathname.split('/')
+    let pid = paths[2];
+    if (pid) { return <ShowProductScreen pid={pid} /> }
+}
+
+
+const ShowProductScreen = ({ pid }) => {
+    let { productItem } = useSelector((state) => state.productItem)
+    let { currentUser } = useSelector((state) => state.user);
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (!pid) { return; }
+        dispatch(findProductByIdThunk(pid))
+    }, [])
+
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
   } = state;
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(findProductByIdThunk(pid));
-  }, []);
 
   // Drop down part
   const getInitialState = () => {
@@ -66,12 +75,7 @@ const ProductScreen = () => {
               </div>
               <div className="productPrice"> ${productItem.price}</div>
               {!currentUser && <>Please sign in to favorite the item.</>}
-              {currentUser && (
-                <UpdateFavComponent
-                  uid={currentUser._id}
-                  pid={productItem._id}
-                />
-              )}
+              {currentUser && pid && <UpdateFavComponent uid={currentUser._id} pid={pid} />}
               <div className="pt-3">
                 <select
                   value={quantity}
@@ -84,7 +88,6 @@ const ProductScreen = () => {
                 </select>
                 <div className="dropdownHint">{`Hurry up! Add ${quantity} to your cart!`}</div>
               </div>
-
               <button
                 className="btn btn-default cartBtn"
                 onClick={() => passToCart(productItem, parseInt(quantity))}

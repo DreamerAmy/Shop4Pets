@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 
 const ProductItem = ({ product }) => {
     const subtotal = Math.round(product.price * product.quantitySold * 100) / 100;
-    let productUrl = "../product/" + product._id
+    let productUrl = null;
+    if (product._id) {
+        productUrl = "../product/" + product._id
+    }
     return (
         <>
             <Link to={productUrl} href="/" className="nav-link" >
