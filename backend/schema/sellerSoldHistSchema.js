@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const schema = mongoose.Schema(
     {
             //sellerSoldHistId: selling hist
-        sellerId: String, //sellerID:(userId) checkout pass in
+        sellerId: [{type:mongoose.Schema.Types.ObjectId, ref: "sellerId"}], //sellerID:(userId) checkout pass in
         buyerId: String,
         date: String,
         productBought: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }],

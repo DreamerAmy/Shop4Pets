@@ -41,6 +41,7 @@ export default function PlaceOrderScreen() {
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
+
   cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
   cart.taxPrice = round2(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
@@ -65,7 +66,7 @@ export default function PlaceOrderScreen() {
 
       const { info } = await Axios.post(`${API_BASE}/sellerhist`, {
             buyerId: currentUser ? currentUser._id : '0',
-            sellerId: cart.cartItems.sellerId,
+            sellerId: cart.cartItems.map((item) => item.sellerId),
             date: new Date().toISOString().slice(0, 10),
             receiver: cart.shippingAddress.receiver,
             address: cart.shippingAddress.address,

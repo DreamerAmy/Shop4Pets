@@ -20,6 +20,8 @@ export default function CartScreen() {
     cart: { cartItems },
   } = state;
 
+  console.log(cartItems)
+
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`${API_BASE}/product/${item._id}`);
     if (data[0].unitInStock < quantity) {
