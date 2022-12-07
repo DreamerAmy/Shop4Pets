@@ -35,6 +35,11 @@ const BuyerProfileScreen = (user) => {
         window.location.reload(false)
     }
 
+    let memberSince = buyer.memberSince;
+    if (!buyer.memberSince) {
+        memberSince = 2022;
+    }
+
     // Case that you are reviewing profile of yourselves
     // Full information will be displayed
     if (currentUser && currentUser._id === buyer._id) {
@@ -50,7 +55,7 @@ const BuyerProfileScreen = (user) => {
                     <i className="bi bi-envelope"></i>{buyer.email}<br />
                     <i className="bi bi-phone"></i>{buyer.phone}<br />
                     <i className="bi bi-house-door"></i>{buyer.address}<br />
-                    <i className="bi bi-balloon"></i>Member Since {buyer.memberSince}<br />
+                    <i className="bi bi-balloon"></i>Member Since {memberSince}<br />
                 </div>
                 <div className="grid-container" id="BuyerSummarySection">
                     <Link to={orderHistoryUrl} href="/" className="nav-link" >
@@ -93,14 +98,14 @@ const BuyerProfileScreen = (user) => {
             {
                 currentUser &&
                 <Button className="px-4 btn btn-danger rounded-pill fw-bold"
-                        onClick={routeToMyProfile}>
+                    onClick={routeToMyProfile}>
                     Back to your profile
                 </Button>
             }
             {
                 !currentUser &&
                 <Button className="px-4 btn btn-danger rounded-pill fw-bold"
-                        onClick={routeToSignIn}>
+                    onClick={routeToSignIn}>
                     Sign In
                 </Button>
             }
