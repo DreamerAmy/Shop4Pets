@@ -30,12 +30,15 @@ import ProductScreen from "./screens/ProductScreen";
 import SellerProfileScreen from "./screens/ProfileScreen/seller/SellerProfileScreen";
 import AdminProfileScreen from "./screens/ProfileScreen/AdminProfileScreen";
 import ProductBlankScreen from "./screens/ProductBlankScreen";
+import SellerViewDetail from "./screens/ProfileScreen/seller/seller-view-detail";
+import SellerMyItems from "./screens/ProfileScreen/seller/seller-items";
 // import UserListScreen from "./screens/UserListScreen";
 
 const store = configureStore({
   reducer: {
     user: UserReducer,
     seller: SellerReducer,
+    sellerItem: SellerReducer,
     order: OrderReducer,
     orderItem: OrderReducer,
     product: ProductReducer,
@@ -58,8 +61,16 @@ function App() {
             <Route path="/product/" element={<ProductBlankScreen />} />
             <Route path="/product/*" element={<ProductScreen />} />
             {/* <Route path="/user-list/*" element={<UserListScreen />} /> */}
+            {/*seller part*/}
             <Route path="/profile/seller" element={<SellerProfileScreen />} />
+            <Route path="/seller-view-detail/*" element={<SellerViewDetail/>}/>
+            <Route path="/view-myProducts/*" element={<SellerMyItems/>} />
+            {/*<Route path="/view-myProfit/" element={} />*/}
+            {/*admin part*/}
             <Route path="/profile/admin" element={<AdminProfileScreen />} />
+
+
+
             <Route path="/payment" element={<PaymentScreen />} />
             <Route path="/shipping" element={<ShippingAddressScreen />} />
             <Route path="/placeorder" element={<PlaceOrderScreen />} />

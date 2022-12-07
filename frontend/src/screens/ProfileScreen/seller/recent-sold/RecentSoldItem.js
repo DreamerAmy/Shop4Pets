@@ -5,7 +5,8 @@ const SoldItem = ({ seller }) => {
     let sellerHistId = seller._id.substring(seller._id.length - 8, seller._id.length);
     let orderDate = seller.date;
     let orderAmount = seller.productBought.length + 1;
-    let viewOrderDetailsUrl = "../seller-view-detail/" + seller._id
+    let shid = seller._id;
+    let viewOrderDetailsUrl = "../seller-view-detail/" + shid
     return (
         <>
             <li className="list-group-item d-flex">

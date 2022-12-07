@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import ProfileBanner from "../../ProfileBanner";
 
 const SellerAddItems = () => {
     return (
@@ -9,7 +8,6 @@ const SellerAddItems = () => {
                 left
             </div>
             <div className="col-10" style={{ "position": "relative" }}>
-                <ProfileBanner/>
 
                 {/*TODO:get from DB and map return here*/}
                 <div className="border-top pt-3">

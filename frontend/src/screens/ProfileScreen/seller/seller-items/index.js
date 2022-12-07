@@ -1,21 +1,31 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import ProfileBanner from "../../ProfileBanner";
+import React, {useEffect} from "react";
+import {Link, useLocation} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {findProductBySellerId} from "../../../../services/ProductService";
 
 const SellerMyItems = () => {
+    const { pathname } = useLocation();
+    const paths = pathname.split('/')
+    const sid = paths[2];
+    console.log(sid)
+
+    const { product, loading } = useSelector((state) => state.product)
+    const dispatch = useDispatch();
+    useEffect(() => { dispatch(findProductBySellerId(sid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    let backUrl = ""
+    if(product){
+        backUrl = "/profile/" + product.sellerId;
+    }
+    let addMoreItemUrl = "/add-more-items/" + product.sellerId;
     return (
         <div className="row mt-2">
-            <div className="col-1">
-                left
-            </div>
+            <div className="col-1"></div>
             <div className="col-10" style={{ "position": "relative" }}>
-                <ProfileBanner/>
 
-                {/*TODO:get from DB and map return here*/}
                 <div className="border-top pt-3">
                     <h1 className="highlight-text">
                         My Products
-                        <Link to="/add-more-items">
+                        <Link to={addMoreItemUrl}>
                             <button className="float-end btn rounded-pill mt-3"
                                     id="allBtn-color">Add</button>
                         </Link>
@@ -42,15 +52,13 @@ const SellerMyItems = () => {
                     </div>
                 </div>
 
-                <Link to="/profile/seller">
+                <Link to={backUrl}>
                     <button className="btn rounded-pill mt-3 float-end"
                             id="allBtn-color">Back</button>
                 </Link>
             </div>
 
-            <div className="col-1">
-                right
-            </div>
+            <div className="col-1"></div>
         </div>
     )
 }

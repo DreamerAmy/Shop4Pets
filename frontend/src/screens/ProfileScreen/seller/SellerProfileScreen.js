@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {findOrderByBuyerIdThunk} from "../../../services/OrderThunks";
 import ProfileBanner from "../../../components/ProfileBannerComponent";
 import {Button} from "react-bootstrap";
 import { findSellerHistBySellerIdThunk } from "../../../services/SellerThunks";
@@ -18,9 +17,8 @@ const SellerProfileScreen = (user) => {
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findSellerHistBySellerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     const { currentUser } = useSelector((state) => state.user);
-    const viewOrderDetailsUrl = "../view-orderDetails/" + sid;
     const viewMyProductsUrl = "../view-myProducts/" + sid;
-    const viewMyProfitUrl = "../view-myProfit" + sid;
+    const viewMyProfitUrl = "../view-myProfit/" + sid;
 
     const routeToMyProfile = () => {
         let myProfileUrl = "../profile/" + currentUser._id;
@@ -90,17 +88,6 @@ const SellerProfileScreen = (user) => {
 
                     <div className="flex-row">
                         <RecentSoldList sid={sid} />
-
-                        {/*<div className="p-2 col-3 ">September 5, 2022</div>*/}
-                        {/*<div className="p-2 col-3 ">12345000</div>*/}
-                        {/*<div className="p-2 col-3 ">$10.00</div>*/}
-                        {/*<div className="p-2 col-3 ">*/}
-                        {/*    <Link to="/seller-view-detail" className="nav-link" >*/}
-                        {/*        <button className="btn rounded-pill pt-1 align-baseline" id="allBtn-color">*/}
-                        {/*            View Details*/}
-                        {/*        </button>*/}
-                        {/*    </Link>*/}
-                        {/*</div>*/}
                     </div>
                 </div>
             </div>

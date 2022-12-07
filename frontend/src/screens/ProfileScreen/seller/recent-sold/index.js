@@ -16,7 +16,6 @@ const RecentSoldList = (data) => {
                 {
                     loading && <li className="list-group-item">loading...</li>
                 }
-                {/*{1234}*/}
                 {sellerHistClone.reverse().slice(0, 3)
                     .map(seller => <SoldItem key={seller._id} seller={seller} />)}
             </div>
