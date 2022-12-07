@@ -35,41 +35,49 @@ export default function ShippingAddressScreen() {
   };
   return (
     <div className="mx-5">
-      <Helmet>
-        <title>Shipping Address</title>
-      </Helmet>
-      <h1 className="ShoppingCart_font">Shipping Address</h1>
-      <form onSubmit={submitHandler}>
-        <Form.Group className="mb-3" controlId="fullName">
-          <Form.Label>Receiver</Form.Label>
-          <Form.Control
-            value={receiver}
-            onChange={(e) => setReceiver(e.target.value)}
-            required
-          />
-        </Form.Group>
+      <div className="row mt-2">
+        <div className="col-2"></div>
+        <div className="col-8">
+          <Helmet>
+            <title>Shipping Address</title>
+          </Helmet>
+          <h1 className="ShoppingCart_font">Shipping Address</h1>
+          <form onSubmit={submitHandler}>
+            <Form.Group className="mb-3" controlId="fullName">
+              <Form.Label>Receiver</Form.Label>
+              <Form.Control
+                value={receiver}
+                placeholder="receiver"
+                onChange={(e) => setReceiver(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="address">
-          <Form.Label>
-            Address(inluding City, Post Code, City, Country){' '}
-          </Form.Label>
-          <Form.Control
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="address">
+              <Form.Label>
+                Address(inluding City, Post Code, City, Country){' '}
+              </Form.Label>
+              <Form.Control
+                value={address}
+                placeholder="address"
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-        <div className="mb-3">
-          <Button
-            className="ShiipingButton_style"
-            variant="primary"
-            type="submit"
-          >
-            <span className="Button_font2">Continue</span>
-          </Button>
+            <div className="mb-3">
+              <Button
+                className="ShiipingButton_style"
+                variant="primary"
+                type="submit"
+              >
+                <span className="Button_font2">Continue</span>
+              </Button>
+            </div>
+          </form>
         </div>
-      </form>
+        <div className="col-2"></div>
+      </div>
     </div>
   );
 }

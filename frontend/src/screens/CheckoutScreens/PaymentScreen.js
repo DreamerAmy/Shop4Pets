@@ -52,6 +52,7 @@ export default function PaymentScreen() {
               <Form.Label>Credit Card Number</Form.Label>
               <Form.Control
                 value={creditCardNumber}
+                placeholder="Credit Card Number"
                 onChange={(e) => setCreditCardNumber(e.target.value)}
                 required
               />
@@ -62,6 +63,7 @@ export default function PaymentScreen() {
               <Form.Label>Name on Card</Form.Label>
               <Form.Control
                 value={creditCardName}
+                placeholder="Name on Card"
                 onChange={(e) => setCreditCardName(e.target.value)}
                 required
               />
@@ -72,6 +74,7 @@ export default function PaymentScreen() {
               <Form.Label>Expiration Date (e.g. 01/24) </Form.Label>
               <Form.Control
                 value={creditCardExpiration}
+                placeholder="Expiration Date"
                 onChange={(e) => setCreditCardExpiration(e.target.value)}
                 required
               />
@@ -82,6 +85,7 @@ export default function PaymentScreen() {
               <Form.Label>Security Code </Form.Label>
               <Form.Control
                 value={creditCardSecurityCode}
+                placeholder="Security Code"
                 onChange={(e) => setcreditCardSecurityCode(e.target.value)}
                 required
               />

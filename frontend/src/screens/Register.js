@@ -1,12 +1,12 @@
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {registerThunk} from "../services/UserThunks";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { registerThunk } from "../services/UserThunks";
 import 'react-toastify/dist/ReactToastify.css';
-import {Container, Form} from "react-bootstrap";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import { Container, Form } from "react-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import {redirect} from "react-router";
-import {Helmet} from "react-helmet-async";
+import { redirect } from "react-router";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
@@ -22,9 +22,9 @@ const Register = () => {
     const navigate = useNavigate();
 
 
-    const handleRegisterBtn = async() => {
+    const handleRegisterBtn = async () => {
         try {
-            if(name === "" || password === "" || validatePassword === ""
+            if (name === "" || password === "" || validatePassword === ""
                 || accountType === "" || address === "" || phone === "") {
                 setError('All fields are required')
                 return;
@@ -34,15 +34,15 @@ const Register = () => {
                 return;
             }
             setError(null)
-            const newUser = {name, email, password, accountType, phone, address}
+            const newUser = { name, email, password, accountType, phone, address }
             await dispatch(registerThunk(newUser))
             navigate('/');
-        }catch(error) {
+        } catch (error) {
             setError("something went wrong for registration");
         }
     }
 
-    return(
+    return (
         <>
             <Container className="small-container">
                 <Helmet>
@@ -54,6 +54,7 @@ const Register = () => {
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                             type="name"
+                            placeholder="name"
                             required
                             onChange={(e) => setName(e.target.value)}
                         />
@@ -63,6 +64,7 @@ const Register = () => {
                         <Form.Label>Email</Form.Label>
                         <Form.Control
                             type="email"
+                            placeholder="email"
                             required
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -72,18 +74,20 @@ const Register = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             type="password"
+                            placeholder="password"
                             required
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="validatePassword">
-                         <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control
-                                type="password"
-                                required
-                                onChange={(e) => setValidatePassword(e.target.value)}
-                            />
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="password"
+                            required
+                            onChange={(e) => setValidatePassword(e.target.value)}
+                        />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="accountType">
@@ -92,9 +96,9 @@ const Register = () => {
                             type="accountType"
                             onChange={(e) => setAccountType(e.target.value)}
                         >
-                        <option value="">Please select</option>
-                        <option value="buyer">buyer</option>
-                        <option value="seller">seller</option>
+                            <option value="">Please select</option>
+                            <option value="buyer">buyer</option>
+                            <option value="seller">seller</option>
                         </Form.Select>
                     </Form.Group>
 
@@ -102,6 +106,7 @@ const Register = () => {
                         <Form.Label>Phone</Form.Label>
                         <Form.Control
                             type="phone"
+                            placeholder="phone"
                             required
                             onChange={(e) => setPhone(e.target.value)}
                         />
@@ -111,6 +116,7 @@ const Register = () => {
                         <Form.Label>Address</Form.Label>
                         <Form.Control
                             type="address"
+                            placeholder="address"
                             required
                             onChange={(e) => setAddress(e.target.value)}
                         />

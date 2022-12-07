@@ -39,86 +39,91 @@ export default function CartScreen() {
     navigate('/shipping');
   };
   return (
-    <div>
-      <Helmet>
-        <title>Shopping Cart</title>
-      </Helmet>
-      <span className="ShoppingCart_font">Shopping Cart</span>
+    <div className="row mt-2">
+      <div className="col-2"></div>
 
-      {cartItems.length === 0 ? (
-        <MessageBox>
-          Cart is empty. <Link to="/">Go Shopping</Link>
-        </MessageBox>
-      ) : (
-        <ListGroup>
-          {cartItems.map((item) => (
-            <ListGroup.Item key={item._id}>
-              <Row className="align-items-center">
-                <Col md={4}>
-                  <Link to={`/product/${item._id}`}>{item.productName}</Link>
-                </Col>
-                <Col md={3}>
-                  <Button
-                    className="Button_font"
-                    onClick={() => updateCartHandler(item, item.quantity - 1)}
-                    variant="light"
-                    disabled={item.quantity === 1}
-                  >
-                    <i className="fas fa-minus-circle"></i>
-                  </Button>{' '}
-                  <span>{item.quantity}</span>{' '}
-                  <Button
-                    className="Button_font"
-                    variant="light"
-                    onClick={() => updateCartHandler(item, item.quantity + 1)}
-                    disabled={item.quantity === item.unitInStock}
-                  >
-                    <i className="fas fa-plus-circle"></i>
-                  </Button>
-                </Col>
-                <Col md={3}>Unit Price: ${item.price}</Col>
-                <Col md={2}>
-                  <Button
-                    onClick={() => removeItemHandler(item)}
-                    variant="light"
-                  >
-                    <i className="fas fa-trash Button_font"></i>
-                  </Button>
-                </Col>
-              </Row>
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-      )}
+      <div className="col-8">
+        <Helmet>
+          <title>Shopping Cart</title>
+        </Helmet>
+        <span className="ShoppingCart_font">Shopping Cart</span>
 
-      <Card>
-        <Card.Body>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <h3>
-                Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)} items)
-                : $
-                {cartItems
-                  .reduce((a, c) => a + c.price * c.quantity, 0)
-                  .toFixed(2)}
-              </h3>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <div className="d-grid">
-                <Button
-                  type="button"
-                  variant="primary"
-                  onClick={checkoutHandler}
-                  disabled={cartItems.length === 0}
-                  className="Button_style"
-                >
-                  <span className="Button_font2">Proceed to Checkout</span>
-                </Button>
-              </div>
-            </ListGroup.Item>
+        {cartItems.length === 0 ? (
+          <MessageBox>
+            Cart is empty. <Link to="/">Go Shopping</Link>
+          </MessageBox>
+        ) : (
+          <ListGroup>
+            {cartItems.map((item) => (
+              <ListGroup.Item key={item._id}>
+                <Row className="align-items-center">
+                  <Col md={4}>
+                    <Link to={`/product/${item._id}`}>{item.productName}</Link>
+                  </Col>
+                  <Col md={3}>
+                    <Button
+                      className="Button_font"
+                      onClick={() => updateCartHandler(item, item.quantity - 1)}
+                      variant="light"
+                      disabled={item.quantity === 1}
+                    >
+                      <i className="fas fa-minus-circle"></i>
+                    </Button>{' '}
+                    <span>{item.quantity}</span>{' '}
+                    <Button
+                      className="Button_font"
+                      variant="light"
+                      onClick={() => updateCartHandler(item, item.quantity + 1)}
+                      disabled={item.quantity === item.unitInStock}
+                    >
+                      <i className="fas fa-plus-circle"></i>
+                    </Button>
+                  </Col>
+                  <Col md={3}>Unit Price: ${item.price}</Col>
+                  <Col md={2}>
+                    <Button
+                      onClick={() => removeItemHandler(item)}
+                      variant="light"
+                    >
+                      <i className="fas fa-trash Button_font"></i>
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            ))}
           </ListGroup>
-        </Card.Body>
-      </Card>
+        )}
+
+        <Card>
+          <Card.Body>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h3>
+                  Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)} items)
+                  : $
+                  {cartItems
+                    .reduce((a, c) => a + c.price * c.quantity, 0)
+                    .toFixed(2)}
+                </h3>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <div className="d-grid">
+                  <Button
+                    type="button"
+                    variant="primary"
+                    onClick={checkoutHandler}
+                    disabled={cartItems.length === 0}
+                    className="Button_style"
+                  >
+                    <span className="Button_font2">Proceed to Checkout</span>
+                  </Button>
+                </div>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card.Body>
+        </Card>
+      </div>
+      <div className="col-2"></div>
     </div>
   );
 }

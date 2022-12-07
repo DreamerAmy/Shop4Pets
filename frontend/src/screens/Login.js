@@ -1,12 +1,12 @@
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {loginThunk} from "../services/UserThunks";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginThunk } from "../services/UserThunks";
 import './index.css';
-import {Link} from "react-router-dom";
-import {Helmet} from "react-helmet-async";
-import {Container, Form} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { Container, Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {redirect} from "react-router";
+import { redirect } from "react-router";
 
 
 const Login = () => {
@@ -16,13 +16,13 @@ const Login = () => {
 
     // const [accountType, setAccountType] = useState('')
 
-    const {currentUser} = useSelector((state) => state.user)
+    const { currentUser } = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
 
     const handleLoginBtn = async () => {
 
-        const loginUser = {email, password}
+        const loginUser = { email, password }
         await dispatch(loginThunk(loginUser))
 
         // try {
@@ -40,7 +40,7 @@ const Login = () => {
         //     }
         // }
     }
-    return(
+    return (
         <>
             <Container className="small-container">
                 <Helmet>
@@ -53,6 +53,7 @@ const Login = () => {
                         <Form.Control
                             type="email"
                             required
+                            placeholder="email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </Form.Group>
@@ -60,6 +61,7 @@ const Login = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             type="password"
+                            placeholder="password"
                             required
                             onChange={(e) => setPassword(e.target.value)}
                         />
