@@ -82,14 +82,15 @@ const SellerProfileScreen = (user) => {
                     <hr className="border border-dark border-2"/>
                     <div className="d-flex flex-row col">
                         <div className="p-2 col-3 fw-bold"> Order Date</div>
-                        <div className="p-2 col-3 fw-bold"> Order Number</div>
-                        <div className="p-2 col-3 fw-bold"> Amount </div>
+                        <div className="p-2 col-3 fw-bold"> Sell Record Number</div>
+                        <div className="p-2 col-3 fw-bold"> Order Amount</div>
                         <div className="p-2 col-3 fw-bold"> Details</div>
                     </div>
                     <hr className="text-secondary"/>
 
-                    <div className="d-flex flex-row col">
-                        <RecentSoldList sid={sid}/>
+                    <div className="flex-row">
+                        <RecentSoldList sid={sid} />
+
                         {/*<div className="p-2 col-3 ">September 5, 2022</div>*/}
                         {/*<div className="p-2 col-3 ">12345000</div>*/}
                         {/*<div className="p-2 col-3 ">$10.00</div>*/}

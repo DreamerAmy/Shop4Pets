@@ -22,6 +22,15 @@ export const findProductByIdThunk = createAsyncThunk(
     }
 )
 
+// Find product by product id
+export const findProductBySellerIdThunk = createAsyncThunk(
+    'product/findProductById',
+    async (sellerId) => {
+        return (await service.findProductBySellerId(sellerId));
+    }
+)
+
+
 export const updateProductThunk =
     createAsyncThunk(
         'product/updateProduct',
