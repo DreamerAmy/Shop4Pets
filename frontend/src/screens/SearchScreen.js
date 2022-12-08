@@ -129,7 +129,7 @@ export default function SearchScreen() {
                         </Link>
                       </Col>
                       <Col md={3}>
-                        <span>Quantity: {item.unitInStock}</span>
+                        <span>Brand: {item.brand}</span>
                       </Col>
                       <Col md={3}>Unit Price: ${item.price}</Col>
                     </Row>
