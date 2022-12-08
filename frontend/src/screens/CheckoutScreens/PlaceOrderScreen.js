@@ -27,6 +27,7 @@ const reducer = (state, action) => {
   }
 };
 
+
 export default function PlaceOrderScreen() {
   const navigate = useNavigate();
   let { currentUser } = useSelector((state) => state.user);
@@ -64,16 +65,10 @@ export default function PlaceOrderScreen() {
         creditCardSecurityCode: cart.paymentMethod.creditCardSecurityCode,
       });
 
-      const { info } = await Axios.post(`${API_BASE}/sellerhist`, {
-            buyerId: currentUser ? currentUser._id : '0',
-            sellerId: cart.cartItems.map((item) => item.sellerId),
-            date: new Date().toISOString().slice(0, 10),
-            receiver: cart.shippingAddress.receiver,
-            address: cart.shippingAddress.address,
-            productBought: cart.cartItems.map((item) => item._id),
-            productQuantity: cart.cartItems.map((item) => item.quantity)
-          }
-      );
+      console.log("order", `${API_BASE}/order`);
+
+      console.log("sellerhist", `${API_BASE}/sellerhist`);
+      const { info } = await Axios.post(`${API_BASE}/sellerhist`, arrayOfProduct)
 
       ctxDispatch({ type: 'CART_CLEAR' });
       dispatch({ type: 'CREATE_SUCCESS' });
@@ -84,6 +79,19 @@ export default function PlaceOrderScreen() {
       toast.error(getError(err));
     }
   };
+
+  let arrayOfProduct = []
+  for (let i = 0; i < cart.cartItems.length; i++) {
+    arrayOfProduct = [...arrayOfProduct, {
+      buyerId: currentUser ? currentUser._id : '0',
+      sellerId: cart.cartItems[i].sellerId,
+      date: new Date().toISOString().slice(0, 10),
+      receiver: cart.shippingAddress.receiver,
+      address: cart.shippingAddress.address,
+      productBought: cart.cartItems[i]._id,
+      productQuantity: cart.cartItems[i].quantity
+    }]
+  }
 
   return (
     <div className="mx-5">

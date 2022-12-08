@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
-import {Link, useLocation} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {findSellerHistByIdThunk} from "../../../../services/SellerThunks";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { findSellerHistByIdThunk } from "../../../../services/SellerThunks";
 import SellRecordItem from "./SellRecordItem";
 
 
@@ -15,7 +15,7 @@ const SellerViewDetail = () => {
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findSellerHistByIdThunk(shid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     let backUrl = ""
-    if(sellerItem){
+    if (sellerItem) {
         backUrl = "/profile/" + sellerItem.sellerId;
     }
 
@@ -27,23 +27,23 @@ const SellerViewDetail = () => {
 
                 <div className="border-top pt-3">
                     <h1 className="highlight-text">Order Details</h1>
-                    <hr className="border border-dark border-2"/>
+                    <hr className="border border-dark border-2" />
                     <div className="d-flex flex-row col">
                         <div className="p-2 col-3 fw-bold"> Order Date</div>
                         <div className="p-2 col-3 fw-bold"> Product Number</div>
                         <div className="p-2 col-3 fw-bold"> Receiver </div>
                         <div className="p-2 col-3 fw-bold"> Address </div>
                     </div>
-                    <hr className="text-secondary"/>
+                    <hr className="text-secondary" />
 
                     <div className="flex-row">
-                        {!loading && <SellRecordItem seller={sellerItem}/>}
+                        {sellerItem && !loading && <SellRecordItem seller={sellerItem} />}
                     </div>
                 </div>
 
                 <Link to={backUrl}>
                     <button className="btn rounded-pill mt-3 float-end"
-                            id="allBtn-color">Back</button>
+                        id="allBtn-color">Back</button>
                 </Link>
             </div>
             <div className="col-2">
