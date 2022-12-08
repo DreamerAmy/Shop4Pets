@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import { findSellerHistByIdThunk } from "../../../../services/SellerThunks";
-import { useDispatch, useSelector } from "react-redux";
 
 const SellRecordItem = ({ seller }) => {
-    let pid = seller.productBought[0];
+    let pid = seller.productBought;
     pid = pid.substring(pid.length - 8, pid.length);
 
     return (
@@ -11,8 +9,9 @@ const SellRecordItem = ({ seller }) => {
             {seller &&
                 <li className="list-group-item d-flex">
 
-                    <div className="p-2 col-md-3 ">{seller.date}</div>
+                    <div className="p-2 col-md-2 ">{seller.date}</div>
                     <div className="p-2  col-md-3  ">{pid}</div>
+                    <div className="p-2  col-md-2  ">{seller.productQuantity}</div>
                     <div className="p-2 col-md-3 ">{seller.receiver}</div>
                     <div className="p-2 col-md-3 ">{seller.address}</div>
                 </li>

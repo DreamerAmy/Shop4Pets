@@ -65,9 +65,9 @@ export default function PlaceOrderScreen() {
         creditCardSecurityCode: cart.paymentMethod.creditCardSecurityCode,
       });
 
-      console.log("order", `${API_BASE}/order`);
+      // console.log("order", `${API_BASE}/order`);
 
-      console.log("sellerhist", `${API_BASE}/sellerhist`);
+      // console.log("sellerhist", `${API_BASE}/sellerhist`);
       const { info } = await Axios.post(`${API_BASE}/sellerhist`, arrayOfProduct)
 
       ctxDispatch({ type: 'CART_CLEAR' });

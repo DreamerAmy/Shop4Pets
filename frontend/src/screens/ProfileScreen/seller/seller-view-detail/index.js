@@ -29,8 +29,9 @@ const SellerViewDetail = () => {
                     <h1 className="highlight-text">Order Details</h1>
                     <hr className="border border-dark border-2" />
                     <div className="d-flex flex-row col">
-                        <div className="p-2 col-3 fw-bold"> Order Date</div>
+                        <div className="p-2 col-2 fw-bold"> Order Date</div>
                         <div className="p-2 col-3 fw-bold"> Product Number</div>
+                        <div className="p-2 col-2 fw-bold"> Qty </div>
                         <div className="p-2 col-3 fw-bold"> Receiver </div>
                         <div className="p-2 col-3 fw-bold"> Address </div>
                     </div>

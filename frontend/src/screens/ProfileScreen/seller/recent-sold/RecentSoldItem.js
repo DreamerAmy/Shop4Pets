@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const SoldItem = ({ seller }) => {
     let sellerHistId = seller._id.substring(seller._id.length - 8, seller._id.length);
     let orderDate = seller.date;
-    let orderAmount = seller.productBought.length + 1;
+    let orderAmount = seller.productQuantity;
     let shid = seller._id;
     let viewOrderDetailsUrl = "../seller-view-detail/" + shid
     return (
