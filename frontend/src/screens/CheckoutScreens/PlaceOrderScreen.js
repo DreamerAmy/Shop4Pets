@@ -180,7 +180,7 @@ export default function PlaceOrderScreen() {
             <ListGroup.Item>
               <div className="d-grid">
                 <Button
-                  className="Button_style"
+                  className="Button_style Button_size"
                   type="button"
                   onClick={placeOrderHandler}
                   disabled={cart.cartItems.length === 0}

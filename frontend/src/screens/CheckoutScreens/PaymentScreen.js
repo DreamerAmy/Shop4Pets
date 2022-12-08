@@ -54,6 +54,7 @@ export default function PaymentScreen() {
                 value={creditCardNumber}
                 onChange={(e) => setCreditCardNumber(e.target.value)}
                 required
+                placeholder="1234567812345678"
               />
             </Form.Group>
           </div>
@@ -64,6 +65,7 @@ export default function PaymentScreen() {
                 value={creditCardName}
                 onChange={(e) => setCreditCardName(e.target.value)}
                 required
+                placeholder="Mark Zarkerberg"
               />
             </Form.Group>
           </div>
@@ -74,6 +76,7 @@ export default function PaymentScreen() {
                 value={creditCardExpiration}
                 onChange={(e) => setCreditCardExpiration(e.target.value)}
                 required
+                placeholder="01/24"
               />
             </Form.Group>
           </div>
@@ -84,6 +87,7 @@ export default function PaymentScreen() {
                 value={creditCardSecurityCode}
                 onChange={(e) => setcreditCardSecurityCode(e.target.value)}
                 required
+                placeholder="123"
               />
             </Form.Group>
           </div>

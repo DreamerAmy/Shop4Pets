@@ -46,6 +46,7 @@ export default function ShippingAddressScreen() {
             value={receiver}
             onChange={(e) => setReceiver(e.target.value)}
             required
+            placeholder="Mark Zarkerberg"
           />
         </Form.Group>
 
@@ -57,6 +58,7 @@ export default function ShippingAddressScreen() {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
+            placeholder="123 Country ST, San Jose, CA 95123, USA"
           />
         </Form.Group>
 

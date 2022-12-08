@@ -110,7 +110,7 @@ export default function CartScreen() {
                   variant="primary"
                   onClick={checkoutHandler}
                   disabled={cartItems.length === 0}
-                  className="Button_style"
+                  className="Button_style Button_size"
                 >
                   <span className="Button_font2">Proceed to Checkout</span>
                 </Button>

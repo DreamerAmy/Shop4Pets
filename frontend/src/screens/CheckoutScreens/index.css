@@ -36,3 +36,17 @@
   color: #ff9900;
   font-weight: bold;
 }
+
+.Button_size {
+  width: 200px;
+}
+
+.order_padding {
+  padding-left: 12px;
+}
+
+::placeholder {
+  color: lightgray;
+  font-size: 12px;
+  font-style: italic;
+}
