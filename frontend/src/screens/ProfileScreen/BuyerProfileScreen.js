@@ -62,7 +62,6 @@ const BuyerProfileScreen = ({ data }) => {
                             {orderNum} Order History
                         </div>
                     </Link>
-                    {/* <FavCountComponent uid={currentUser._id} /> */}
                     <Link to={favUrl} href="/" className="nav-link" >
                         <div className="grid-item">
                             <i className="bi bi-star-fill"></i>
@@ -91,7 +90,7 @@ const BuyerProfileScreen = ({ data }) => {
                 <i className="bi bi-house-door"></i>*hidden*<br />
                 <i className="bi bi-balloon"></i>Member Since {buyer.memberSince}<br />
                 <i className="bi bi-bag-heart"></i>{orderNum} Order History<br />
-                <i className="bi bi-star"></i>{favNum} Favorites<br />
+                <i className="bi bi-star"></i>*hidden*<br />
             </div>
             <h6>Some private sections have been hidden.</h6>
             {
