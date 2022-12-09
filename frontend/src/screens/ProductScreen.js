@@ -9,22 +9,22 @@ import { Store } from '../Store';
 
 
 const ProductScreen = () => {
-    const { pathname } = useLocation();
-    const paths = pathname.split('/')
-    let pid = paths[2];
-    if (pid) { return <ShowProductScreen pid={pid} /> }
+  const { pathname } = useLocation();
+  const paths = pathname.split('/')
+  let pid = paths[2];
+  if (pid) { return <ShowProductScreen pid={pid} /> }
 }
 
 
 const ShowProductScreen = ({ pid }) => {
-    let { productItem } = useSelector((state) => state.productItem)
-    let { currentUser } = useSelector((state) => state.user);
+  let { productItem } = useSelector((state) => state.productItem)
+  let { currentUser } = useSelector((state) => state.user);
 
-    const dispatch = useDispatch()
-    useEffect(() => {
-        if (!pid) { return; }
-        dispatch(findProductByIdThunk(pid))
-    }, [])
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (!pid) { return; }
+    dispatch(findProductByIdThunk(pid))
+  }, [])
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
@@ -63,7 +63,7 @@ const ShowProductScreen = ({ pid }) => {
         <div className="col-2"></div>
         <div className="col-3">
           <h2 className="">Product Detail</h2>
-          <img className="productImg" src={foodImage} alt="" />
+          <img className="productImg" src={`${productItem.image}`} alt="" />
         </div>
         <div className="col-5">
           {productItem && (
