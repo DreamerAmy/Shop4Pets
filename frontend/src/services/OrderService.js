@@ -12,9 +12,9 @@ export const createOrder = async (order) => {
 }
 
 export const findOrder = async () => {
-    const response = await fetch(`${ORDER_API}/all`)
-    const order = await response.json()
-    return order;
+    const response = await axios.get(`${ORDER_API}/all`)
+    //console.log(response.data)
+    return response.data;
 }
 
 // find order by order id

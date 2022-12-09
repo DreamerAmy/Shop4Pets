@@ -10,6 +10,7 @@ export const createOrderThunk = createAsyncThunk(
 export const findOrderThunk = createAsyncThunk(
     'order/findOrder',
     async () => {
+        console.log(await service.findOrder())
         return (await service.findOrder());
     }
 )
