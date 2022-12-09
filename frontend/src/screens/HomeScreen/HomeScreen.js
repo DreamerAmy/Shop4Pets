@@ -1,7 +1,7 @@
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import {Container} from "react-bootstrap";
-import React, {useEffect, useReducer} from "react";
+import { Container } from "react-bootstrap";
+import React, { useEffect, useReducer } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import LoadingBox from "../../components/LoadingBox";
@@ -10,7 +10,7 @@ import HomeProduct from "./HomeProduct";
 import axios from "axios";
 import product from "./HomeProduct";
 import ProductItem from "../../components/ProductComponent/ProductItem";
-import {findProductThunk} from "../../services/ProductThunks";
+import { findProductThunk } from "../../services/ProductThunks";
 import './home.css'
 import RecommendProduct from "./RecommendProduct";
 
@@ -31,8 +31,16 @@ const profileBtn = (currentUser) => {
 
 
 const Home = () => {
-    const { currentUser } = useSelector((state) => state.user)
+    let { currentUser } = useSelector((state) => state.user)
     console.log("home currentUser", currentUser);
+    if (currentUser) {
+        sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+        sessionStorage.setItem('favCount', JSON.stringify(currentUser.favorites.length));
+    }
+    if (!currentUser) {
+        currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
+    }
+
 
     const { product } = useSelector((state) => state.product);
     const dispatch = useDispatch();
@@ -51,16 +59,16 @@ const Home = () => {
                 </div>
 
                 <div>
-                    <img className="img-fluid mt-1 mb-4" src={require("../../images/HomeBanner.png")}  alt="Home banner" />
+                    <img className="img-fluid mt-1 mb-4" src={require("../../images/HomeBanner.png")} alt="Home banner" />
                 </div>
 
                 <div>
                     <h4>Shop By Pet Categories</h4>
                     <Row class="d-flex justify-content-between img-fluid">
-                        <Col><img src={require("../../images/catCategory.jpeg" )} alt="Cat Category" height={130}/></Col>
-                        <Col><img src={require("../../images/dogCategory.jpeg" )} alt="Dog Category" height={130} /></Col>
-                        <Col><img src={require("../../images/smallPetCategory.jpeg" )} alt="Small Pet Category" height={130}/></Col>
-                        <Col><img src={require("../../images/fishCategory.jpeg" )} alt="Fish Category" height={130} /></Col>
+                        <Col><img src={require("../../images/catCategory.jpeg")} alt="Cat Category" height={130} /></Col>
+                        <Col><img src={require("../../images/dogCategory.jpeg")} alt="Dog Category" height={130} /></Col>
+                        <Col><img src={require("../../images/smallPetCategory.jpeg")} alt="Small Pet Category" height={130} /></Col>
+                        <Col><img src={require("../../images/fishCategory.jpeg")} alt="Fish Category" height={130} /></Col>
                     </Row>
                 </div>
 

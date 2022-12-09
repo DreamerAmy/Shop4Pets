@@ -14,10 +14,10 @@ function renderProfile(user) {
         return (<BuyerProfileScreen data={user} />)
     }
     else if (user.accountType === "seller") {
-        return (<SellerProfileScreen data={user}/>);
+        return (<SellerProfileScreen data={user} />);
     }
     else if (user.accountType === "admin") {
-        return (<AdminProfileScreen data={user}/>);
+        return (<AdminProfileScreen data={user} />);
     }
     return (
         <div>
@@ -41,8 +41,10 @@ const ProfileScreen = () => {
     const paths = pathname.split('/')
     let uid = paths[2];
     // Current User = LoggedIn User
-    const { currentUser } = useSelector((state) => state.user);
-
+    let { currentUser } = useSelector((state) => state.user);
+    if (!currentUser) {
+        currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
+    }
     // User = user id from the url path, can be null
     const { user } = useSelector((state) => state.user);
     const dispatch = useDispatch();
@@ -51,7 +53,8 @@ const ProfileScreen = () => {
         if (!uid && !currentUser) { return; }
         dispatch(findUserByIdThunk(uid))
     }, []) //eslint-disable-line react-hooks/exhaustive-deps
-
+    console.log("user", user)
+    console.log("currentUser", currentUser)
     return (
         <div className="row mt-2">
             <div className="col-2">

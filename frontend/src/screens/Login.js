@@ -1,24 +1,24 @@
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {loginThunk} from "../services/UserThunks";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginThunk } from "../services/UserThunks";
 import './index.css';
-import {Link, Navigate} from "react-router-dom";
-import {Helmet} from "react-helmet-async";
-import {Container, Form} from "react-bootstrap";
+import { Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { Container, Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {redirect} from "react-router";
+import { redirect } from "react-router";
 
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {currentUser} = useSelector((state) => state.user)
+    const { currentUser } = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
     const handleLoginBtn = async () => {
         try {
-            const loginUser = {email, password}
+            const loginUser = { email, password }
             await dispatch(loginThunk(loginUser))
         } catch (e) {
             window.alert("Something went wrong with login")
@@ -26,10 +26,10 @@ const Login = () => {
 
     }
     if (currentUser) {
-        return (<Navigate to={'/'}/>)
+        return (<Navigate to={'/'} />)
     }
 
-    return(
+    return (
         <>
             <Container className="small-container">
                 <Helmet>

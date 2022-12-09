@@ -12,9 +12,12 @@ const OrderHistoryScreen = () => {
     const paths = pathname.split('/')
     const bid = paths[2];
 
-    const { user } = useSelector((state) => state.user)
+    let { user } = useSelector((state) => state.user)
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findUserByIdThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    if (!user) {
+        user = JSON.parse(sessionStorage.getItem('currentUser'))
+    }
     const backUrl = "/profile/" + bid;
 
     const { order } = useSelector((state) => state.order)
