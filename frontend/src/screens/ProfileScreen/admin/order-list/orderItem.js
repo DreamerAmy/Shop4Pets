@@ -17,10 +17,10 @@ const AdminOrderItem = ({ order }) => {
                 <li className="list-group-item d-flex">
                     <i className="bi bi-x-lg float-end"
                         onClick={() => deleteOrderHandler(order._id)}></i>
-                    <div className="p-2 col-2 "> {oid} </div>
-                    <div className="p-2 col-2 "> {order.productBought.length + 1} </div>
-                    <div className="p-2 col-2 "> {order.receiver} </div>
-                    <div className="p-2 col-2 ">{order.totalAmount}</div>
+                    <div className="p-2 col-3 "> {oid} </div>
+                    <div className="p-2 col-3 "> {order.productBought.length + 1} </div>
+                    <div className="p-2 col-3 "> {order.receiver} </div>
+                    <div className="p-2 col-3 ">{order.totalAmount}</div>
                 </li>
             }
         </>
