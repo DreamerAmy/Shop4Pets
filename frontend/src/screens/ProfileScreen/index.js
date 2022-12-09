@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { findUserByIdThunk } from "../../services/UserThunks";
 import './index.css';
 import SellerProfileScreen from "./seller/SellerProfileScreen";
+import AdminProfileScreen from "./AdminProfileScreen";
 
 function renderProfile(user) {
     if (user.accountType === "buyer") {
@@ -16,7 +17,7 @@ function renderProfile(user) {
         return (<SellerProfileScreen data={user}/>);
     }
     else if (user.accountType === "admin") {
-        return (<>admin</>);
+        return (<AdminProfileScreen data={user}/>);
     }
     return (
         <div>

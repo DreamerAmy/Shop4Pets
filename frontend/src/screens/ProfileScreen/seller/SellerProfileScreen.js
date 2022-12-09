@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {findOrderByBuyerIdThunk} from "../../../services/OrderThunks";
 import ProfileBanner from "../../../components/ProfileBannerComponent";
 import {Button} from "react-bootstrap";
 import { findSellerHistBySellerIdThunk } from "../../../services/SellerThunks";
@@ -18,9 +17,7 @@ const SellerProfileScreen = (user) => {
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findSellerHistBySellerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     const { currentUser } = useSelector((state) => state.user);
-    const viewOrderDetailsUrl = "../view-orderDetails/" + sid;
-    const viewMyProductsUrl = "../view-myProducts/" + sid;
-    const viewMyProfitUrl = "../view-myProfit" + sid;
+    const viewMyProductsUrl = "../view-myProducts/" + user.data._id;
 
     const routeToMyProfile = () => {
         let myProfileUrl = "../profile/" + currentUser._id;
@@ -37,17 +34,12 @@ const SellerProfileScreen = (user) => {
             <div className="font-setting" id="profileScreen">
 
                 <div id="infoSection">
-                    <div className="float-end list-group pt-5">
-                        <button className="btn list-group-item rounded-pill" id="menuBtn">
+                    <div className="float-end list-group mt-5 flex-column">
+                        <button className="btn list-group-item rounded-pill mt-4" id="menuBtn">
                             <Link to={viewMyProductsUrl} href="#" className="nav-link" >My Products</Link>
                         </button>
 
-                        <button className="btn list-group-item rounded-pill" id="menuBtn">
-                            <Link to={viewMyProfitUrl} href="#" className="nav-link" >My Profit
-                            </Link>
-                        </button>
-
-                        <button className="btn list-group-item" id="editBtn">
+                        <button className="btn list-group-item mt-4" id="editBtn">
                             <Link to={editUrl} href="#" className="nav-link" >Edit</Link>
                         </button>
                     </div>
@@ -82,24 +74,14 @@ const SellerProfileScreen = (user) => {
                     <hr className="border border-dark border-2"/>
                     <div className="d-flex flex-row col">
                         <div className="p-2 col-3 fw-bold"> Order Date</div>
-                        <div className="p-2 col-3 fw-bold"> Order Number</div>
-                        <div className="p-2 col-3 fw-bold"> Amount </div>
+                        <div className="p-2 col-3 fw-bold"> Sell Record Number</div>
+                        <div className="p-2 col-3 fw-bold"> Order Amount</div>
                         <div className="p-2 col-3 fw-bold"> Details</div>
                     </div>
                     <hr className="text-secondary"/>
 
-                    <div className="d-flex flex-row col">
-                        <RecentSoldList sid={sid}/>
-                        {/*<div className="p-2 col-3 ">September 5, 2022</div>*/}
-                        {/*<div className="p-2 col-3 ">12345000</div>*/}
-                        {/*<div className="p-2 col-3 ">$10.00</div>*/}
-                        {/*<div className="p-2 col-3 ">*/}
-                        {/*    <Link to="/seller-view-detail" className="nav-link" >*/}
-                        {/*        <button className="btn rounded-pill pt-1 align-baseline" id="allBtn-color">*/}
-                        {/*            View Details*/}
-                        {/*        </button>*/}
-                        {/*    </Link>*/}
-                        {/*</div>*/}
+                    <div className="flex-row">
+                        <RecentSoldList sid={sid} />
                     </div>
                 </div>
             </div>

@@ -27,6 +27,7 @@ const reducer = (state, action) => {
   }
 };
 
+
 export default function PlaceOrderScreen() {
   const navigate = useNavigate();
   let { currentUser } = useSelector((state) => state.user);
@@ -41,6 +42,7 @@ export default function PlaceOrderScreen() {
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
+
   cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
   cart.taxPrice = round2(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
@@ -63,15 +65,8 @@ export default function PlaceOrderScreen() {
         creditCardSecurityCode: cart.paymentMethod.creditCardSecurityCode,
       });
 
-      const { info } = await Axios.post(`${API_BASE}/sellerhist`, {
-        buyerId: currentUser ? currentUser._id : '0',
-        sellerId: cart.cartItems.map((item) => item.sellerId),
-        date: new Date().toISOString().slice(0, 10),
-        receiver: cart.shippingAddress.receiver,
-        address: cart.shippingAddress.address,
-        productBought: cart.cartItems.map((item) => item._id),
-        productQuantity: cart.cartItems.map((item) => item.quantity),
-      });
+      const { info } = await Axios.post(`${API_BASE}/sellerhist`, arrayOfProduct)
+
       ctxDispatch({ type: 'CART_CLEAR' });
       dispatch({ type: 'CREATE_SUCCESS' });
       localStorage.removeItem('cartItems');
@@ -81,6 +76,19 @@ export default function PlaceOrderScreen() {
       toast.error(getError(err));
     }
   };
+
+  let arrayOfProduct = []
+  for (let i = 0; i < cart.cartItems.length; i++) {
+    arrayOfProduct = [...arrayOfProduct, {
+      buyerId: currentUser ? currentUser._id : '0',
+      sellerId: cart.cartItems[i].sellerId,
+      date: new Date().toISOString().slice(0, 10),
+      receiver: cart.shippingAddress.receiver,
+      address: cart.shippingAddress.address,
+      productBought: cart.cartItems[i]._id,
+      productQuantity: cart.cartItems[i].quantity
+    }]
+  }
 
   return (
     <div className="row mt-2">

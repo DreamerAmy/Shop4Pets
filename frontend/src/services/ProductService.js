@@ -23,12 +23,18 @@ export const findProductById = async (pid) => {
     return product.data[0];
 }
 
+export const findProductBySellerId = async (sid) => {
+    const seller = await axios.get(`${PRODUCT_API}/seller/${sid}`)
+    return seller.data;
+}
+
+
 export const deleteProduct = async (pid) => {
-    const response = await axios.delete(`${PRODUCT_API} / ${pid}`)
+    const response = await axios.delete(`${PRODUCT_API}/${pid}`)
     return response.data
 }
 
 export const updateProduct = async (product) => {
-    await axios.put(`${PRODUCT_API} / ${product._id}`, product);
+    await axios.put(`${PRODUCT_API}/${product._id}`, product);
     return product;
 }

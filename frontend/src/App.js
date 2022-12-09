@@ -22,6 +22,7 @@ import SellerReducer from './reducers/SellerReducer';
 import OrderReducer from './reducers/OrderReducer';
 import ProductReducer from './reducers/ProductReducer';
 import Navigation from './components/Navigation';
+
 import Register from './screens/Register';
 import Login from './screens/Login';
 import Home from './screens/HomeScreen/HomeScreen';
@@ -29,16 +30,24 @@ import CurrentUser from './screens/currentUser';
 import ProductScreen from './screens/ProductScreen';
 import SellerProfileScreen from './screens/ProfileScreen/seller/SellerProfileScreen';
 import AdminProfileScreen from './screens/ProfileScreen/AdminProfileScreen';
-import SearchScreen from './screens/SearchScreen';
 import ProductBlankScreen from './screens/ProductBlankScreen';
+import SellerViewDetail from './screens/ProfileScreen/seller/seller-view-detail';
+import SellerMyItems from './screens/ProfileScreen/seller/seller-items';
+import AdminUserListScreen from './screens/ProfileScreen/admin/user-list';
+import AdminProductListScreen from './screens/ProfileScreen/admin/product-list';
+
+import SearchScreen from './screens/SearchScreen';
+
 // import UserListScreen from "./screens/UserListScreen";
 
 const store = configureStore({
   reducer: {
     user: UserReducer,
     seller: SellerReducer,
+    sellerItem: SellerReducer,
     order: OrderReducer,
     orderItem: OrderReducer,
+    orderList: OrderReducer,
     product: ProductReducer,
     productItem: ProductReducer,
   },
@@ -59,8 +68,16 @@ function App() {
             <Route path="/product/" element={<ProductBlankScreen />} />
             <Route path="/product/*" element={<ProductScreen />} />
             {/* <Route path="/user-list/*" element={<UserListScreen />} /> */}
+            {/*seller part*/}
             <Route path="/profile/seller" element={<SellerProfileScreen />} />
+            <Route path="/seller-view-detail/*" element={<SellerViewDetail />} />
+            <Route path="/view-myProducts/*" element={<SellerMyItems />} />
+            {/*admin part*/}
             <Route path="/profile/admin" element={<AdminProfileScreen />} />
+            <Route path="/usersall/*" element={<AdminUserListScreen />} />
+            <Route path="/itemsall/*" element={<AdminProductListScreen />} />
+
+
             <Route path="/payment" element={<PaymentScreen />} />
             <Route path="/shipping" element={<ShippingAddressScreen />} />
             <Route path="/placeorder" element={<PlaceOrderScreen />} />
