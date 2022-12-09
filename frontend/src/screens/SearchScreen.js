@@ -9,7 +9,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Card } from 'react-bootstrap';
-const API_BASE = process.env.REACT_APP_API_BASE;
+const API_BASE = 'http://localhost:4000/api';
 const YOUTUBE_API_KEY = 'AIzaSyADSYJ5J6U22ujxJm_vGLghB46d47tSxgo';
 const YOUTUBE_URL =
   'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=' +
