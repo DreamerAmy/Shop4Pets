@@ -8,7 +8,8 @@ import Col from 'react-bootstrap/Col';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Card } from 'react-bootstrap';
+import {Card, Container} from 'react-bootstrap';
+
 const API_BASE = 'http://localhost:4000/api';
 const YOUTUBE_API_KEY = 'AIzaSyADSYJ5J6U22ujxJm_vGLghB46d47tSxgo';
 const YOUTUBE_URL =
@@ -79,6 +80,7 @@ export default function SearchScreen() {
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
+      <Container>
     <div>
       <Helmet>
         <title>Search Products</title>
@@ -141,5 +143,6 @@ export default function SearchScreen() {
         </div>
       )}
     </div>
+      </Container>
   );
 }
