@@ -53,7 +53,8 @@ const ProfileScreen = () => {
         if (!uid && !currentUser) { return; }
         dispatch(findUserByIdThunk(uid))
     }, []) //eslint-disable-line react-hooks/exhaustive-deps
-
+    console.log("user", user)
+    console.log("currentUser", currentUser)
     return (
         <div className="row mt-2">
             <div className="col-2">

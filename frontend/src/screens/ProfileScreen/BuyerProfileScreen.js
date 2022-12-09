@@ -5,26 +5,30 @@ import { Link, useNavigate } from "react-router-dom";
 import ProfileBanner from "../../components/ProfileBannerComponent.js"
 import RecentOrderList from "../../components/RecentOrderComponent/RecentOrderList"
 import { findOrderByBuyerIdThunk } from "../../services/OrderThunks";
+
+import FavCountComponent from '../../components/FavCountComponent.js';
 import './index.css';
 
-const BuyerProfileScreen = (user) => {
+const BuyerProfileScreen = ({ data }) => {
     let navigate = useNavigate();
-    const buyer = user.data;
+    const buyer = data;
     const bid = buyer._id;
 
     const { order } = useSelector((state) => state.order)
     const dispatch = useDispatch();
-    useEffect(() => { dispatch(findOrderByBuyerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
-    let { currentUser } = useSelector((state) => state.user);
-    if (!currentUser) {
-        currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
-    }
+    useEffect(() => { dispatch(findOrderByBuyerIdThunk(bid)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    let currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
+    // let { currentUser } = useSelector((state) => state.user);
+    // useEffect(() => { dispatch(findUserByIdThunk(loggedInUser._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    // let favNum = null;
+    // if (currentUser && currentUser && !Array.isArray(currentUser)) {
+    //     favNum = currentUser.favorites.length;
+    // }
+    let favNum = JSON.parse(sessionStorage.getItem('favCount'))
     const orderHistoryUrl = "../order-history/" + bid;
     const favUrl = "../favorites/" + bid;
     const editUrl = "../edit-profile/" + bid;
-
     const orderNum = order.length;
-    const favNum = buyer.favorites.length;
 
     const routeToMyProfile = () => {
         let myProfileUrl = "../profile/" + currentUser._id;
@@ -66,6 +70,7 @@ const BuyerProfileScreen = (user) => {
                             {orderNum} Order History
                         </div>
                     </Link>
+                    {/* <FavCountComponent uid={currentUser._id} /> */}
                     <Link to={favUrl} href="/" className="nav-link" >
                         <div className="grid-item">
                             <i className="bi bi-star-fill"></i>

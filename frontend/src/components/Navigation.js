@@ -10,6 +10,7 @@ export default function Navigation() {
     const dispatch = useDispatch()
     const handleLogout = () => {
         sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('favCount');
         dispatch(logoutThunk())
     }
     return (

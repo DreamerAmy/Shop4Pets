@@ -35,11 +35,13 @@ const Home = () => {
     console.log("home currentUser", currentUser);
     if (currentUser) {
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+        sessionStorage.setItem('favCount', JSON.stringify(currentUser.favorites.length));
     }
     if (!currentUser) {
         currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
     }
-    console.log("currentUser from sessionStorage", JSON.parse(sessionStorage.getItem('currentUser')))
+
+
     const { product } = useSelector((state) => state.product);
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findProductThunk()); }, []);

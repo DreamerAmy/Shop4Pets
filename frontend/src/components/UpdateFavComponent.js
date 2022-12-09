@@ -12,6 +12,8 @@ const UpdateFavComponent = ({ uid, pid }) => {
     useEffect(() => { dispatch(findProductByIdThunk(pid)) }, [])
 
     function removeFav() {
+        let favCount = JSON.parse(sessionStorage.getItem('favCount'))
+        sessionStorage.setItem('favCount', JSON.stringify(favCount - 1));
         let index = user.favorites.indexOf(productItem._id);
         let removedArray = [...user.favorites];
         removedArray.splice(index, 1);
@@ -25,6 +27,8 @@ const UpdateFavComponent = ({ uid, pid }) => {
 
 
     function addFav() {
+        let favCount = JSON.parse(sessionStorage.getItem('favCount'))
+        sessionStorage.setItem('favCount', JSON.stringify(favCount + 1));
         dispatch(updateUserThunk({
             ...user,
             favorites: [...user.favorites, productItem._id],
