@@ -90,7 +90,7 @@ export default function SearchScreen() {
           Search Result is empty. <Link to="/">Go Shopping</Link>
         </MessageBox>
       ) : (
-        <div>
+        <div className="container">
           <Card>
             <Card.Body>
               <Card.Title>Youtube Search Results</Card.Title>
