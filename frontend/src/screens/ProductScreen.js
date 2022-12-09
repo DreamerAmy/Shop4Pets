@@ -48,7 +48,7 @@ const ShowProductScreen = ({ pid }) => {
     const existItem = cartItems.find((x) => x._id === item._id);
     const quantity = existItem ? existItem.quantity + quan : quan;
     if (item.unitInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
+      window.alert('Sorry. HomeProduct is out of stock');
       return;
     }
     ctxDispatch({

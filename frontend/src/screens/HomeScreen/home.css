@@ -1,0 +1,25 @@
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.product-title {
+    font-size: medium;
+
+}
+.product-price {
+    font-size: large;
+    font-weight: bold;
+    color: #ff9900;
+}
+
+.product-img {
+    width: 200px;
+    height: 200px;
+    align-content: center;
+    padding: 20px;
+    object-fit: contain;
+}

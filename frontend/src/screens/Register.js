@@ -63,6 +63,7 @@ const Register = () => {
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="name"
+              placeholder="John Doe"
               required
               onChange={(e) => setName(e.target.value)}
             />
@@ -72,6 +73,7 @@ const Register = () => {
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
+              placeholder="john@example.com"
               required
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -81,6 +83,7 @@ const Register = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
+              placeholder="password"
               required
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -90,6 +93,7 @@ const Register = () => {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               type="password"
+              placeholder="password"
               required
               onChange={(e) => setValidatePassword(e.target.value)}
             />
@@ -112,6 +116,7 @@ const Register = () => {
             <Form.Label>Phone</Form.Label>
             <Form.Control
               type="phone"
+              placeholder="888-8888-1111"
               required
               onChange={(e) => setPhone(e.target.value)}
             />
@@ -121,6 +126,7 @@ const Register = () => {
             <Form.Label>Address</Form.Label>
             <Form.Control
               type="address"
+              placeholder="888 Market Street, San Francisco, CA 95124"
               required
               onChange={(e) => setAddress(e.target.value)}
             />
