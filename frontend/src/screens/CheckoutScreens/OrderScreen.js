@@ -61,12 +61,14 @@ export default function OrderScreen() {
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <div>
-      <Helmet>
-        <title>Order {orderId}</title>
-      </Helmet>
-      <h1 className="my-3">Order {orderId}</h1>
-      <Row>
-        <Col md={8}>
+      <div className="row mt-2">
+        <div className="col-2"> </div>
+        <div className="col-8">
+          <Helmet>
+            <title>Order {orderId}</title>
+          </Helmet>
+          <h1 className="my-3 order_padding">Order {orderId}</h1>
+
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Shipping</Card.Title>
@@ -98,8 +100,7 @@ export default function OrderScreen() {
               </Card.Text>
             </Card.Body>
           </Card>
-        </Col>
-        <Col md={4}>
+
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Order Summary</Card.Title>
@@ -113,8 +114,8 @@ export default function OrderScreen() {
               </ListGroup>
             </Card.Body>
           </Card>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
   );
 }

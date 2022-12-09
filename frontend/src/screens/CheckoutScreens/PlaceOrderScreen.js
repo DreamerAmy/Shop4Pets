@@ -65,9 +65,6 @@ export default function PlaceOrderScreen() {
         creditCardSecurityCode: cart.paymentMethod.creditCardSecurityCode,
       });
 
-      // console.log("order", `${API_BASE}/order`);
-
-      // console.log("sellerhist", `${API_BASE}/sellerhist`);
       const { info } = await Axios.post(`${API_BASE}/sellerhist`, arrayOfProduct)
 
       ctxDispatch({ type: 'CART_CLEAR' });
@@ -94,116 +91,126 @@ export default function PlaceOrderScreen() {
   }
 
   return (
-    <div className="mx-5">
-      <Helmet>
-        <title>Preview Order</title>
-      </Helmet>
-      <h1 className="my-3 ShoppingCart_font">Preview Order</h1>
+    <div className="row mt-2">
+      <div className="col-2"> </div>
+      <div className="col-8">
+        <div className="mx-5">
+          <Helmet>
+            <title>Preview Order</title>
+          </Helmet>
+          <h1 className="my-3 ShoppingCart_font">Preview Order</h1>
 
-      <Card className="mb-3">
-        <Card.Body>
-          <Card.Title className="PreviewOrder_font">Shipping</Card.Title>
-          <Card.Text>
-            <strong>Name:</strong> {cart.shippingAddress.receiver} <br />
-            <strong>Address: </strong> {cart.shippingAddress.address}
-          </Card.Text>
-          <Link to="/shipping" className="edit_colr">
-            Edit
-          </Link>
-        </Card.Body>
-      </Card>
+          <Card className="mb-3">
+            <Card.Body>
+              <Card.Title className="PreviewOrder_font">Shipping</Card.Title>
+              <Card.Text>
+                <strong>Name:</strong> {cart.shippingAddress.receiver} <br />
+                <strong>Address: </strong> {cart.shippingAddress.address}
+              </Card.Text>
+              <Link to="/shipping" className="edit_colr">
+                Edit
+              </Link>
+            </Card.Body>
+          </Card>
 
-      <Card className="mb-3">
-        <Card.Body>
-          <Card.Title className="PreviewOrder_font">Payment</Card.Title>
-          <Card.Text>
-            <strong>Credit Card Name:</strong>{' '}
-            {cart.paymentMethod.creditCardName} <br />
-            <strong>Credit Card Number:</strong>{' '}
-            {cart.paymentMethod.creditCardNumber} <br />
-            <strong>Credit Card Expiration Date:</strong>{' '}
-            {cart.paymentMethod.creditCardExpiration} <br />
-            <strong>Credit Card Security Code:</strong>{' '}
-            {cart.paymentMethod.creditCardSecurityCode}
-          </Card.Text>
-          <Link to="/payment" className="edit_colr">
-            Edit
-          </Link>
-        </Card.Body>
-      </Card>
+          <Card className="mb-3">
+            <Card.Body>
+              <Card.Title className="PreviewOrder_font">Payment</Card.Title>
+              <Card.Text>
+                <strong>Credit Card Name:</strong>{' '}
+                {cart.paymentMethod.creditCardName} <br />
+                <strong>Credit Card Number:</strong>{' '}
+                {cart.paymentMethod.creditCardNumber} <br />
+                <strong>Credit Card Expiration Date:</strong>{' '}
+                {cart.paymentMethod.creditCardExpiration} <br />
+                <strong>Credit Card Security Code:</strong>{' '}
+                {cart.paymentMethod.creditCardSecurityCode}
+              </Card.Text>
+              <Link to="/payment" className="edit_colr">
+                Edit
+              </Link>
+            </Card.Body>
+          </Card>
 
-      <Card className="mb-3">
-        <Card.Body>
-          <Card.Title className="PreviewOrder_font">Items</Card.Title>
-          <ListGroup variant="flush">
-            {cart.cartItems.map((item) => (
-              <ListGroup.Item key={item._id}>
-                <Row className="align-items-center">
-                  <Col md={6}>
-                    <Link>{item.productName}</Link>
-                  </Col>
-                  <Col md={3}>
-                    <span>Quantity: {item.quantity}</span>
-                  </Col>
-                  <Col md={3}>Unit Price: ${item.price}</Col>
-                </Row>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-          <Link to="/cart" className="edit_colr">
-            Edit
-          </Link>
-        </Card.Body>
-      </Card>
+          <Card className="mb-3">
+            <Card.Body>
+              <Card.Title className="PreviewOrder_font">Items</Card.Title>
+              <ListGroup variant="flush">
+                {cart.cartItems.map((item) => (
+                  <ListGroup.Item key={item._id}>
+                    <Row className="align-items-center">
+                      <Col md={6}>
+                        <Link to={`/product/${item._id}`}>
+                          {item.productName}
+                        </Link>
+                      </Col>
+                      <Col md={3}>
+                        <span>Qty: {item.quantity}</span>
+                      </Col>
+                      <Col md={3}>Unit Price: ${item.price}</Col>
+                    </Row>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+              <Link to="/cart" className="edit_colr">
+                Edit
+              </Link>
+            </Card.Body>
+          </Card>
 
-      <Card>
-        <Card.Body>
-          <Card.Title className="PreviewOrder_font">Order Summary</Card.Title>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <Row>
-                <Col>Items</Col>
-                <Col>${cart.itemsPrice.toFixed(2)}</Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Row>
-                <Col>Shipping</Col>
-                <Col>${cart.shippingPrice.toFixed(2)}</Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Row>
-                <Col>Tax</Col>
-                <Col>${cart.taxPrice.toFixed(2)}</Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Row>
-                <Col>
-                  <strong> Order Total</strong>
-                </Col>
-                <Col>
-                  <strong>${cart.totalPrice.toFixed(2)}</strong>
-                </Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <div className="d-grid">
-                <Button
-                  className="Button_style"
-                  type="button"
-                  onClick={placeOrderHandler}
-                  disabled={cart.cartItems.length === 0}
-                >
-                  <span className="Button_font2">Place Order</span>
-                </Button>
-              </div>
-              {loading && <LoadingBox></LoadingBox>}
-            </ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
+          <Card>
+            <Card.Body>
+              <Card.Title className="PreviewOrder_font">
+                Order Summary
+              </Card.Title>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Items</Col>
+                    <Col>${cart.itemsPrice.toFixed(2)}</Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Shipping</Col>
+                    <Col>${cart.shippingPrice.toFixed(2)}</Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Tax</Col>
+                    <Col>${cart.taxPrice.toFixed(2)}</Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>
+                      <strong> Order Total</strong>
+                    </Col>
+                    <Col>
+                      <strong>${cart.totalPrice.toFixed(2)}</strong>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <div className="d-grid">
+                    <Button
+                      className="Button_style Button_size"
+                      type="button"
+                      variant="primary btn-warning"
+                      onClick={placeOrderHandler}
+                      disabled={cart.cartItems.length === 0}
+                    >
+                      <span className="Button_font2">Place Order</span>
+                    </Button>
+                  </div>
+                  {loading && <LoadingBox></LoadingBox>}
+                </ListGroup.Item>
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
