@@ -5,7 +5,7 @@ import ProfileBanner from "../../../components/ProfileBannerComponent";
 import { Button } from "react-bootstrap";
 import { findSellerHistBySellerIdThunk } from "../../../services/SellerThunks";
 import RecentSoldList from "./recent-sold";
-
+import ProfileBannerComponent from "../../../components/ProfileBannerComponent.js"
 
 const SellerProfileScreen = (user) => {
     let navigate = useNavigate();
@@ -35,7 +35,7 @@ const SellerProfileScreen = (user) => {
     if (currentUser && currentUser._id === sid) {
         return (
             <div className="font-setting" id="profileScreen">
-
+                <ProfileBannerComponent />
                 <div id="infoSection">
                     <div className="float-end list-group mt-5 flex-column">
                         <button className="btn list-group-item rounded-pill mt-4" id="menuBtn">

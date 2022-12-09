@@ -4,6 +4,7 @@ import ProfileBanner from "../../components/ProfileBannerComponent";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import AdminOrderList from "./admin/order-list";
+import ProfileBannerComponent from "../../components/ProfileBannerComponent.js"
 
 const AdminProfileScreen = (user) => {
     let navigate = useNavigate();
@@ -31,7 +32,7 @@ const AdminProfileScreen = (user) => {
     if (currentUser && currentUser._id === adid) {
         return (
             <div className="font-setting" id="profileScreen">
-
+                <ProfileBannerComponent />
                 <div id="infoSection">
                     <div className="float-end list-group pt-5">
                         <button className="btn list-group-item rounded-pill" id="menuBtn">

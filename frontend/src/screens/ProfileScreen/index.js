@@ -1,7 +1,5 @@
 import BuyerProfileScreen from "./BuyerProfileScreen.js"
 import React, { useEffect } from "react";
-import { Button } from 'react-bootstrap';
-import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { findUserByIdThunk } from "../../services/UserThunks";
@@ -22,7 +20,7 @@ function renderProfile(user) {
     return (
         <div>
             <i className="bi bi-wifi-off pe-3"></i>
-            Please Sign in to display your home profile
+            Loading...
         </div>
     )
 }
