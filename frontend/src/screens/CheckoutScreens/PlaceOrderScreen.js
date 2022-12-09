@@ -31,6 +31,9 @@ const reducer = (state, action) => {
 export default function PlaceOrderScreen() {
   const navigate = useNavigate();
   let { currentUser } = useSelector((state) => state.user);
+  if (!currentUser) {
+    currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
+  }
   const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
   });

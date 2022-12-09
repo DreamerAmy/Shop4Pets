@@ -15,8 +15,10 @@ const BuyerProfileScreen = (user) => {
     const { order } = useSelector((state) => state.order)
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findOrderByBuyerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
-    const { currentUser } = useSelector((state) => state.user);
-
+    let { currentUser } = useSelector((state) => state.user);
+    if (!currentUser) {
+        currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
+    }
     const orderHistoryUrl = "../order-history/" + bid;
     const favUrl = "../favorites/" + bid;
     const editUrl = "../edit-profile/" + bid;

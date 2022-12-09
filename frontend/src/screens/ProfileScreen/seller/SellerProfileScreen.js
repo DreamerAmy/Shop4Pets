@@ -1,8 +1,8 @@
-import React, {useEffect} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileBanner from "../../../components/ProfileBannerComponent";
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { findSellerHistBySellerIdThunk } from "../../../services/SellerThunks";
 import RecentSoldList from "./recent-sold";
 
@@ -16,7 +16,10 @@ const SellerProfileScreen = (user) => {
 
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findSellerHistBySellerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
-    const { currentUser } = useSelector((state) => state.user);
+    let { currentUser } = useSelector((state) => state.user);
+    if (!currentUser) {
+        currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
+    }
     const viewMyProductsUrl = "../view-myProducts/" + user.data._id;
 
     const routeToMyProfile = () => {
@@ -48,37 +51,37 @@ const SellerProfileScreen = (user) => {
 
                     <div className="list-group">
                         <div className="list-group-item border-0">
-                            <i className="bi bi-envelope pt-2"/>
-                            <span className= "ps-2"/>{seller.email}
+                            <i className="bi bi-envelope pt-2" />
+                            <span className="ps-2" />{seller.email}
                         </div>
 
                         <div className="list-group-item border-0">
-                            <i className="bi bi-phone pt-2"/>
-                            <span className= "ps-2"/>{seller.phone}
+                            <i className="bi bi-phone pt-2" />
+                            <span className="ps-2" />{seller.phone}
                         </div>
 
                         <div className="list-group-item border-0">
-                            <i className="bi bi-house-door pt-2"/>
-                            <span className= "ps-2"/>{seller.address}
+                            <i className="bi bi-house-door pt-2" />
+                            <span className="ps-2" />{seller.address}
                         </div>
 
                         <div className="list-group-item border-0">
-                            <i className="bi bi-balloon pt-2"/>
-                            <span className= "ps-2"/>Member Since {seller.memberSince}
+                            <i className="bi bi-balloon pt-2" />
+                            <span className="ps-2" />Member Since {seller.memberSince}
                         </div>
                     </div>
                 </div>
 
                 <div className="border-top pt-3">
                     <h1 className="highlight-text">Recent Sold</h1>
-                    <hr className="border border-dark border-2"/>
+                    <hr className="border border-dark border-2" />
                     <div className="d-flex flex-row col">
                         <div className="p-2 col-3 fw-bold"> Order Date</div>
                         <div className="p-2 col-3 fw-bold"> Sell Record Number</div>
                         <div className="p-2 col-3 fw-bold"> Order Amount</div>
                         <div className="p-2 col-3 fw-bold"> Details</div>
                     </div>
-                    <hr className="text-secondary"/>
+                    <hr className="text-secondary" />
 
                     <div className="flex-row">
                         <RecentSoldList sid={sid} />
@@ -91,30 +94,30 @@ const SellerProfileScreen = (user) => {
     return (
         <>
             <h5>You are viewing other's profile...</h5>
-            <ProfileBanner/>
+            <ProfileBanner />
             <div id="infoSection">
 
                 <h2 className="highlight-text">{seller.name}</h2>
 
                 <div className="list-group">
                     <div className="list-group-item border-0">
-                        <i className="bi bi-envelope pt-2"/>
-                        <span className= "ps-2"/>*hidden*
+                        <i className="bi bi-envelope pt-2" />
+                        <span className="ps-2" />*hidden*
                     </div>
 
                     <div className="list-group-item border-0">
-                        <i className="bi bi-phone pt-2"/>
-                        <span className= "ps-2"/>*hidden*
+                        <i className="bi bi-phone pt-2" />
+                        <span className="ps-2" />*hidden*
                     </div>
 
                     <div className="list-group-item border-0">
-                        <i className="bi bi-house-door pt-2"/>
-                        <span className= "ps-2"/>*hidden*
+                        <i className="bi bi-house-door pt-2" />
+                        <span className="ps-2" />*hidden*
                     </div>
 
                     <div className="list-group-item border-0">
-                        <i className="bi bi-balloon pt-2"/>
-                        <span className= "ps-2"/>Member Since {seller.memberSince}
+                        <i className="bi bi-balloon pt-2" />
+                        <span className="ps-2" />Member Since {seller.memberSince}
                     </div>
                 </div>
             </div>
@@ -122,14 +125,14 @@ const SellerProfileScreen = (user) => {
             {
                 currentUser &&
                 <Button className="px-4 btn btn-danger rounded-pill fw-bold"
-                        onClick={routeToMyProfile}>
+                    onClick={routeToMyProfile}>
                     Back to your profile
                 </Button>
             }
             {
                 !currentUser &&
                 <Button className="px-4 btn btn-danger rounded-pill fw-bold"
-                        onClick={routeToSignIn}>
+                    onClick={routeToSignIn}>
                     Sign In
                 </Button>
             }

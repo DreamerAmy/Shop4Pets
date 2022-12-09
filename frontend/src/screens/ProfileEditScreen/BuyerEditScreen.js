@@ -7,7 +7,10 @@ import { updateUserThunk } from "../../services/UserThunks";
 
 
 const BuyerEditScreen = (user) => {
-    const buyer = user.data;
+    let buyer = user.data;
+    if (!buyer) {
+        buyer = JSON.parse(sessionStorage.getItem('currentUser'))
+    }
     const bid = buyer._id;
     let [info, setInfo] = useState(buyer);
     const dispatch = useDispatch();

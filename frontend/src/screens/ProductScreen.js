@@ -19,7 +19,9 @@ const ProductScreen = () => {
 const ShowProductScreen = ({ pid }) => {
   let { productItem } = useSelector((state) => state.productItem)
   let { currentUser } = useSelector((state) => state.user);
-
+  if (!currentUser) {
+    currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
+  }
   const dispatch = useDispatch()
   useEffect(() => {
     if (!pid) { return; }
@@ -63,7 +65,7 @@ const ShowProductScreen = ({ pid }) => {
         <div className="col-2"></div>
         <div className="col-3">
           <h2 className="">Product Detail</h2>
-          <img className="productImg" src={`${productItem.image}`} alt="" />
+          {productItem && <img className="productImg" src={`${productItem.image}`} alt="" />}
         </div>
         <div className="col-5">
           {productItem && (
