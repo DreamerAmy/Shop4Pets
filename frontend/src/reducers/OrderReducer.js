@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createOrderThunk, deleteOrderThunk, findOrderByIdThunk, findOrderByBuyerIdThunk, updateOrderThunk } from "../services/OrderThunks.js";
+import { createOrderThunk, findOrderThunk, deleteOrderThunk, findOrderByIdThunk, findOrderByBuyerIdThunk, updateOrderThunk } from "../services/OrderThunks.js";
 
 
 const initialState = {
@@ -15,6 +15,20 @@ const orderSlice = createSlice({
             (state, { payload }) => {
                 state.loading = false
                 state.order.push(payload)
+            },
+        [findOrderThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.orderList = []
+            },
+        [findOrderThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.orderList = payload
+            },
+        [findOrderThunk.rejected]:
+            (state) => {
+                state.loading = false
             },
         [findOrderByIdThunk.pending]:
             (state) => {

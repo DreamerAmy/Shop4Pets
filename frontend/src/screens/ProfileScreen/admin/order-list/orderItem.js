@@ -1,11 +1,10 @@
 import React from "react";
-import {deleteOrderThunk} from "../../../../services/OrderThunks";
-import {useDispatch} from "react-redux";
+import { deleteOrderThunk } from "../../../../services/OrderThunks";
+import { useDispatch } from "react-redux";
 
-const AdminOrderItem = ({order}) => {
+const AdminOrderItem = ({ order }) => {
     let oid = order._id;
     oid = oid.substring(oid.length - 8, oid.length);
-    console.log("AdminOrderItem")
 
     const dispatch = useDispatch();
     const deleteOrderHandler = (id) => {

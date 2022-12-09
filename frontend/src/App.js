@@ -43,6 +43,7 @@ const store = configureStore({
     sellerItem: SellerReducer,
     order: OrderReducer,
     orderItem: OrderReducer,
+    orderList: OrderReducer,
     product: ProductReducer,
     productItem: ProductReducer
   },
@@ -65,8 +66,8 @@ function App() {
             {/* <Route path="/user-list/*" element={<UserListScreen />} /> */}
             {/*seller part*/}
             <Route path="/profile/seller" element={<SellerProfileScreen />} />
-            <Route path="/seller-view-detail/*" element={<SellerViewDetail/>}/>
-            <Route path="/view-myProducts/*" element={<SellerMyItems/>} />
+            <Route path="/seller-view-detail/*" element={<SellerViewDetail />} />
+            <Route path="/view-myProducts/*" element={<SellerMyItems />} />
             {/*admin part*/}
             <Route path="/profile/admin" element={<AdminProfileScreen />} />
             <Route path="/usersall/*" element={<AdminUserListScreen />} />
