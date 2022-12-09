@@ -32,6 +32,8 @@ import AdminProfileScreen from "./screens/ProfileScreen/AdminProfileScreen";
 import ProductBlankScreen from "./screens/ProductBlankScreen";
 import SellerViewDetail from "./screens/ProfileScreen/seller/seller-view-detail";
 import SellerMyItems from "./screens/ProfileScreen/seller/seller-items";
+import AdminUserListScreen from "./screens/ProfileScreen/admin/user-list";
+import AdminProductListScreen from "./screens/ProfileScreen/admin/product-list";
 // import UserListScreen from "./screens/UserListScreen";
 
 const store = configureStore({
@@ -65,10 +67,10 @@ function App() {
             <Route path="/profile/seller" element={<SellerProfileScreen />} />
             <Route path="/seller-view-detail/*" element={<SellerViewDetail/>}/>
             <Route path="/view-myProducts/*" element={<SellerMyItems/>} />
-            {/*<Route path="/view-myProfit/" element={} />*/}
             {/*admin part*/}
             <Route path="/profile/admin" element={<AdminProfileScreen />} />
-
+            <Route path="/usersall/*" element={<AdminUserListScreen />} />
+            <Route path="/itemsall/*" element={<AdminProductListScreen />} />
 
 
             <Route path="/payment" element={<PaymentScreen />} />

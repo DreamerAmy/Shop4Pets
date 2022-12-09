@@ -12,7 +12,7 @@ export const createOrder = async (order) => {
 }
 
 export const findOrder = async () => {
-    const response = await fetch(ORDER_API)
+    const response = await fetch(`${ORDER_API}/all`)
     const order = await response.json()
     return order;
 }

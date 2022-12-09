@@ -19,6 +19,7 @@ function AddQuantityToProducts(product, pidList, quantityList) {
 }
 
 const ProductList = ({ order }) => {
+  console.log(order)
   let pidList = order.productBought;
   let quantityList = order.productQuantity;
   const { product } = useSelector((state) => state.product);

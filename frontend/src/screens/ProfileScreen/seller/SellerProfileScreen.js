@@ -17,8 +17,7 @@ const SellerProfileScreen = (user) => {
     const dispatch = useDispatch();
     useEffect(() => { dispatch(findSellerHistBySellerIdThunk(user.data._id)) }, []) //eslint-disable-line react-hooks/exhaustive-deps
     const { currentUser } = useSelector((state) => state.user);
-    const viewMyProductsUrl = "../view-myProducts/" + sid;
-    const viewMyProfitUrl = "../view-myProfit/" + sid;
+    const viewMyProductsUrl = "../view-myProducts/" + user.data._id;
 
     const routeToMyProfile = () => {
         let myProfileUrl = "../profile/" + currentUser._id;
@@ -35,17 +34,12 @@ const SellerProfileScreen = (user) => {
             <div className="font-setting" id="profileScreen">
 
                 <div id="infoSection">
-                    <div className="float-end list-group pt-5">
-                        <button className="btn list-group-item rounded-pill" id="menuBtn">
+                    <div className="float-end list-group mt-5 flex-column">
+                        <button className="btn list-group-item rounded-pill mt-4" id="menuBtn">
                             <Link to={viewMyProductsUrl} href="#" className="nav-link" >My Products</Link>
                         </button>
 
-                        <button className="btn list-group-item rounded-pill" id="menuBtn">
-                            <Link to={viewMyProfitUrl} href="#" className="nav-link" >My Profit
-                            </Link>
-                        </button>
-
-                        <button className="btn list-group-item" id="editBtn">
+                        <button className="btn list-group-item mt-4" id="editBtn">
                             <Link to={editUrl} href="#" className="nav-link" >Edit</Link>
                         </button>
                     </div>

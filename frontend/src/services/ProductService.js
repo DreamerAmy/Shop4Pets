@@ -30,11 +30,11 @@ export const findProductBySellerId = async (sid) => {
 
 
 export const deleteProduct = async (pid) => {
-    const response = await axios.delete(`${PRODUCT_API} / ${pid}`)
+    const response = await axios.delete(`${PRODUCT_API}/${pid}`)
     return response.data
 }
 
 export const updateProduct = async (product) => {
-    await axios.put(`${PRODUCT_API} / ${product._id}`, product);
+    await axios.put(`${PRODUCT_API}/${product._id}`, product);
     return product;
 }
