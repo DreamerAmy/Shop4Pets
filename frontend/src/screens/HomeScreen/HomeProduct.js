@@ -17,11 +17,12 @@ const HomeProduct = ({ product }) => {
             <Card>
                 <Link to={productUrl} href="/" className="nav-link">
                     <img src={product.image} className="mx-auto d-block card-img-top product-img" alt={product.productName} />
-                <Card.Body>
+                </Link>
+                    <Card.Body>
                     <Card.Title className="product-title text-center">{product.productName}</Card.Title>
                     {/*<Card.Text className="product-price text-center">${product.price}</Card.Text>*/}
                 </Card.Body>
-                </Link>
+
             </Card>
         </>
     );

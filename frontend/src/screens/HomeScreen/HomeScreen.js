@@ -62,16 +62,6 @@ const Home = () => {
                     <img className="img-fluid mt-1 mb-4" src={require("../../images/HomeBanner.png")} alt="Home banner" />
                 </div>
 
-                <div>
-                    <h4>Shop By Pet Categories</h4>
-                    <Row class="d-flex justify-content-between img-fluid">
-                        <Col><img src={require("../../images/catCategory.jpeg")} alt="Cat Category" height={130} /></Col>
-                        <Col><img src={require("../../images/dogCategory.jpeg")} alt="Dog Category" height={130} /></Col>
-                        <Col><img src={require("../../images/smallPetCategory.jpeg")} alt="Small Pet Category" height={130} /></Col>
-                        <Col><img src={require("../../images/fishCategory.jpeg")} alt="Fish Category" height={130} /></Col>
-                    </Row>
-                </div>
-
                 {
                     !currentUser &&
                     <div>
