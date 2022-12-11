@@ -5,7 +5,21 @@ import { Link } from "react-router-dom";
 import './index.css'
 import { logoutThunk } from "../services/UserThunks";
 import {useDispatch, useSelector} from "react-redux";
+import React from "react";
 
+// Display profile btn only user is logged in
+const profileBtn = (currentUser) => {
+    let profileUrl = "../profile/";
+    if (currentUser) {
+        // profileUrl += currentUser._id;
+        return (
+            <Link className="nav-link me-auto w-auto" >
+                <Link class="text-decoration-none text-body" to={profileUrl} href="/" >Profile <i className="bi bi-person-fill"></i></Link>
+            </Link>
+        )
+    }
+
+}
 export default function Navigation() {
     let { currentUser } = useSelector((state) => state.user)
     if (currentUser) {
@@ -31,18 +45,20 @@ export default function Navigation() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <SearchBox />
                     <Nav className="me-auto w-auto justify-content-end">
+
                         { !currentUser ? (
-                            <Link to="/login" className="nav-link">
+                            <Link to="/login" className="nav-link text-body">
                                 Sign In
                             </Link> ) : (
 
-                            <Link className="nav-link" onClick={handleLogout}>
+                            <Link className="nav-link text-body" onClick={handleLogout}>
                             Logout
                             </Link>
                         )
                         }
-                        <Link to="/cart" className="nav-link">
-                            Cart <i className="bi bi-cart"></i>
+                        {profileBtn(currentUser)}
+                        <Link to="/cart" className="nav-link text-body">
+                            Cart <i className="bi bi-cart-fill"></i>
                         </Link>
                     </Nav>
                 </Navbar.Collapse>

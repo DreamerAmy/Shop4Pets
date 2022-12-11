@@ -1,33 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import React, { useEffect, useReducer } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import LoadingBox from "../../components/LoadingBox";
-import MessageBox from "../../components/MessageBox";
 import HomeProduct from "./HomeProduct";
-import axios from "axios";
-import product from "./HomeProduct";
-import ProductItem from "../../components/ProductComponent/ProductItem";
 import { findProductThunk } from "../../services/ProductThunks";
 import './home.css'
 import RecommendProduct from "./RecommendProduct";
 
-
-// Display profile btn only user is logged in
-const profileBtn = (currentUser) => {
-    let profileUrl = "../profile/";
-    if (currentUser) {
-        // profileUrl += currentUser._id;
-        return (
-            <Link className="nav-link" >
-                <Link to={profileUrl} href="/" >View My Profile</Link>
-            </Link>
-        )
-    }
-
-}
 
 
 const Home = () => {
@@ -51,10 +31,9 @@ const Home = () => {
         <>
             <Container>
                 <div>
-                    {profileBtn(currentUser)}
                     {
                         currentUser &&
-                        <h5>Welcome {currentUser.name}!</h5>
+                        <h5 className="mt-4">Welcome {currentUser.name}!</h5>
                     }
                 </div>
 
