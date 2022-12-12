@@ -8,10 +8,10 @@ import Col from 'react-bootstrap/Col';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import ListGroup from 'react-bootstrap/ListGroup';
-import {Card, Container} from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 
 const API_BASE = 'http://localhost:4000/api';
-const YOUTUBE_API_KEY = 'AIzaSyADSYJ5J6U22ujxJm_vGLghB46d47tSxgo';
+const YOUTUBE_API_KEY = 'AIzaSyDorhsaxEhnOIes5MzqIr0JIzFKiUNgwbU';
 const YOUTUBE_URL =
   'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=' +
   YOUTUBE_API_KEY;
@@ -50,6 +50,7 @@ export default function SearchScreen() {
           `${API_BASE}/product/search?query=${query}`
         );
         let youtube_items = [];
+
         if (query && query !== 'all') {
           const response = await axios.get(`${YOUTUBE_URL}&q=${query}`);
           const youtubedata = response.data;
@@ -80,69 +81,70 @@ export default function SearchScreen() {
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
-      <Container>
-    <div>
-      <Helmet>
-        <title>Search Products</title>
-      </Helmet>
-      {products.products.length === 0 && products.youtubeItems.length === 0 ? (
-        <MessageBox>
-          Search Result is empty. <Link to="/">Go Shopping</Link>
-        </MessageBox>
-      ) : (
-        <div className="container">
-          <Card>
-            <Card.Body>
-              <Card.Title>Youtube Search Results</Card.Title>
-              <ListGroup variant="flush">
-                {products.youtubeItems.map((item) => (
-                  <ListGroup.Item key={item.videoId}>
-                    <Row className="align-items-center">
-                      <Col md={2}>
-                        <img src={item.thumbnail.url} />
-                      </Col>
-                      <Col md={4}>
-                        <a
-                          href={`https://www.youtube.com/watch?v=${item.videoId}`}
-                        >
-                          {item.title}
-                        </a>
-                      </Col>
-                      <Col md={6}>
-                        <span>Description: {item.description}</span>
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            </Card.Body>
-          </Card>
+    <Container>
+      <div>
+        <Helmet>
+          <title>Search Products</title>
+        </Helmet>
+        {products.products.length === 0 &&
+        products.youtubeItems.length === 0 ? (
+          <MessageBox>
+            Search Result is empty. <Link to="/">Go Shopping</Link>
+          </MessageBox>
+        ) : (
+          <div className="container">
+            <Card>
+              <Card.Body>
+                <Card.Title>Youtube Search Results</Card.Title>
+                <ListGroup variant="flush">
+                  {products.youtubeItems.map((item) => (
+                    <ListGroup.Item key={item.videoId}>
+                      <Row className="align-items-center">
+                        <Col md={2}>
+                          <img src={item.thumbnail.url} />
+                        </Col>
+                        <Col md={4}>
+                          <a
+                            href={`https://www.youtube.com/watch?v=${item.videoId}`}
+                          >
+                            {item.title}
+                          </a>
+                        </Col>
+                        <Col md={6}>
+                          <span>Description: {item.description}</span>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+              </Card.Body>
+            </Card>
 
-          <Card>
-            <Card.Body>
-              <Card.Title>Search Results</Card.Title>
-              <ListGroup variant="flush">
-                {products.products.map((item) => (
-                  <ListGroup.Item key={item._id}>
-                    <Row className="align-items-center">
-                      <Col md={6}>
-                        <Link to={`/product/${item._id}`}>
-                          {item.productName}
-                        </Link>
-                      </Col>
-                      <Col md={3}>
-                        <span>Brand: {item.brand}</span>
-                      </Col>
-                      <Col md={3}>Unit Price: ${item.price}</Col>
-                    </Row>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </div>
-      )}
-    </div>
-      </Container>
+            <Card>
+              <Card.Body>
+                <Card.Title>Search Results</Card.Title>
+                <ListGroup variant="flush">
+                  {products.products.map((item) => (
+                    <ListGroup.Item key={item._id}>
+                      <Row className="align-items-center">
+                        <Col md={6}>
+                          <Link to={`/product/${item._id}`}>
+                            {item.productName}
+                          </Link>
+                        </Col>
+                        <Col md={3}>
+                          <span>Brand: {item.brand}</span>
+                        </Col>
+                        <Col md={3}>Unit Price: ${item.price}</Col>
+                      </Row>
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+              </Card.Body>
+            </Card>
+          </div>
+        )}
+      </div>
+    </Container>
   );
 }
