@@ -5,7 +5,7 @@ import "../../screens/ProfileScreen/index.css";
 import { Link } from "react-router-dom";
 
 const OrderItem = ({ order }) => {
-    let orderId = order._id.substring(order._id.length - 8, order._id.length);
+    let orderId = order._id.substring(order._id.length - 6, order._id.length);
     let orderUrl = "../order-detail/" + order._id
     return (
         <>
