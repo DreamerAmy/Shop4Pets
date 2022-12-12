@@ -9,7 +9,7 @@ const OrderDetailItem = ({ order }) => {
     let orderId = null;
     let creditCardNumber = null;
     if (order) {
-        orderId = order._id.substring(order._id.length - 8, order._id.length);
+        orderId = order._id.substring(order._id.length - 6, order._id.length);
         creditCardNumber = order.creditCardNumber.substring(order.creditCardNumber.length - 4, order.creditCardNumber.length);
     }
     return (
